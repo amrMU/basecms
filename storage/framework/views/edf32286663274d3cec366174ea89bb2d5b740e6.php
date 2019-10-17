@@ -351,12 +351,11 @@
                                             <div class="col-lg-2">
                                                <a hreg="#" class="btn btn-primary add_new_social_media"> + </a>
                                             </div>
-                                            <div class="col-lg-2">
-                                                <input type="text" name="name_media_ar[]" class="form-control" id="title_ar" placeholder="<?php echo app('translator')->getFromJson('home.name_ar'); ?>"  multiple>
+                                                <input type="hidden" name="social_media_lang[]" value="ar"  multiple>
+                                            <div class="col-lg-4">
+                                                <input type="text" name="name_media[]" class="form-control" id="title_ar" placeholder="<?php echo app('translator')->getFromJson('home.name'); ?>"  multiple>
                                             </div>
-                                            <div class="col-lg-2">
-                                                <input type="text" name="name_media_en[]" class="form-control" id="title_en" placeholder="<?php echo app('translator')->getFromJson('home.name_en'); ?>"  multiple>
-                                            </div>
+                                           
                                              <div class="col-lg-2">
                                                 <input type="text" name="url[]" class="form-control" id="url" placeholder="<?php echo app('translator')->getFromJson('home.url'); ?>" multiple>
                                             </div>
@@ -364,21 +363,38 @@
                                                 <input type="file" name="social_logo[]" class="file-styled" multiple>
                                             </div>
                                         </div>
+                                          <div class="form-group" >
+                                            <div class="col-lg-2">
+                                               <a hreg="#" class="btn btn-primary add_new_social_media"> + </a>
+                                            </div>
+                                                <input type="hidden" name="social_media_lang[]" value="en"  multiple>
+                                            <div class="col-lg-4">
+                                                <input type="text" name="name_media[]" class="form-control" id="title_ar" placeholder="<?php echo app('translator')->getFromJson('home.name'); ?>"  multiple>
+                                            </div>
+                                           
+                                             <div class="col-lg-2">
+                                                <input type="text" name="url[]" class="form-control" id="url" placeholder="<?php echo app('translator')->getFromJson('home.url'); ?>" multiple>
+                                            </div>
+                                            <div class="col-2">
+                                                <input type="file" name="social_logo[]" class="file-styled" multiple>
+                                            </div>
+                                        </div>
+                                        
                                         <!-- /social Media field -->
                                         <div id="space_social_media">
                                         <?php if(isset($info)): ?>
                                         <?php $__currentLoopData = $info->social_media_link; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $link): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <input type="hidden" name="social_media_lang[]" value="ar"  multiple>
+
                                         <div class="form-group" >
                                             <div class="col-lg-2">
                                             <button class="remove_field btn btn-danger">-</button>
                                             </div>
-                                            <div class="col-lg-2"> 
-                                                <input type="text" name="name_media_ar[]" class="form-control" id="title_ar" placeholder="<?php echo app('translator')->getFromJson('home.name_ar'); ?>"  multiple  value="<?php echo e(@$link->name_ar); ?>">
+                                            <div class="col-lg-4"> 
+                                                <input type="text" name="name_media[]" class="form-control" id="title_ar" placeholder="<?php echo app('translator')->getFromJson('home.name_ar'); ?>"  multiple  value="<?php echo e(@$link->social_media_translation->name); ?>">
                                             </div>
+                                           
                                             <div class="col-lg-2">
-                                                <input type="text" name="name_media_en[]" class="form-control" id="title_en" placeholder="<?php echo app('translator')->getFromJson('home.name_en'); ?>"  multiple value="<?php echo e(@$link->name_en); ?>" >
-                                            </div>
-                                             <div class="col-lg-2">
                                                 <input type="text" name="url[]" class="form-control" id="url" placeholder="<?php echo app('translator')->getFromJson('home.url'); ?>" multiple value="<?php echo e(@$link->url); ?>" >
                                             </div>
                                             <div class="col-2">
@@ -460,7 +476,7 @@
    var add_new_social_media = $(".add_new_social_media");
    $(add_new_social_media).click(function (e) {
     e.preventDefault();
-    $(wrap_social_media).append('<div class="form-group" ><div class="col-lg-2"> <button class="remove_field btn btn-danger">-</button></div><div class="col-lg-2"><input type="text" name="name_ar[]" multiple class="form-control" id="text" placeholder="<?php echo app('translator')->getFromJson('home.name_ar'); ?>"></div><div class="col-lg-2"><input type="text" name="name_en[]" multiple class="form-control" id="text" multiple placeholder="<?php echo app('translator')->getFromJson('home.name_en'); ?>"></div><div class="col-lg-2"> <input type="text" name="url[]" multiple class="form-control" id="url"  placeholder="<?php echo app('translator')->getFromJson('home.url'); ?>"></div><div class="col-2"><input type="file" name="social_logo[]" class="file-styled"  multiple></div></div>'); 
+    $(wrap_social_media).append('<div class="form-group" ><div class="col-lg-2"><button class="remove_field btn btn-danger">-</button></div><input type="hidden" name="social_media_lang[]" value="ar"  multiple><div class="col-lg-4"><input type="text" name="name_media[]" class="form-control" id="title_ar" placeholder="<?php echo app('translator')->getFromJson('home.name'); ?>"  multiple></div><div class="col-lg-2"><input type="text" name="url[]" multiple class="form-control" id="url"  placeholder="<?php echo app('translator')->getFromJson('home.url'); ?>"></div><div class="col-2"><input type="file" name="social_logo[]" class="file-styled"  multiple></div></div>'); 
   });
 
    $(document).on("click",".remove_field",function(){

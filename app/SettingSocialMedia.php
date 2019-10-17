@@ -12,9 +12,13 @@ class SettingSocialMedia extends Model
 	protected $table = "setting_social_media";
     protected $fillable = [
 	    'setting_id',
-	    'name_ar',
-	    'name_en',
 	    'icon',
 	    'url',
     ];
+
+    public function social_media_translation()
+    {
+        // return $this->belongsTo('App\SettingsSocialMediaTranslate','id','media_id')->where('language',LaravelLocalization::getCurrentLocale()); //if you your website is multi language activate this line to get lang from session.
+        return $this->belongsTo('App\SettingsSocialMediaTranslate','id','media_id')->where('language','ar');
+    }
 }

@@ -22,8 +22,9 @@ class Setting extends Model
     {
         // return $this->belongsTo('App\SettingsTranslation','id','setting_id')->where('language',LaravelLocalization::getCurrentLocale()); //if you your website is multi language activate this line to get lang from session.
         return $this->belongsTo('App\SettingsTranslation','id','setting_id')->where('language','ar');
-
     }
+
+    
 
     public function mail_provider_info()
     {
@@ -55,6 +56,7 @@ class Setting extends Model
         return $this->hasMany('App\SettingSocialMedia','setting_id','id');
     }
 
+    
     public function external_resources()
     {
         return $this->hasMany('App\ExternalResources','setting_id','id');

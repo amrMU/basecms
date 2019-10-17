@@ -15,7 +15,7 @@ use  App\Http\Controllers\Admin\SettingController;
 use App\SettingMailProviderInfo,App\SettingAddress,App\SettingWatsapp;
 use App\SettingPhone,App\SettingSocialMedia,App\SettingEmail;
 use App\Http\Controllers\ImagesController,App\ExternalResources;
-use App\SettingsTranslation;
+use App\SettingsTranslation,App\SettingsSocialMediaTranslate;
 
 use Auth;
 class SettingProgressController extends Controller
@@ -217,30 +217,40 @@ class SettingProgressController extends Controller
 		if (SettingSocialMedia::count() > 0 ) {
 			$delete_latest = SettingSocialMedia::where('setting_id',$setting_id)->forceDelete();
 		}
-
-		foreach ($request['name_media_ar'] as $key => $brand_ar) {
+		$SettingSocialMedia = [];
+		$media_translate = [];
+		foreach ($request['name_media'] as $key => $brand_ar) {
 			if($brand_ar != null ){
 
-				$create_phone = SettingSocialMedia::create([
+				$create_chanel = SettingSocialMedia::create([
 					'setting_id'=>$setting_id,
-					'name_ar'=>$request['name_media_ar'][$key],
-					'name_en'=>$request['name_media_en'][$key],
+					// 'name_ar'=>$request['name_media_ar'][$key],
+					// 'name_en'=>$request['name_media_en'][$key],
 					'url'=>$request['url'][$key]
 				]);
+				$media_translate = SettingsSocialMediaTranslate::create([
+					'setting_id'=>$setting_id,
+					'media_id'=>$create_chanel->id,
+					'language'=>$request['social_media_lang'][$key],
+					'name'=>$request['name_media'][$key]
+				]);
 				//has file
-				if(isset($request['social_logo'])){
+				if(isset($request['social_logo'][$key])){
 					$image =ImagesController::uploadSingle(
 						$request['social_logo'][$key],
-						$path=public_path().'/uploads/images/logos/'.$request['name_media_en'][$key],
-						'/uploads/images/logos/'.$request['name_media_en'][$key]
+						$path=public_path().'/uploads/images/logos/'.$request['name_media'][$key],
+						'/uploads/images/logos/'.$request['name_media'][$key]
 					);
-					$create_phone->update([
+				// dd(isset($request['social_logo'][$key]));
+					$create_chanel->update([
 						'icon'=>@$image,
 					]);
 				}
 				//end upload file
 			}
 		}
+		// dd($SettingSocialMedia,$media_translate);
+
 		return "Okay";
 	}
 }
