@@ -1,40 +1,48 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+## Limet Less - RTL
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+Slim It's a Awesome Dashboard Has Most Component To Use In Your Application .. Modern & Clean Responsive Bootstrap 3.3.5 Admin Dashboard Template .. I'm using the bright color version
 
-## About Laravel
+## Why Build It?
+All Mobile Applications & Web Application Have Standard Or Base Informations .. I've Collected Data Shared In All This And Built It.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+## components:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+##Site
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
+..* Comming Soon InterFace with Ar, En Languages  to receiving subscription user info
 
-## Learning Laravel
+##Control Panel
 
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
+#Languge support Ar, En
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+..* Track all panel user what are you doing boot and save it to check all after if i have rule.
 
-## Contributing
+..* receiving subscription user info List with remove one or Export All as ExelSheet.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+..* Authentication Model (Login - Logout - Forget password - Reset password).
 
-## Security Vulnerabilities
+..* Software Setting (general settings - SMTP BUILDER - DEPARTMENT EMAILS - COMPANY ADDRESSES - PHONES - WHATSAPP 				NUMBERS - SOCIAL MEDIA LINKS GENERATOR).
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+..* Users CRUD to add anyuser if wnat, support export it out.
 
-## License
+..* Categories CRUD.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+..* Pages CRUD.
+
+..* Blogs CRUD .
+
+
+#after git clone dont forget follow this steps
+
+  1. run commend : sudo chmod -R 777 bootstrap/cache
+  2. run commend : sudo chmod -R 777 storage
+  3. run commend : sudo chmod -R 777 public/uploads
+  4. create database Name is "base_custom" or create database as you like and open main directory on project then .env file to set database name connection(DB_DATABASE,DB_USERNAME,DB_PASSWORD)
+ defualt is a [
+		  'DB_DATABASE'=>'base_project' ,
+		  'DB_USERNAME'=>'root',
+		  'DB_PASSWORD'= ''
+  ]
+ 5. Run commend : php artisan migrate --seed
+
+### can access dashboard using progict url/login try to use it and make a code review as you like  
