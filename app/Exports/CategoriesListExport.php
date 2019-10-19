@@ -15,10 +15,12 @@ class CategoriesListExport implements FromCollection
     {
        
        return $categories = DB::table('categories')
+                             ->join('category_translations','categories.id','category_translations.category_id')
+
                             ->select(
-                                'categories.id',
-                                'categories.name_ar',
-                                'categories.name_en',
+                                 'categories.id',
+                                'category_translations.name',
+                                // 'categories.name_en',
                                 'categories.parent_id'
                             )->get();
 

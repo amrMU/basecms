@@ -11,13 +11,11 @@ class Pages extends Model
     use SoftDeletes;
     protected $table = "pages";
     protected $fillable = [
-        'title_ar',
-        'title_en',
+       'title',
         'url',
         'meta_tags',
         'icon',
-        'content_ar',
-        'content_en',
+        'content',
         'status',
     ];
 
@@ -38,5 +36,16 @@ class Pages extends Model
             // save image name to data base
             $this->attributes['icon'] =$path.'/'.$fullname;
         }
+    }
+
+    public function setUrlAttribute($url)
+    {
+        return  $this->attributes['url'] = str_replace(' ', '_', $url);
+    }
+
+    public function translation()
+    {
+        return $this->belongsTo('App\PagesTranslation','id','page_id')->where('language','ar');
+        
     }
 }

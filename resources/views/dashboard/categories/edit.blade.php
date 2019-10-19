@@ -94,30 +94,23 @@
                                         <select name="parent_id" class="form-control" >
                                             <option value="">@lang('home.select_one')</option>
                                             @foreach($categories as $category)
-                                            <option value="{{@$category->id}}" @if(@$info->parent_id == $category->id) selected @endif>{{(App::isLocale('en')  ? @$category->name_en : @$category->name_ar)}}</option>
+                                            <option value="{{@$category->id}}" @if(@$info->parent_id == $category->id) selected @endif> {{@$category->category_translation->name}}</option>
                                             @endforeach
                                         </select>
                                         </div>
                                     </div>
                                     <!-- /choose category input -->  
-
+                                    <input type="hidden" name="lang[]" value="ar">
                                     <!-- title ar input -->
                                     <div class="form-group">
                                         <label class="control-label col-lg-3">@lang('home.name_ar') <span class="text-danger" title="@lang('home.required')">*</span></label>
                                         <div class="col-lg-9">
-                                            <input type="text" name="name_ar" class="form-control" placeholder="@lang('home.name_ar')" value="{{@$info->name_ar}}">
+                                            <input type="text" name="name[]" class="form-control" placeholder="@lang('home.name_ar')" value="{{@$info->category_translation->name}}">
                                         </div>
                                     </div>
                                     <!-- /title ar input -->
 
-                                    <!-- title ar input -->
-                                    <div class="form-group">
-                                        <label class="control-label col-lg-3">@lang('home.name_en') <span class="text-danger" title="@lang('home.required')">*</span></label>
-                                        <div class="col-lg-9">
-                                            <input type="text" name="name_en" class="form-control"  placeholder="@lang('home.name_en')" value="{{@$info->name_en}}">
-                                        </div>
-                                    </div>
-                                    <!-- /title ar input -->
+                                   
                                     <!-- Meta Tags input -->
                                     <div class="form-group">
                                         <label class="control-label col-lg-3">@lang('home.meta_tags') <span class="text-danger" title="@lang('home.required')">*</span></label>

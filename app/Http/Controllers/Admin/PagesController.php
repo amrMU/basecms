@@ -5,19 +5,20 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PageRequest;
+use App\Pages,App\PagesTranslation;
 use Jenssegers\Agent\Agent;
 use App\Helpers\DoFire;
 use Auth;
-use App\Pages;
 use Session;
 
 class PagesController extends Controller
 {
     public $view = 'dashboard';
     
-    public function __construct(Pages $pages)
+    public function __construct(Pages $pages,PagesTranslation $translation)
   	{
           $this->pages = $pages;
+          $this->translation = $translation;
   	}	    
 
     public function ExportExelSheet(Request $request)
@@ -49,7 +50,17 @@ class PagesController extends Controller
 
     public function store(PageRequest $request)
     {
-       $create = $this->pages->create($request->all());
+       $create = $this->pages->create($request->only('url','meta_tags','status','icon'));
+
+       $create_translation = [];
+       foreach ($request->title as $key => $value) {
+          $create_translation = $this->translation->create([
+            'page_id'=>$create->id,
+            'title'=>$request->title[$key],
+            'content'=>$request->content[$key],
+            'language'=>$request->lang[$key],
+          ]);
+       }
        $agent = new Agent();
        $agent = $agent->platform().','.$agent->browser().$agent->version($agent->browser());
        $data = ['key'=>'dashboard_create_page','text'=>'Browse Create Page','browser'=>$agent];
@@ -73,7 +84,20 @@ class PagesController extends Controller
 
     public function update(PageRequest $request,$id)
     {
-       $update = $this->pages->find($id)->update($request->all());
+       $update = $this->pages->find($id)->update($request->only('url','meta_tags','status','icon'));
+
+
+       $this->translation->where('page_id',$id)->delete();
+       $create_translation = [];
+       foreach ($request->title as $key => $value) {
+          $create_translation = $this->translation->create([
+            'page_id'=>$id,
+            'title'=>$request->title[$key],
+            'content'=>$request->content[$key],
+            'language'=>$request->lang[$key],
+          ]);
+       }
+      
        $agent = new Agent();
        $agent = $agent->platform().','.$agent->browser().$agent->version($agent->browser());
        $data = ['key'=>'dashboard_update_page_info','text'=>'Browse update Page Info','browser'=>$agent];
@@ -91,6 +115,7 @@ class PagesController extends Controller
        $agent = $agent->platform().','.$agent->browser().$agent->version($agent->browser());
        $data = ['key'=>'dashboard_destroy_page_info','text'=>'Destroy Page Info','browser'=>$agent];
        $info  = $this->pages->find($id);
+
        DoFire::MK_REPORT($data,Auth::id(),$info,$request->ipinfo);
        $this->pages->destroy($id);
       Session::flash('success',trans('home.message_success'));

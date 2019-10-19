@@ -23,10 +23,7 @@ class blog extends Model
 
     public function setUrlAttribute($url)
     {
-        // dd($url);
         return  $this->attributes['url'] = str_replace(' ', '_', $url);
-        // dd($this->attributes['url']);
-        // $this->attributes['url'] = strtolower($value);
     }
     public function setImageAttribute($icon)
     {

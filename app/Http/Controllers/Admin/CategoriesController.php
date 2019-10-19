@@ -16,7 +16,7 @@ use App\Http\Requests\Admin\CategoryRequest;
 use App\Exports\CategoriesListExport;
 use Jenssegers\Agent\Agent;
 use App\Helpers\DoFire;
-use App\Category;
+use App\Category,App\CategoryTranslation;
 use Session;
 use Auth;
 use DB;
@@ -33,12 +33,14 @@ class CategoriesController extends Controller
     public function ExportExelSheet(Request $request)
     {
         $lists = DB::table('categories')
+                ->join('category_translations','categories.id','category_translations.category_id')
                     ->select(
                         'categories.id',
-                        'categories.name_ar',
-                        'categories.name_en',
+                        'category_translations.name',
+                        // 'categories.name_en',
                         'categories.parent_id'
                     )->get();
+                    // dd($lists);
         $agent = new Agent();
         $agent = $agent->platform().','.$agent->browser().$agent->version($agent->browser());
         $data = ['key'=>'dashboard_export_Categories_list','text'=>'Export Categories List','browser'=>$agent];
@@ -49,7 +51,7 @@ class CategoriesController extends Controller
 
     public function index(Request $request)
     {
-        $categories = $this->category->get();
+        $categories = $this->category->with('category_translation')->get();
         $agent = new Agent();
         $agent = $agent->platform().','.$agent->browser().$agent->version($agent->browser());
         $data = ['key'=>'dashboard_browse_categories','text'=>'Brwose view Category list','browser'=>$agent];
@@ -60,9 +62,7 @@ class CategoriesController extends Controller
 
     public function create(Request $request)
     {
-        $categories = $this->category->all();
-
-
+        $categories = $this->category->with('category_translation')->get();
         $agent = new Agent();
         $agent = $agent->platform().','.$agent->browser().$agent->version($agent->browser());
         $data = ['key'=>'dashboard_browse_view_create_category','text'=>'Brwose view New Category','browser'=>$agent];
@@ -84,19 +84,24 @@ class CategoriesController extends Controller
         }else{
             $image = '/img/no_image.png';
         }
-
         if($request->has('parent_id')){
             $parent_id  = $request->parent_id;
         }else{
             $parent_id  = NULL;  
         }
          $category = $this->category->create([
-                        'name_ar'=>$request->name_ar,
-                        'name_en'=>$request->name_en,
-                        'meta_tags'=>$request->meta_tags,
+                       'meta_tags'=>$request->meta_tags,
                         'parent_id'=>$parent_id,
                         'icon'=>$image
                     ]);
+         $translations = [];
+         foreach ($request->name as $key => $value) {
+            $translations = CategoryTranslation::create([
+                'name'=>$request->name[$key],
+                'category_id'=>$category->id,
+                'language'=>$request->lang[$key],
+            ]);
+         }
 
         $agent = new Agent();
         $agent = $agent->platform().','.$agent->browser().$agent->version($agent->browser());
@@ -140,12 +145,20 @@ class CategoriesController extends Controller
             $parent_id  = NULL;  
         }
          $category = $this->category->find($id)->update([
-                        'name_ar'=>$request->name_ar,
-                        'name_en'=>$request->name_en,
                         'meta_tags'=>$request->meta_tags,
                         'parent_id'=>$parent_id,
                     ]);
 
+       CategoryTranslation::where('category_id',$id)->delete();
+
+         $translations = [];
+         foreach ($request->name as $key => $value) {
+            $translations = CategoryTranslation::create([
+                'category_id'=>$id,
+                'name'=>$request->name[$key],
+                'language'=>$request->lang[$key],
+            ]);
+         }
         $agent = new Agent();
         $agent = $agent->platform().','.$agent->browser().$agent->version($agent->browser());
         $data = ['key'=>'dashboard_browse_create_category','text'=>'Brwose Create  New Category','browser'=>$agent];

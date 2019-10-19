@@ -72,8 +72,7 @@
                 @foreach($pages as $page)
                 <tr>
                     <td><span class="text-semibold">{{ @$page->id }}</span></td>
-                    <td><span class="text-semibold">{{ @$page->title_ar }}</span></td>
-                    <td><span class="text-muted">{{ @$page->title_en }}</span></td>
+                    <td><span class="text-semibold">{{ @$page->translation->title }}</span></td>
                     <td>
                         <img src="{{url('/'). @$page->icon }}" width="50" height="50" class="img-responsive" alt="{{ @$page->name_ar }}">
                     </td>

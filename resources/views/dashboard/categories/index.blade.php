@@ -60,8 +60,7 @@
                 <thead>                  
                 <tr>                                     
                     <th class="col-md-2">#</th>
-                    <th class="col-md-2">@lang('home.name_ar')</th>
-                    <th class="col-md-2">@lang('home.name_en')</th>
+                    <th class="col-md-2">@lang('home.name')</th>
                     <th class="col-md-2">@lang('home.parent')</th>
                     <th class="col-md-2">@lang('home.icon')</th>
                     <th class="col-md-2">@lang('home.edit')</th>
@@ -73,11 +72,10 @@
                 @foreach($categories as $category)
                 <tr>
                     <td><span class="text-semibold">{{ @$category->id }}</span></td>
-                    <td><span class="text-semibold">{{ @$category->name_ar }}</span></td>
-                    <td><span class="text-muted">{{ @$category->name_en }}</span></td>
+                    <td><span class="text-semibold">{{ @$category->category_translation->name }}</span></td>
                     <td><span class="text-muted">
                         @if($category->parent_id != NULL)
-                        {{ (App::isLocale('en')  ? @$category->category->name_en : @$category->category->name_ar) }}
+                        {{@$category->category_translation->name}}
                         @else 
                         @lang('home.non_parent')
                         @endif 

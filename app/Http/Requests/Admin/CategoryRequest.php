@@ -33,8 +33,8 @@ class CategoryRequest extends FormRequest
         case 'POST':
         {
             return [
-                'name_ar'=>'required',
-                'name_en'=>'required',
+                'name.*'=>'required',
+                // 'name_en'=>'required',
                 'icon'=>'required|mimes:jpeg,bmp,png,jpg',
                 'meta_tags'=>'required'
             ];
@@ -42,8 +42,8 @@ class CategoryRequest extends FormRequest
         case 'PUT':
         {
             return [
-                'name_ar'=>'required',
-                'name_en'=>'required',
+                // 'name_ar'=>'required',
+                // 'name_en'=>'required',
                 'icon'=>'mimes:jpeg,bmp,png,jpg',
                 'meta_tags'=>'required'
             ];

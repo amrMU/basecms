@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePagesTable extends Migration
+class CreateCategoryTranslationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreatePagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('pages', function (Blueprint $table) {
+        Schema::create('category_translations', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('url')->nullable();
-            $table->string('meta_tags')->nullable();
-            $table->string('icon')->defualt('img/No_image.svg.png');
-            $table->enum('status',['show','hide']);
+            $table->string('name')->nullable();
+            $table->unsignedInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->enum('language',['ar','en']);
             $table->softDeletes();
-
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ class CreatePagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pages');
+        Schema::dropIfExists('category_translations');
     }
 }

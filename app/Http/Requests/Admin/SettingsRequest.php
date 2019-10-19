@@ -36,8 +36,8 @@ class SettingsRequest extends FormRequest
                 // 'title_en'=>'required',
                 // 'content_ar'=>'required',
                 // 'content_ar'=>'required',
-                // 'logo'=>'required|mimes:jpeg,bmp,png,jpg',
-                // 'meta_tags'=>'required',
+                'logo'=>'required|mimes:jpeg,bmp,png,jpg',
+                'meta_tags'=>'required',
                 // 'extirnal_code'=>'required',
                 );
            }
@@ -48,8 +48,8 @@ class SettingsRequest extends FormRequest
                 // 'title_en'=>'required',
                 // 'content_ar'=>'required',
                 // 'content_en'=>'required',
-                // 'logo'=>'required|mimes:jpeg,bmp,png,jpg',
-                // 'meta_tags'=>'required',
+                'logo'=>'mimes:jpeg,bmp,png,jpg',
+                'meta_tags'=>'required',
                 // 'extirnal_code'=>'required',
                 );
            }
