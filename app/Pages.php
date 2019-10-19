@@ -11,11 +11,9 @@ class Pages extends Model
     use SoftDeletes;
     protected $table = "pages";
     protected $fillable = [
-       'title',
-        'url',
+       'url',
         'meta_tags',
         'icon',
-        'content',
         'status',
     ];
 

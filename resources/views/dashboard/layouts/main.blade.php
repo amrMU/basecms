@@ -431,14 +431,14 @@
                                         <li><a href="{{ URL::to('ar/admin/pages/create') }}" class="">@lang('home.create_page')</a></li>
                                     </ul>
                             </li>
-                            <li class="">
+                       {{--      <li class="">
                                     <a href="#" class="has-ul "><i class="icon-blog"></i> <span>@lang('home.blogs')</span><span class="" style="left: 39.2308%; top: 63.6364%; transform: translate3d(-50%, -50%, 0px); transition-duration: 0.2s, 0.5s; width: 202.844%;"></span></a>
                                     <ul class="hidden-ul" style="display: none;">
                                         <li><a href="{{ URL::to('ar/admin/blogs') }}" class="">@lang('home.blog_list')</a></li>
                                         <li><a href="{{ URL::to('ar/admin/blogs/create') }}" class="">@lang('home.create_new')</a></li>
                                     </ul>
                             </li>
-                        
+                         --}}
                         </ul>
                     </div>
                 </div>
