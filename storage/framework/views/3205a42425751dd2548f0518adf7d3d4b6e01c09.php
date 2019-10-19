@@ -431,7 +431,15 @@
                                         <li><a href="<?php echo e(URL::to('ar/admin/pages/create')); ?>" class=""><?php echo app('translator')->getFromJson('home.create_page'); ?></a></li>
                                     </ul>
                             </li>
-                       
+                            <li class="">
+                                    <a href="#" class="has-ul "><i class="icon-newspaper"></i> <span><?php echo app('translator')->getFromJson('home.about_us'); ?></span><span class="" style="left: 39.2308%; top: 63.6364%; transform: translate3d(-50%, -50%, 0px); transition-duration: 0.2s, 0.5s; width: 202.844%;"></span></a>
+                                    <ul class="hidden-ul" style="display: none;">
+                              
+                                        <li><a href="<?php echo e(URL::to(LaravelLocalization::getCurrentLocale().'/admin/aboutus')); ?>" class=""><?php echo app('translator')->getFromJson('home.about_us'); ?></a></li>
+                                    </ul>
+                            </li>
+                        
+                            
                         </ul>
                     </div>
                 </div>

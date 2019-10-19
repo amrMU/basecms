@@ -51,7 +51,9 @@
 
 			Route::resource('pages','Admin\PagesController');
 			Route::get('pages/{id}/delete','Admin\PagesController@destroy');
-			Route::get('pages_export','Admin\PagesController@ExportExelSheet');
+
+			Route::get('aboutus','Admin\AboutusController@create');
+			Route::post('aboutus','Admin\AboutusController@save');
 
 			Route::resource('blogs','Admin\BlogsController');
 			Route::get('blogs/{id}/delete','Admin\BlogsController@destroy');

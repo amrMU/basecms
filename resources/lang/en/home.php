@@ -132,7 +132,10 @@
 		'blogs'=>'Blogs',
 		'blog_list'=>'Blog List',
 		'create_new'=>'create New',
-		'key_search_blogs_list'=>'search key, title, content'
+		'key_search_blogs_list'=>'search key, title, content',
+		'about_us'=>'About Us',
+		'mission_ar'=>'Mission Ar',
+		'goals_ar'=>'Goals Ar'
 
 
 

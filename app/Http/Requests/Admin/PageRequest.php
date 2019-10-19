@@ -33,14 +33,11 @@ class PageRequest extends FormRequest
             case 'POST':
             {
 
-// dd($this->request->all());
                 return [
                     'title.*'=>'required',
-                    // 'title_en'=>'required',
+                    'content.*'=>'required',
                     'url'=>'required',
                     'icon'=>'required|mimes:jpeg,bmp,png,jpg',
-                    'content.*'=>'required',
-                    // 'content_en'=>'required'
                 ];
             }
             case 'PUT':
@@ -48,8 +45,6 @@ class PageRequest extends FormRequest
                 return [
                     'title.*'=>'required',
                     'content.*'=>'required',
-                    // 'title_en'=>'required',
-                    // 'content_en'=>'required',
                     'url'=>'required',
                     'icon'=>'mimes:jpeg,bmp,png,jpg',
                 ];
