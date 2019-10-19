@@ -4,7 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
-use App\Setting,App\City;
+use App\Setting,App\City,App\Aboutus;
+use App\Category;
 use App;
 use Config;
 
@@ -19,7 +20,6 @@ class AppServiceProvider extends ServiceProvider
     {
         App::booted(function()
         {
-            
             if (\Schema::hasTable('settings')) {
                 $setting = Setting::first();
                 Config::set('app.name',@$setting->translation->title);
@@ -30,13 +30,18 @@ class AppServiceProvider extends ServiceProvider
                 Config::set('mail.password',@$setting->mail_provider_info->MAIL_PASSWORD);
                 view()->share('setting', $setting);
             }
-
             if(\Schema::hasTable('cities')){
                 $cities = City::all();
                 view()->share('cities', $cities);
-
             }
-
+            if (\Schema::hasTable('aboutus')) {
+                $info = Aboutus::first();
+                view()->share('info', $info);
+            }
+             if (\Schema::hasTable('categories')) {
+                $categories = Category::take(4)->get();
+                view()->share('categories', $categories);
+            }
            
             
         });

@@ -111,7 +111,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.name_ar'); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
                                         <div class="col-lg-9">
-                                            <input type="text" name="name[]" class="form-control" placeholder="<?php echo app('translator')->getFromJson('home.name_ar'); ?>" value="<?php echo e(Request::old('name')); ?>">
+                                            <input type="text" name="name[]" class="form-control" placeholder="<?php echo app('translator')->getFromJson('home.name_ar'); ?>" value="">
                                         </div>
                                     </div>
                                     <!-- /title ar input -->

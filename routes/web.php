@@ -70,6 +70,8 @@
 	});
 	});
 
+//site routes 
+Route::get('aboutus','Front\AboutUsController@show');
 
 
 Auth::routes();
