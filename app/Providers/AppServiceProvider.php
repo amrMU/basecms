@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
         App::booted(function()
         {
             if (\Schema::hasTable('settings')) {
-                $setting = Setting::first();
+                $setting = Setting::with('social_media_link')->first();
                 Config::set('app.name',@$setting->translation->title);
                 Config::set('mail.driver',@$setting->mail_provider_info->MAIL_DRIVER);
                 Config::set('mail.host',@$setting->mail_provider_info->MAIL_HOST);

@@ -14,7 +14,7 @@ class Setting extends Model
     protected $fillable = [
             'logo',
             'meta_tags',
-            'extirnal_code',
+            // 'extirnal_code',
             'created_by'
     ];
 

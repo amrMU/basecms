@@ -25,7 +25,7 @@ class SettingProgressController extends Controller
 	{
 		$create_base_info = $model->create([
 					            'meta_tags'=>$request['meta_tags'],
-								'extirnal_code'=> isset($request['extirnal_code']) ? $request['extirnal_code'] : '',
+								// 'extirnal_code'=> isset($request['extirnal_code']) ? $request['extirnal_code'] : '',
 					            'created_by'=>Auth::id()
 							]);
 		
@@ -57,7 +57,7 @@ class SettingProgressController extends Controller
 		$update_base_info =  $model->find($model->first()->id)->update([
 											
 									            'meta_tags'=>$request['meta_tags'],
-									            'extirnal_code'=>$request['extirnal_code'],
+									            // 'extirnal_code'=>$request['extirnal_code'],
 									            'created_by'=>Auth::id()
 											]);
 		

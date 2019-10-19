@@ -1,0 +1,41 @@
+
+
+/* ----------------------------------------------------------------
+			[ All Css Plugins & Helper Classes File ]
+-----------------------------------------------------------------*/
+
+/* == bootstrap == */
+@import url("plugins/bootstrap.min.css");
+
+/* == animate css == */
+@import url("plugins/animate.min.css");
+
+/* == jquery.multiselect == */
+@import url("plugins/jquery.multiselect.css");
+
+/* == themify-icons icon font == */
+@import url("plugins/themify-icons.css");
+
+/* == fontawesome icon font == */
+@import url("plugins/fontawesome-all.min.css");
+
+/* == magnific-popup == */
+@import url("plugins/magnific-popup.css");
+
+/* == owl.carousel == */
+@import url("plugins/owl.carousel.min.css");
+@import url("plugins/owl.theme.default.min.css");
+
+/* == helper classes == */
+@import url("plugins/helper.css");
+
+/* == helper classes == */
+@import url("../fonts/flaticon/flaticon.css");
+
+/* == slick carousel == */
+@import url("plugins/slick.css");
+@import url("plugins/slick-theme.css");
+
+@import url("plugins/jquery-ui.css");
+@import url("plugins/jquery-ui.theme.css");
+
