@@ -135,7 +135,21 @@
 		'key_search_blogs_list'=>'search key, title, content',
 		'about_us'=>'About Us',
 		'mission_ar'=>'Mission Ar',
-		'goals_ar'=>'Goals Ar'
+		'goals_ar'=>'Goals Ar',
+		'ads_list'=>'Ads List',
+		'ads'=>'Ads',
+		'create_ad'=>'Create Ad',
+		'sub_categories'=>'Sub Categories',
+		'space'=>'Space',
+		'bed_room'=>'Bed Room',
+		'bathroom'=>'Bathroom',
+		'parking'=>'Parking',
+		'embedded_map'=>'Embedded Map ',
+		'price'=>'price',
+		'images'=>'Images',
+		'add_type'=>'Add Type'
+
+
 
 
 

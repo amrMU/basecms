@@ -92,7 +92,7 @@
                                      <div class="form-group">
                                         <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.content_ar'); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
                                         <div class="col-lg-9">
-                                             <textarea name="content[]" id="editor3" rows="4" cols="4"  placeholder="<?php echo app('translator')->getFromJson('home.content_ar'); ?>"><?php echo e(@$info->translation->content); ?></textarea>
+                                             <textarea name="content[]" class="form-control" rows="4" cols="4"  placeholder="<?php echo app('translator')->getFromJson('home.content_ar'); ?>"><?php echo e(@$info->translation->content); ?></textarea>
                                         </div>
                                     </div>
                                      
@@ -100,7 +100,7 @@
                                      <div class="form-group">
                                         <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.mission_ar'); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
                                         <div class="col-lg-9">
-                                             <textarea name="mission[]" id="editor1" rows="4" cols="4"  placeholder="<?php echo app('translator')->getFromJson('home.mission_ar'); ?>"><?php echo e(@$info->translation->mission); ?></textarea>
+                                             <textarea name="mission[]" class="form-control" rows="4" cols="4"  placeholder="<?php echo app('translator')->getFromJson('home.mission_ar'); ?>"><?php echo e(@$info->translation->mission); ?></textarea>
                                         </div>
                                     </div>
                                      
@@ -109,7 +109,7 @@
                                      <div class="form-group">
                                         <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.goals_ar'); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
                                         <div class="col-lg-9">
-                                             <textarea name="goals[]" id="editor2" rows="4" cols="4"  placeholder="<?php echo app('translator')->getFromJson('home.goals_ar'); ?>"><?php echo e(@$info->translation->goals); ?></textarea>
+                                             <textarea name="goals[]" class="form-control" rows="4" cols="4"  placeholder="<?php echo app('translator')->getFromJson('home.goals_ar'); ?>"><?php echo e(@$info->translation->goals); ?></textarea>
                                         </div>
                                     </div>
                                      

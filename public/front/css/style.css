@@ -775,6 +775,15 @@ a:focus, a:hover {
   border: 5px;
   overflow: hidden;
   position: relative;
+  max-height: 205px;
+}
+.featured .item .img img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center center;
+     object-position: center center;
+  width: 100%;
+  height: 100%;
 }
 .featured .item .img:after {
   content: '';
@@ -1110,6 +1119,10 @@ a:focus, a:hover {
   margin-left: 20px;
   font-weight: normal;
 }
+.about .feat li img {
+  width: 30px;
+  margin-left: 20px;
+}
 
 /* ----------------------------------------------------------------
      [ End about ]
@@ -1149,6 +1162,10 @@ a:focus, a:hover {
   color: #eee;
   font-weight: 300;
 }
+.blocks .content .text * {
+  color: #eee;
+  font-weight: 300;
+}
 .blocks.b2 .content {
   background: #3fc1b5;
 }
@@ -1169,6 +1186,12 @@ a:focus, a:hover {
 }
 .numbers .item h2 {
   font-weight: 200;
+}
+.numbers .item h2 img {
+  width: 35px;
+  margin-left: 10px;
+  -o-object-fit: scale-down;
+     object-fit: scale-down;
 }
 .numbers .item .icon {
   font-size: 35px;
@@ -1320,6 +1343,17 @@ a:focus, a:hover {
 .profile .user-activity .favorites .item {
   margin-bottom: 40px;
 }
+.profile .user-activity .favorites .item .img {
+  max-height: 145px;
+}
+.profile .user-activity .favorites .item .img img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center center;
+     object-position: center center;
+}
 .profile .user-activity .favorites .item .cont {
   background: #333b48;
   overflow: hidden;
@@ -1364,7 +1398,16 @@ a:focus, a:hover {
 }
 .profile .user-activity .myadd li .img {
   width: 120px;
+  max-height: 80px;
   margin-left: 30px;
+}
+.profile .user-activity .myadd li .img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center center;
+     object-position: center center;
 }
 .profile .user-activity .myadd li .info {
   padding-top: 10px;
@@ -1396,17 +1439,17 @@ a:focus, a:hover {
      [ End profile ]
 -----------------------------------------------------------------*/
 /* ----------------------------------------------------------------
-     [  Start vert ]
+     [  Start addvert ]
 -----------------------------------------------------------------*/
-.vert .content {
+.advert .content {
   padding: 40px 30px;
   border: 1px solid #f1f1f1;
   border-radius: 10px;
 }
-.vert .content .title {
+.advert .content .title {
   margin-bottom: 40px;
 }
-.vert .content .title span {
+.advert .content .title span {
   border: 1px solid #eee;
   background-color: #f5f5f5;
   width: 215px;
@@ -1417,13 +1460,13 @@ a:focus, a:hover {
   line-height: 35px;
   font-size: 16px;
 }
-.vert .content .title span i {
+.advert .content .title span i {
   font-style: normal;
   font-size: 20px;
   font-weight: bold;
   margin-left: 10px;
 }
-.vert .content .title span:after {
+.advert .content .title span:after {
   content: '';
   position: absolute;
   bottom: -14px;
@@ -1433,18 +1476,18 @@ a:focus, a:hover {
   border-top: 13px solid #ddd;
   border-right: 13px solid transparent;
 }
-.vert .content .upload-img {
+.advert .content .upload-img {
   position: relative;
   margin-bottom: 80px;
 }
-.vert .content .upload-img .img {
+.advert .content .upload-img .img {
   background: #F9FBFD;
   border-radius: 10px;
   height: 240px;
   position: relative;
   overflow: hidden;
 }
-.vert .content .upload-img img {
+.advert .content .upload-img img {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -1453,7 +1496,7 @@ a:focus, a:hover {
   -o-object-position: center center;
      object-position: center center;
 }
-.vert .content .upload-img .butn-upload {
+.advert .content .upload-img .butn-upload {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -1462,12 +1505,12 @@ a:focus, a:hover {
   text-align: center;
   z-index: 4;
 }
-.vert .content .upload-img .butn-upload .box {
+.advert .content .upload-img .butn-upload .box {
   position: relative;
   display: inline-block;
   cursor: pointer;
 }
-.vert .content .upload-img .butn-upload input {
+.advert .content .upload-img .butn-upload input {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -1476,11 +1519,11 @@ a:focus, a:hover {
   opacity: 0;
   cursor: pointer;
 }
-.vert .content .upload-img .butn-upload .icon {
+.advert .content .upload-img .butn-upload .icon {
   font-size: 50px;
   color: #ccc;
 }
-.vert .content .upload-img .butn-upload h6 {
+.advert .content .upload-img .butn-upload h6 {
   font-size: 12px;
   font-weight: 500;
   padding: 15px 30px;
@@ -1488,20 +1531,20 @@ a:focus, a:hover {
   color: #fff;
   border-radius: 5px;
 }
-.vert .details {
+.advert .details {
   margin-top: 50px;
 }
-.vert .details .aselect {
+.advert .details .aselect {
   position: relative;
   margin-bottom: 15px;
 }
-.vert .details .aselect select {
+.advert .details .aselect select {
   display: none;
 }
-.vert .details .select-selected {
+.advert .details .select-selected {
   border: 1px solid #f5f5f5 !important;
 }
-.vert .details .select-selected:after {
+.advert .details .select-selected:after {
   position: absolute;
   content: "";
   top: 20px;
@@ -1511,11 +1554,11 @@ a:focus, a:hover {
   border: 6px solid transparent;
   border-color: #444 transparent transparent transparent;
 }
-.vert .details .select-selected.select-arrow-active:after {
+.advert .details .select-selected.select-arrow-active:after {
   border-color: transparent transparent #444 transparent;
   top: 7px;
 }
-.vert .details .select-items div, .vert .details .select-selected {
+.advert .details .select-items div, .advert .details .select-selected {
   color: #646d8d;
   padding: 12px 20px;
   border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
@@ -1525,7 +1568,7 @@ a:focus, a:hover {
       -ms-user-select: none;
           user-select: none;
 }
-.vert .details .select-items {
+.advert .details .select-items {
   position: absolute;
   background-color: #3574BB;
   top: 100%;
@@ -1537,33 +1580,33 @@ a:focus, a:hover {
   max-height: 200px;
   overflow: auto;
 }
-.vert .details .select-items > div {
+.advert .details .select-items > div {
   background: #fff;
 }
-.vert .details .select-items > div:hover {
+.advert .details .select-items > div:hover {
   color: #fff !important;
 }
-.vert .details .select-hide {
+.advert .details .select-hide {
   display: none;
 }
-.vert .details .select-items div:hover, .vert .details .same-as-selected {
+.advert .details .select-items div:hover, .advert .details .same-as-selected {
   background-color: rgba(0, 0, 0, 0.1);
 }
-.vert .details .form-group input, .vert .details .form-group textarea {
+.advert .details .form-group input, .advert .details .form-group textarea {
   width: 100%;
   padding: 12px 20px;
   background: transparent;
   border: 1px solid #f5f5f5;
 }
-.vert .details .form-group textarea {
+.advert .details .form-group textarea {
   height: 160px;
 }
-.vert .details .button {
+.advert .details .button {
   margin-top: 15px;
 }
 
 /* ----------------------------------------------------------------
-     [ End vert ]
+     [ End addvert ]
 -----------------------------------------------------------------*/
 /* ----------------------------------------------------------------
      [  Start details ]
@@ -1625,10 +1668,30 @@ a:focus, a:hover {
 .details .block .slider-for {
   margin: 0 10px;
 }
+.details .block .slider-for .item {
+  max-height: 625px;
+}
+.details .block .slider-for .item img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center center;
+     object-position: center center;
+}
 .details .block .slider-nav .item {
   margin: 20px 6px;
   border: 4px solid transparent;
   cursor: pointer;
+  max-height: 150px;
+}
+.details .block .slider-nav .item img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center center;
+     object-position: center center;
 }
 .details .block .slider-nav .slick-current.slick-active {
   border-color: #3574BB;
@@ -1754,29 +1817,6 @@ a:focus, a:hover {
 .details .rate form button:hover {
   background: #111;
   border-color: #111;
-}
-
-.details .share{
-  float: left;
-}
-
-.details .title h5{
-  display: inline-block;
-}
-
-.details .share .icon{
-  margin-right: 5px;
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
-  text-align: center;
-  border: 1px solid #9992;
-  border-radius: 50%;
-  font-size: 12px;
-}
-
-.details .share small{
-  margin-right: 30px;
 }
 
 /* ----------------------------------------------------------------

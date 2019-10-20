@@ -9,7 +9,7 @@
             <div class="page-header page-header-default">
                 <div class="page-header-content">
                     <div class="page-title">
-                        <h4><i class="icon-arrow-right6 position-left"></i>  @lang('home.dashboard')  - @lang('home.about_us') - <span class="text-semibold">@lang('home.update')</span> </h4>
+                        <h4><i class="icon-arrow-right6 position-left"></i> <span class="text-semibold">@lang('home.edit_page_info')</span> - @lang('home.dashboard')</h4>
                     </div>
 
                     <div class="heading-elements">
@@ -21,8 +21,7 @@
                 <div class="breadcrumb-line">
                     <ul class="breadcrumb">
                         <li><a href="{{ URL::to('ar/admin/home') }}"><i class="icon-home2 position-left"></i> @lang('home.home')</a></li>
-                        <li class="">@lang('home.about_us')</li>
-                        <li class="active">@lang('home.update') </li>
+                        <li class="active">@lang('home.update_info')</li>
                     </ul>
 
                     <ul class="breadcrumb-elements">
@@ -34,6 +33,7 @@
                             </a>
 
                             <ul class="dropdown-menu dropdown-menu-right">
+                              
                               <li><a href="{{ URL::to('ar/admin/setting') }}"><i class="icon-gear"></i>@lang('home.settings')</a></li>
                             </ul>
                         </li>
@@ -46,11 +46,8 @@
             <div class="content">
                 <!-- Form validation -->
                     <div class="panel panel-flat col-md-10">
-    
-
                         <div class="panel-heading">
-                   
-                        <h5 class="panel-title" > @lang('home.update') </h5>
+                            <h5 class="panel-title">@lang('home.update_info')</h5>
                             <div class="heading-elements">
                                 <ul class="icons-list">
                                     <li><a data-action="collapse"></a></li>
@@ -61,66 +58,45 @@
                         </div>
 
                         <div class="panel-body">
-                            <form class="form-horizontal form-validate-jquery" method="POST" action="{{ URL::to(LaravelLocalization::getCurrentLocale().'/admin/aboutus') }}" enctype='multipart/form-data'>
+                            <form class="form-horizontal form-validate-jquery" method="post" action="{{ route('pages.update',$info) }}" enctype='multipart/form-data'  >
+                            <input name="_method" type="hidden" value="PUT">
+                            <input name="use" type="hidden" value="{{@$info->id}}">
+
                                 @if ($errors->any())
                                 @foreach ($errors->all() as $error)
-                                <div class="alert alert-danger alert-dismissible" >
-                                    <a href="#" class="close" data-dismiss="alert" aria-label="close" style="right: 5px;">&times;</a>{{@$error }}
+                                <div class="alert alert-danger alert-dismissible">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>{{ $error }}
                                 </div>
                                 @endforeach
                                 @endif
                                 @if(Session::has('success'))
                                 <div class="alert alert-success alert-dismissible">
-                                    <a href="#" class="close" data-dismiss="alert" aria-label="close" style="right: 5px;">&times;</a>{{ Session::get('success') }}
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>{{ Session::get('success') }}
                                 </div>
                                 @endif
                                 @csrf
                                 {{-- general Info --}}
                                 <fieldset class="content-group">
-                                    <legend class="text-bold">@lang('home.update_info')</legend>
+                                <legend class="text-bold">@lang('home.add_new_page')</legend>
                                     <input type="hidden" name="lang[]" value="ar">
+
                                     <!-- title ar input -->
                                     <div class="form-group">
                                         <label class="control-label col-lg-3">@lang('home.title_ar') <span class="text-danger" title="@lang('home.required')">*</span></label>
                                         <div class="col-lg-9">
-                                            <input type="text" name="title[]" class="form-control" placeholder="@lang('home.title_ar')" value="{{ @$info->translation->title }}">
+                                            <input type="text" name="title[]" class="form-control" placeholder="@lang('home.title_ar')" value="{{@$info->translation->title}}">
                                         </div>
                                     </div>
                                     <!-- /title ar input -->
-                                    {{-- mission ar --}}
-                                     <div class="form-group">
-                                        <label class="control-label col-lg-3">@lang('home.content_ar') <span class="text-danger" title="@lang('home.required')">*</span></label>
-                                        <div class="col-lg-9">
-                                             <textarea name="content[]" class="form-control" rows="4" cols="4"  placeholder="@lang('home.content_ar')">{{ @$info->translation->content }}</textarea>
-                                        </div>
-                                    </div>
-                                    {{-- mission ar --}} 
-                                    {{-- mission ar --}}
-                                     <div class="form-group">
-                                        <label class="control-label col-lg-3">@lang('home.mission_ar') <span class="text-danger" title="@lang('home.required')">*</span></label>
-                                        <div class="col-lg-9">
-                                             <textarea name="mission[]" class="form-control" rows="4" cols="4"  placeholder="@lang('home.mission_ar')">{{ @$info->translation->mission }}</textarea>
-                                        </div>
-                                    </div>
-                                    {{-- mission ar --}} 
 
-                                     {{-- mission ar --}}
-                                     <div class="form-group">
-                                        <label class="control-label col-lg-3">@lang('home.goals_ar') <span class="text-danger" title="@lang('home.required')">*</span></label>
-                                        <div class="col-lg-9">
-                                             <textarea name="goals[]" class="form-control" rows="4" cols="4"  placeholder="@lang('home.goals_ar')">{{ @$info->translation->goals }}</textarea>
-                                        </div>
-                                    </div>
-                                    {{-- mission ar --}} 
-
-                                    <!-- title ar input -->
+                                    <!-- url input -->
                                     <div class="form-group">
                                         <label class="control-label col-lg-3">@lang('home.url_page') <span class="text-danger" title="@lang('home.required')">*</span></label>
                                         <div class="col-lg-9">
-                                            <input type="text" name="url" class="form-control"  placeholder="@lang('home.url_page')" value="{{@@$info->url}}">
+                                            <input type="text" name="url" class="form-control"  placeholder="@lang('home.url_page')" value="{{@$info->url}}">
                                         </div>
                                     </div>
-                                    <!-- /title ar input -->
+                                    <!-- /url input -->
                                     <!-- Meta Tags input -->
                                     <div class="form-group">
                                         <label class="control-label col-lg-3">@lang('home.meta_tags') <span class="text-danger" title="@lang('home.required')">*</span></label>
@@ -129,15 +105,47 @@
                                         </div>
                                     </div>
                                     <!-- /Meta Tags input -->
-                                                                        
+                                    {{-- content ar --}}
+                                     <div class="form-group">
+                                        <label class="control-label col-lg-3">@lang('home.content') <span class="text-danger" title="@lang('home.required')">*</span></label>
+                                        <div class="col-lg-9">
+                                             <textarea name="content[]" id="editor1" rows="4" cols="4"  placeholder="@lang('home.content_ar')">{{ @$info->translation->content }}</textarea>
+                                        </div>
+                                    </div>
+                                   
+                                    {{-- content ar --}}
+                                  
+                                    {{-- Show page --}}
+                                     <div class="form-group">
+                                        <label class="control-label col-lg-3">@lang('home.status')</label>
+                                        <div class="col-lg-4">
+                                            <div class="checkbox checkbox-switch">
+                                                        <input type="radio" name="status" class="switch" value="show" @if($info->status  == 'show') checked="checked"  @endif>
+                                                    <label>
+                                                         @lang('home.show')
+                                                    </label>
+                                            </div>
+                                        </div>
+                                         <div class="col-lg-4">
+                                            <div class="checkbox checkbox-switch">
+                                                    <input type="radio" name="status" class="switch" value="hide" @if($info->status  == 'hide') checked="checked" @endif >
+                                                    <label>
+                                                        @lang('home.hide')
+                                                    </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{--Show page --}}
+                                     
                                     <!-- Logo uploader -->
                                     <div class="form-group">
-                                        <label class="control-label col-lg-3">@lang('home.image') <span class="text-danger" title="@lang('home.required')"> *</span></label>
+                                        <label class="control-label col-lg-3">@lang('home.icon') <span class="text-danger" title="@lang('home.required')"> *</span></label>
                                         <div class="col-lg-9">
-                                            <input type="file" name="image" class="file-styled" >
+                                            <input type="file" name="icon" class="file-styled" >
                                         </div>
                                     </div>
                                     <!-- /Logo uploader -->
+                                 
                                  
                                 </fieldset>
                                 {{-- general Info --}}
@@ -150,12 +158,11 @@
                             </form>
                         </div>
                     </div>
-                    <div class="col-md-2">
-                    <img src="{{url('/').@$info->image}}" class="img-responsive" style="max-width:100%" >
-                    </div>
                     <!-- /form validation -->
-                
-                   
+                    <div class="col-md-2">
+                    <img src="{{url('/').'/'.@$info->icon}}" class="img-responsive" style="max-width:100%" >
+                    </div>
+                  
             </div>
              <!-- Content area -->
 
@@ -172,10 +179,5 @@
         CKEDITOR.replace( 'editor2',{
             extraPlugins: 'forms'
         });
-        CKEDITOR.replace( 'editor3',{
-            extraPlugins: 'forms'
-        });
-            CKEDITOR.config.extraPlugins = 'justify';
-
     </script>
 @stop

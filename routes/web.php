@@ -52,6 +52,9 @@
 			Route::resource('pages','Admin\PagesController');
 			Route::get('pages/{id}/delete','Admin\PagesController@destroy');
 
+			Route::resource('ads','Admin\AdsController');
+			Route::get('ads/{id}/delete','Admin\AdsController@destroy');
+
 			Route::get('aboutus','Admin\AboutusController@create');
 			Route::post('aboutus','Admin\AboutusController@save');
 

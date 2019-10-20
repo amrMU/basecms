@@ -926,6 +926,14 @@ a:focus, a:hover{
 			border: 5px;
 			overflow: hidden;
 			position: relative;
+			max-height: 205px;
+
+			img{
+				object-fit: cover;
+				object-position: center center;
+				width: 100%;
+				height: 100%;
+			}
 
 			&:after{
 				content: '';
@@ -1357,6 +1365,11 @@ a:focus, a:hover{
 				margin-left: 20px;
 				font-weight: normal;
 			}
+
+			img{
+				width: 30px;
+				margin-left: 20px;
+			}
 		}
 	}
 }
@@ -1404,6 +1417,11 @@ a:focus, a:hover{
 		.text{
 			color: #eee;
 			font-weight: 300;
+
+			*{
+				color: #eee;
+				font-weight: 300;
+			}
 		}
 	}
 
@@ -1435,6 +1453,12 @@ a:focus, a:hover{
 
 		h2{
 			font-weight: 200;
+
+			img{
+				width: 35px;
+				margin-left: 10px;
+				object-fit: scale-down;
+			}
 		}
 
 		.icon{
@@ -1627,6 +1651,17 @@ a:focus, a:hover{
 			.item{
 				margin-bottom: 40px;
 
+				.img{
+					max-height: 145px;
+
+					img{
+						height: 100%;
+						width: 100%;
+						object-fit: cover;
+						object-position: center center;
+					}
+				}
+
 				.cont{
 					background: #333b48;
 					overflow: hidden;
@@ -1677,7 +1712,15 @@ a:focus, a:hover{
 	
 				.img{
 					width: 120px;
+					max-height: 80px;
 					margin-left: 30px;
+
+					img{
+						width: 100%;
+						height: 100%;
+						object-fit: cover;
+						object-position: center center;
+					}
 				}
 
 				.info{
@@ -1732,7 +1775,7 @@ a:focus, a:hover{
      [  Start addvert ]
 -----------------------------------------------------------------*/
 
-.addvert{
+.advert{
 
 	.content{
 		padding: 40px 30px;
@@ -2011,6 +2054,17 @@ a:focus, a:hover{
 
 		.slider-for{
 			margin: 0 10px;
+
+			.item{
+				max-height: 625px;
+
+				img{
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+					object-position: center center;
+				}
+			}
 		}
 
 		.slider-nav{
@@ -2019,6 +2073,14 @@ a:focus, a:hover{
 				margin: 20px 6px;
 				border: 4px solid transparent;
 				cursor: pointer;
+				max-height: 150px;
+
+				img{
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+					object-position: center center;
+				}
 			}
 
 			.slick-current.slick-active{

@@ -28,7 +28,7 @@ class AboutusRequest extends FormRequest
                 'content.*'=>'required',
                 'goals.*'=>'required',
                 'mission.*'=>'required',
-                'url'=>'required',
+                'url'=>'required|unique:aboutus',
                 'image'=>'mimes:jpeg,bmp,png,jpg',
         ];
     }
