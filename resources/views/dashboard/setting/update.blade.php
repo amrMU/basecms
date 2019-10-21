@@ -403,18 +403,21 @@
                                     <legend class="text-bold">@lang('home.social_media_generator')</legend>
                                     <!-- social Media field -->
                                     <div class="wrap_social_media">
-                                    @foreach($site_langs as $lang)
                                         <div class="form-group" >
                                            
                                             <div class="col-lg-2">
                                                <a hreg="#" class="btn btn-primary add_new_social_media"> + </a>
                                             </div>
 
-                                            <input type="hidden" name="social_media_lang[]" value="{{ $lang->id }}"  multiple>
 
+                                            @foreach($site_langs as $lang)
+                                            <input type="hidden" name="social_media_lang[]" value="{{ $lang->id }}"  multiple>
+                                            <input type="hidden" name="social_img[]" value=""multiple>
                                             <div class="col-lg-4">
                                                 <input type="text" name="name_media[]" class="form-control" id="title_ar" placeholder="@lang('home.name_'.@$lang->info->local)"  multiple>
                                             </div>
+                                            @endforeach
+
                                              <div class="col-lg-2">
                                                 <input type="text" name="url[]" class="form-control" id="url" placeholder="@lang('home.url')" multiple>
                                             </div>
@@ -422,7 +425,6 @@
                                                 <input type="file" name="social_logo[]" class="file-styled" multiple>
                                             </div>
                                         </div>
-                                        @endforeach
                         
                                         <!-- /social Media field -->
                                         <div id="space_social_media">
@@ -430,17 +432,21 @@
 
                                         @if(isset($info))
                                         @foreach($info->social_media_link as $link)
-                                        <input type="hidden" name="social_media_lang[]" value="{{ @$link->social_media_translation->lang_id }}"  multiple>
+                                        
+
+                                        <input type="hidden" name="social_img[]" value="{{ @$link->icon }}"  multiple>
 
                                         <div class="form-group" >
                                             <div class="col-lg-2">
                                             <button class="remove_field btn btn-danger">-</button>
                                             </div>
+                                            @foreach($link->social_media_translations as $trans)
+                                            <input type="hidden" name="social_media_lang[]" value="{{ @$trans->lang_id }}"  multiple>
                                             <div class="col-lg-4">
-                                                <input type="text" name="name_media[]" class="form-control" id="title_ar" placeholder="@lang('home.name_'.@$link->social_media_translation->lang->local)"  multiple  value="{{@$link->social_media_translation->name}}">
+                                                <input type="text" name="name_media[]" class="form-control" id="title_ar" placeholder="@lang('home.name_'.@$trans->lang->local)"  multiple  value="{{@$trans->name}}">
                                                
                                             </div>
-
+                                            @endforeach
                                             <div class="col-lg-2">
                                                 <input type="text" name="url[]" class="form-control" id="url" placeholder="@lang('home.url')" multiple value="{{@$link->url}}" >
                                             </div>
@@ -525,7 +531,7 @@
    var add_new_social_media = $(".add_new_social_media");
    $(add_new_social_media).click(function (e) {
     e.preventDefault();
-    $(wrap_social_media).append('@foreach($site_langs as $lang)<div class="form-group" ><div class="col-lg-2"><button class="remove_field btn btn-danger">-</button></div><input type="hidden" name="social_media_lang[]" value="{{ @$lang->id }}"  multiple><div class="col-lg-4"><input type="text"name="name_media[]" class="form-control" id="title_ar" placeholder="@lang('home.name_'.@$lang->info->local)"  multiple></div><div class="col-lg-2"><input type="text" name="url[]" multiple class="form-control" id="url"  placeholder="@lang('home.url')"></div><div class="col-2"><input type="file" name="social_logo[]" class="file-styled"  multiple></div></div>@endforeach');
+    $(wrap_social_media).append('@foreach($site_langs as $lang)<div class="form-group" ><div class="col-lg-2"><button class="remove_field btn btn-danger">-</button></div><input type="hidden" name="social_media_lang[]" value="{{ @$lang->id }}"  multiple><input type="hidden" name="social_img[]" value=""multiple><div class="col-lg-4"><input type="text"name="name_media[]" class="form-control" id="title_ar" placeholder="@lang('home.name_'.@$lang->info->local)"  multiple></div><div class="col-lg-2"><input type="text" name="url[]" multiple class="form-control" id="url"  placeholder="@lang('home.url')"></div><div class="col-2"><input type="file" name="social_logo[]" class="file-styled"  multiple></div></div>@endforeach');
   });
 
    $(document).on("click",".remove_field",function(){

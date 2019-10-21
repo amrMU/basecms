@@ -21,7 +21,9 @@ class AppServiceProvider extends ServiceProvider
         App::booted(function()
         {
             if (\Schema::hasTable('settings')) {
-                $setting = Setting::with('social_media_link')->first();
+                $setting = Setting::with('social_media_link','social_media_link.social_media_translation')
+                // ->groupby('')->distinct()
+                ->first();
                 // dd($setting);
                 Config::set('app.name',@$setting->translation->title);
                 Config::set('mail.driver',@$setting->mail_provider_info->MAIL_DRIVER);

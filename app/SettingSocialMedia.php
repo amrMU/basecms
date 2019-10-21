@@ -18,10 +18,12 @@ class SettingSocialMedia extends Model
 
     public function social_media_translation()
     {
-        // return $this->belongsTo('App\SettingsSocialMediaTranslate','id','media_id')->where('language',LaravelLocalization::getCurrentLocale()); //if you your website is multi language activate this line to get lang from session.
-         $find_lang = languages::where('local',LaravelLocalization::getCurrentLocale())->first();
-    
         return $this->belongsTo('App\SettingsSocialMediaTranslate','id','media_id');
+    }
+
+	public function social_media_translations()
+    {
+        return $this->hasMany('App\SettingsSocialMediaTranslate','media_id','id');
     }
 
   

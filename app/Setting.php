@@ -62,6 +62,8 @@ class Setting extends Model
         return $this->hasMany('App\SettingSocialMedia','setting_id','id');
     }
 
+   
+
     
     public function external_resources()
     {

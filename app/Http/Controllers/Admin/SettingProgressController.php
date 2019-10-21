@@ -16,7 +16,7 @@ use App\SettingMailProviderInfo,App\SettingAddress,App\SettingWatsapp;
 use App\SettingPhone,App\SettingSocialMedia,App\SettingEmail;
 use App\Http\Controllers\ImagesController,App\ExternalResources;
 use App\SettingsTranslation,App\SettingsSocialMediaTranslate;
-use App\SettingLangs;
+use App\SettingLangs,App\Http\Requests\Admin\SettingsRequest;
 use Auth;
 class SettingProgressController extends Controller
 {
@@ -228,40 +228,94 @@ class SettingProgressController extends Controller
 
 	public static function store_social_media_chanels($request,$setting_id)
 	{
+
 		if (SettingSocialMedia::count() > 0 ) {
 			$delete_latest = SettingSocialMedia::where('setting_id',$setting_id)->forceDelete();
 		}
-		$SettingSocialMedia = [];
+		$create_chanel = [];
 		$media_translate = [];
-		foreach ($request['name_media'] as $key => $brand) {
-			if($brand != null ){
-
+		foreach ($request['url'] as $key => $url) {
+			if($url != null){
 				$create_chanel = SettingSocialMedia::create([
 					'setting_id'=>$setting_id,
-					'url'=>$request['url'][$key]
+					'url'=>$url
 				]);
-				$media_translate = SettingsSocialMediaTranslate::create([
-					'setting_id'=>$setting_id,
-					'media_id'=>$create_chanel->id,
-					'lang_id'=>$request['social_media_lang'][$key],
-					'name'=>$request['name_media'][$key]
-				]);
+				foreach ($request['name_media'] as $trans_key => $lang_val) {
+					if($request['name_media'][$trans_key] != null ){
+						// $languages = sort($request['social_media_lang']);
+						$media_translate = SettingsSocialMediaTranslate::create([
+							'setting_id'=>$setting_id,
+							'media_id'=>$create_chanel->id,
+							'lang_id'=>$request['social_media_lang'][$trans_key],
+							'name'=>$request['name_media'][$trans_key]
+						]);
+			
+					}
+				}
 				//has file
 				if(isset($request['social_logo'][$key])){
 					$image =ImagesController::uploadSingle(
 						$request['social_logo'][$key],
-						$path=public_path().'/uploads/images/logos/'.$request['name_media'][$key],
-						'/uploads/images/logos/'.$request['name_media'][$key]
+						$path=public_path().'/uploads/images/logos/',
+						'/uploads/images/logos/'
 					);
-				// dd(isset($request['social_logo'][$key]));
+					$create_chanel->update([
+						'icon'=>@$image,
+					]);
+				}else{
+					if (isset($request['social_img'][$key])) {
+						$image = $request['social_img'][$key];
+					}
 					$create_chanel->update([
 						'icon'=>@$image,
 					]);
 				}
-				//end upload file
+				//end upload file	
+				}
+
 			}
-		}
-		
+// dd($request);
+
 		return "Okay";
 	}
+
+
+	// public static function store_social_media_chanels($request,$setting_id)
+	// {
+	// 	if (SettingSocialMedia::count() > 0 ) {
+	// 		$delete_latest = SettingSocialMedia::where('setting_id',$setting_id)->forceDelete();
+	// 	}
+	// 	$SettingSocialMedia = [];
+	// 	$media_translate = [];
+	// 	foreach ($request['name_media'] as $key => $brand) {
+	// 		if($brand != null ){
+
+	// 			$create_chanel = SettingSocialMedia::create([
+	// 				'setting_id'=>$setting_id,
+	// 				'url'=>$request['url'][$key]
+	// 			]);
+	// 			$media_translate = SettingsSocialMediaTranslate::create([
+	// 				'setting_id'=>$setting_id,
+	// 				'media_id'=>$create_chanel->id,
+	// 				'lang_id'=>$request['social_media_lang'][$key],
+	// 				'name'=>$request['name_media'][$key]
+	// 			]);
+	// 			//has file
+	// 			if(isset($request['social_logo'][$key])){
+	// 				$image =ImagesController::uploadSingle(
+	// 					$request['social_logo'][$key],
+	// 					$path=public_path().'/uploads/images/logos/'.$request['name_media'][$key],
+	// 					'/uploads/images/logos/'.$request['name_media'][$key]
+	// 				);
+	// 			// dd(isset($request['social_logo'][$key]));
+	// 				$create_chanel->update([
+	// 					'icon'=>@$image,
+	// 				]);
+	// 			}
+	// 			//end upload file
+	// 		}
+	// 	}
+		
+	// 	return "Okay";
+	// }
 }
