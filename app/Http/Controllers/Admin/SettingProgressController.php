@@ -15,7 +15,7 @@ use  App\Http\Controllers\Admin\SettingController;
 use App\SettingMailProviderInfo,App\SettingAddress,App\SettingWatsapp;
 use App\SettingPhone,App\SettingSocialMedia,App\SettingEmail;
 use App\Http\Controllers\ImagesController,App\ExternalResources;
-use App\SettingsTranslation,App\SettingsSocialMediaTranslate;
+use App\SettingsTranslation;
 use App\SettingLangs,App\Http\Requests\Admin\SettingsRequest;
 use Auth;
 class SettingProgressController extends Controller
@@ -240,18 +240,7 @@ class SettingProgressController extends Controller
 					'setting_id'=>$setting_id,
 					'url'=>$url
 				]);
-				foreach ($request['name_media'] as $trans_key => $lang_val) {
-					if($request['name_media'][$trans_key] != null ){
-						// $languages = sort($request['social_media_lang']);
-						$media_translate = SettingsSocialMediaTranslate::create([
-							'setting_id'=>$setting_id,
-							'media_id'=>$create_chanel->id,
-							'lang_id'=>$request['social_media_lang'][$trans_key],
-							'name'=>$request['name_media'][$trans_key]
-						]);
-			
-					}
-				}
+				
 				//has file
 				if(isset($request['social_logo'][$key])){
 					$image =ImagesController::uploadSingle(

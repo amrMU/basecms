@@ -16,15 +16,7 @@ class SettingSocialMedia extends Model
 	    'url',
     ];
 
-    public function social_media_translation()
-    {
-        return $this->belongsTo('App\SettingsSocialMediaTranslate','id','media_id');
-    }
-
-	public function social_media_translations()
-    {
-        return $this->hasMany('App\SettingsSocialMediaTranslate','media_id','id');
-    }
+   
 
   
 }

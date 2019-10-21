@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
         App::booted(function()
         {
             if (\Schema::hasTable('settings')) {
-                $setting = Setting::with('social_media_link','social_media_link.social_media_translation')
+                $setting = Setting::with('social_media_link')
                 // ->groupby('')->distinct()
                 ->first();
                 // dd($setting);

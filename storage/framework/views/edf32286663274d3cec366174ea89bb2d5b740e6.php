@@ -392,15 +392,13 @@
                                             </div>
 
 
-                                            <?php $__currentLoopData = $site_langs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lang): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <input type="hidden" name="social_img[]" value="/img/icon.png"multiple>
                                             <input type="hidden" name="social_media_lang[]" value="<?php echo e($lang->id); ?>"  multiple>
-                                            <input type="hidden" name="social_img[]" value=""multiple>
-                                            <div class="col-lg-4">
-                                                <input type="text" name="name_media[]" class="form-control" id="title_ar" placeholder="<?php echo app('translator')->getFromJson('home.name_'.@$lang->info->local); ?>"  multiple>
+                                            <div class="col-lg-2">
+                                              <img src="<?php echo e(url('/img/icon.png')); ?>" class="img-responsive" style="max-height: 46px" >
                                             </div>
-                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-                                             <div class="col-lg-2">
+                                             <div class="col-lg-4">
                                                 <input type="text" name="url[]" class="form-control" id="url" placeholder="<?php echo app('translator')->getFromJson('home.url'); ?>" multiple>
                                             </div>
                                             <div class="col-2">
@@ -422,14 +420,10 @@
                                             <div class="col-lg-2">
                                             <button class="remove_field btn btn-danger">-</button>
                                             </div>
-                                            <?php $__currentLoopData = $link->social_media_translations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $trans): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <input type="hidden" name="social_media_lang[]" value="<?php echo e(@$trans->lang_id); ?>"  multiple>
-                                            <div class="col-lg-4">
-                                                <input type="text" name="name_media[]" class="form-control" id="title_ar" placeholder="<?php echo app('translator')->getFromJson('home.name_'.@$trans->lang->local); ?>"  multiple  value="<?php echo e(@$trans->name); ?>">
-                                               
+                                           <div class="col-lg-2">
+                                              <img src="<?php echo e(url('/').@$link->icon); ?>" class="img-responsive" style="max-height: 46px" >
                                             </div>
-                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                            <div class="col-lg-2">
+                                            <div class="col-lg-4">
                                                 <input type="text" name="url[]" class="form-control" id="url" placeholder="<?php echo app('translator')->getFromJson('home.url'); ?>" multiple value="<?php echo e(@$link->url); ?>" >
                                             </div>
                                             <div class="col-2">
@@ -513,7 +507,7 @@
    var add_new_social_media = $(".add_new_social_media");
    $(add_new_social_media).click(function (e) {
     e.preventDefault();
-    $(wrap_social_media).append('<?php $__currentLoopData = $site_langs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lang): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><div class="form-group" ><div class="col-lg-2"><button class="remove_field btn btn-danger">-</button></div><input type="hidden" name="social_media_lang[]" value="<?php echo e(@$lang->id); ?>"  multiple><input type="hidden" name="social_img[]" value=""multiple><div class="col-lg-4"><input type="text"name="name_media[]" class="form-control" id="title_ar" placeholder="<?php echo app('translator')->getFromJson('home.name_'.@$lang->info->local); ?>"  multiple></div><div class="col-lg-2"><input type="text" name="url[]" multiple class="form-control" id="url"  placeholder="<?php echo app('translator')->getFromJson('home.url'); ?>"></div><div class="col-2"><input type="file" name="social_logo[]" class="file-styled"  multiple></div></div><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>');
+    $(wrap_social_media).append('<?php $__currentLoopData = $site_langs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lang): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><div class="form-group" ><div class="col-lg-2"><button class="remove_field btn btn-danger">-</button></div><input type="hidden" name="social_img[]" value="/img/icon.png"multiple><input type="hidden" name="social_media_lang[]" value="<?php echo e($lang->id); ?>"  multiple><div class="col-lg-2"><img src="<?php echo e(url('/img/icon.png')); ?>" class="img-responsive" style="max-height: 46px" ></div><div class="col-lg-4"><input type="text" name="url[]" multiple class="form-control" id="url"  placeholder="<?php echo app('translator')->getFromJson('home.url'); ?>"></div><div class="col-2"><input type="file" name="social_logo[]" class="file-styled"  multiple></div></div><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>');
   });
 
    $(document).on("click",".remove_field",function(){
