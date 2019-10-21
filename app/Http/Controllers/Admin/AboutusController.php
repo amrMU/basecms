@@ -50,7 +50,7 @@ class AboutusController extends Controller
 			'meta_tags'=>$request['meta_tags'],
 		]);
 
-		$set_translation= 	AboutusController::translation($request,$create->id);
+		$set_translation= AboutusController::translation($request,$create->id);
 
 			if(isset($request['image'])){
 				$image =ImagesController::uploadSingle(
@@ -62,6 +62,8 @@ class AboutusController extends Controller
 					'image'=>@$image,
 				]);
 			}
+		dd($request,$this->about->find($create->id));
+
 		return $create ;
 	}
 	public function update($request,$id)
@@ -85,6 +87,7 @@ class AboutusController extends Controller
 					'image'=>@$image,
 				]);
 			}
+
 		return $update;
 	}
 
@@ -98,6 +101,7 @@ class AboutusController extends Controller
 		    	'content'=>$request['content'][$key],
 		    	'mission'=>$request['mission'][$key],
 		    	'goals'=>$request['goals'][$key],
+		    	'lang_id'=>$request['lang'][$key],
 		    	'about_id'=>$about_id
 			]);
 		}

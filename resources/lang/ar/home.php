@@ -149,10 +149,14 @@
 		'parking'=>'جراج',
 		'embedded_map'=>'تضمين الخريطه',
 		'price'=>'السعر',
+		'image'=>'صوره',
 		'images'=>'الصور',
 		'add_type'=>'نوع الإعلان',
 		'site_lang'=>'لغة الموقع',
-		'languages'=>'اللغات'
+		'languages'=>'اللغات',
+		
+
+
 
 
 

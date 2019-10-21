@@ -21,6 +21,11 @@ class Aboutus extends Model
    
     public function translation()
     {
-    	return $this->belongsTo('App\AboutusTranslation','id','about_id')->where('lang','ar');
+    	return $this->belongsTo('App\AboutusTranslation','id','about_id');
+    }
+
+     public function translations()
+    {
+        return $this->hasMany('App\AboutusTranslation','about_id','id');
     }
 }

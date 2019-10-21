@@ -7,7 +7,7 @@
     <div class="form-group">
         <label class="control-label col-lg-3">@lang('home.title_'.@$lang->info->local) <span class="text-danger" title="@lang('home.required')">*</span></label>
         <div class="col-lg-9">
-            <input type="text" name="title[]" class="form-control" placeholder="@lang('home.title_'.@$lang->info->local)" value="{{@$info->translations->where('lang_id',$lang->id)->first()->title}}">
+            <input type="text" name="title[]" class="form-control" placeholder="@lang('home.title_'.@$lang->info->local)" value="@if($info != null) {{@$info->translations->where('lang_id',$lang->id)->first()->title}} @endif">
         </div>
     </div>
     <!-- /title ar input -->
@@ -15,7 +15,8 @@
     <div class="form-group">
         <label class="control-label col-lg-3">@lang('home.content_'.@$lang->info->local) <span class="text-danger" title="@lang('home.required')">*</span></label>
         <div class="col-lg-9">
-           <textarea name="content[]" id="editor{{ @$key }}" rows="4" cols="4"  placeholder="@lang('home.content_'.@$lang->info->local)">{{ @$info->translations->where('lang_id',$lang->id)->first()->content }}</textarea>
+           <textarea name="content[]" id="editor{{ @$key }}" rows="4" cols="4"  placeholder="@lang('home.content_'.$lang->info->local)">@if($info != null) {{ @$info->translations->where('lang_id',@$lang->id)->first()->content }} @endif</textarea>
+        
        </div>
    </div>
    {{-- content ar --}}

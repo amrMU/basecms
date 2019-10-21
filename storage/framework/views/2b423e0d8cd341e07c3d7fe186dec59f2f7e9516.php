@@ -79,49 +79,55 @@
                                 
                                 <fieldset class="content-group">
                                     <legend class="text-bold"><?php echo app('translator')->getFromJson('home.update_info'); ?></legend>
-                                    <input type="hidden" name="lang[]" value="ar">
+                                    <?php if($site_langs->count() > 0): ?>
+                                    <?php $__currentLoopData = $site_langs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $lang): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
+                                    <input type="hidden" name="lang[]" value="<?php echo e(@$lang->id); ?>">
                                     <!-- title ar input -->
                                     <div class="form-group">
-                                        <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.title_ar'); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
+                                        <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.title_'.@$lang->info->local); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
                                         <div class="col-lg-9">
-                                            <input type="text" name="title[]" class="form-control" placeholder="<?php echo app('translator')->getFromJson('home.title_ar'); ?>" value="<?php echo e(@$info->translation->title); ?>">
+                                            <input type="text" name="title[]" class="form-control" placeholder="<?php echo app('translator')->getFromJson('home.title_'.@$lang->info->local); ?>" value="<?php if($info != null): ?> <?php echo e(@$info->translations->where('lang_id',$lang->id)->first()->title); ?> <?php endif; ?>">
                                         </div>
                                     </div>
                                     <!-- /title ar input -->
                                     
                                      <div class="form-group">
-                                        <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.content_ar'); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
+                                        <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.content_'.@$lang->info->local); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
                                         <div class="col-lg-9">
-                                             <textarea name="content[]" class="form-control" rows="4" cols="4"  placeholder="<?php echo app('translator')->getFromJson('home.content_ar'); ?>"><?php echo e(@$info->translation->content); ?></textarea>
+                                             <textarea name="content[]" class="form-control" rows="4" cols="4"  placeholder="<?php echo app('translator')->getFromJson('home.content_'.@$lang->info->local); ?>"><?php if($info != null): ?> <?php echo e(@$info->translations->where('lang_id',$lang->id)->first()->content); ?> <?php endif; ?></textarea>
                                         </div>
                                     </div>
                                      
                                     
                                      <div class="form-group">
-                                        <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.mission_ar'); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
+                                        <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.mission_'.@$lang->info->local); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
                                         <div class="col-lg-9">
-                                             <textarea name="mission[]" class="form-control" rows="4" cols="4"  placeholder="<?php echo app('translator')->getFromJson('home.mission_ar'); ?>"><?php echo e(@$info->translation->mission); ?></textarea>
+                                             <textarea name="mission[]" class="form-control" rows="4" cols="4"  placeholder="<?php echo app('translator')->getFromJson('home.mission_'.@$lang->info->local); ?>"><?php if($info != null): ?> <?php echo e(@$info->translations->where('lang_id',$lang->id)->first()->mission); ?> <?php endif; ?></textarea>
                                         </div>
                                     </div>
                                      
 
                                      
                                      <div class="form-group">
-                                        <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.goals_ar'); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
+                                        <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.goals_'.@$lang->info->local); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
                                         <div class="col-lg-9">
-                                             <textarea name="goals[]" class="form-control" rows="4" cols="4"  placeholder="<?php echo app('translator')->getFromJson('home.goals_ar'); ?>"><?php echo e(@$info->translation->goals); ?></textarea>
+                                             <textarea name="goals[]" class="form-control" rows="4" cols="4"  placeholder="<?php echo app('translator')->getFromJson('home.goals_'.@$lang->info->local); ?>"><?php if($info != null): ?> <?php echo e(@$info->translations->where('lang_id',$lang->id)->first()->goals); ?> <?php endif; ?></textarea>
                                         </div>
                                     </div>
                                      
 
-                                    <!-- title ar input -->
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> 
+                                    <?php endif; ?>
+                                    <!-- url page input -->
                                     <div class="form-group">
                                         <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.url_page'); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
                                         <div class="col-lg-9">
                                             <input type="text" name="url" class="form-control"  placeholder="<?php echo app('translator')->getFromJson('home.url_page'); ?>" value="<?php echo e(@@$info->url); ?>">
                                         </div>
                                     </div>
-                                    <!-- /title ar input -->
+                                    <!-- /url page input -->
+
                                     <!-- Meta Tags input -->
                                     <div class="form-group">
                                         <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.meta_tags'); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>

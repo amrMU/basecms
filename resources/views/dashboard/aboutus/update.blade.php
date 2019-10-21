@@ -78,49 +78,55 @@
                                 {{-- general Info --}}
                                 <fieldset class="content-group">
                                     <legend class="text-bold">@lang('home.update_info')</legend>
-                                    <input type="hidden" name="lang[]" value="ar">
+                                    @if($site_langs->count() > 0)
+                                    @foreach($site_langs as $key => $lang)
+
+                                    <input type="hidden" name="lang[]" value="{{ @$lang->id }}">
                                     <!-- title ar input -->
                                     <div class="form-group">
-                                        <label class="control-label col-lg-3">@lang('home.title_ar') <span class="text-danger" title="@lang('home.required')">*</span></label>
+                                        <label class="control-label col-lg-3">@lang('home.title_'.@$lang->info->local) <span class="text-danger" title="@lang('home.required')">*</span></label>
                                         <div class="col-lg-9">
-                                            <input type="text" name="title[]" class="form-control" placeholder="@lang('home.title_ar')" value="{{ @$info->translation->title }}">
+                                            <input type="text" name="title[]" class="form-control" placeholder="@lang('home.title_'.@$lang->info->local)" value="@if($info != null) {{ @$info->translations->where('lang_id',$lang->id)->first()->title }} @endif">
                                         </div>
                                     </div>
                                     <!-- /title ar input -->
                                     {{-- mission ar --}}
                                      <div class="form-group">
-                                        <label class="control-label col-lg-3">@lang('home.content_ar') <span class="text-danger" title="@lang('home.required')">*</span></label>
+                                        <label class="control-label col-lg-3">@lang('home.content_'.@$lang->info->local) <span class="text-danger" title="@lang('home.required')">*</span></label>
                                         <div class="col-lg-9">
-                                             <textarea name="content[]" class="form-control" rows="4" cols="4"  placeholder="@lang('home.content_ar')">{{ @$info->translation->content }}</textarea>
+                                             <textarea name="content[]" class="form-control" rows="4" cols="4"  placeholder="@lang('home.content_'.@$lang->info->local)">@if($info != null) {{ @$info->translations->where('lang_id',$lang->id)->first()->content }} @endif</textarea>
                                         </div>
                                     </div>
                                     {{-- mission ar --}} 
                                     {{-- mission ar --}}
                                      <div class="form-group">
-                                        <label class="control-label col-lg-3">@lang('home.mission_ar') <span class="text-danger" title="@lang('home.required')">*</span></label>
+                                        <label class="control-label col-lg-3">@lang('home.mission_'.@$lang->info->local) <span class="text-danger" title="@lang('home.required')">*</span></label>
                                         <div class="col-lg-9">
-                                             <textarea name="mission[]" class="form-control" rows="4" cols="4"  placeholder="@lang('home.mission_ar')">{{ @$info->translation->mission }}</textarea>
+                                             <textarea name="mission[]" class="form-control" rows="4" cols="4"  placeholder="@lang('home.mission_'.@$lang->info->local)">@if($info != null) {{ @$info->translations->where('lang_id',$lang->id)->first()->mission }} @endif</textarea>
                                         </div>
                                     </div>
                                     {{-- mission ar --}} 
 
                                      {{-- mission ar --}}
                                      <div class="form-group">
-                                        <label class="control-label col-lg-3">@lang('home.goals_ar') <span class="text-danger" title="@lang('home.required')">*</span></label>
+                                        <label class="control-label col-lg-3">@lang('home.goals_'.@$lang->info->local) <span class="text-danger" title="@lang('home.required')">*</span></label>
                                         <div class="col-lg-9">
-                                             <textarea name="goals[]" class="form-control" rows="4" cols="4"  placeholder="@lang('home.goals_ar')">{{ @$info->translation->goals }}</textarea>
+                                             <textarea name="goals[]" class="form-control" rows="4" cols="4"  placeholder="@lang('home.goals_'.@$lang->info->local)">@if($info != null) {{ @$info->translations->where('lang_id',$lang->id)->first()->goals }} @endif</textarea>
                                         </div>
                                     </div>
                                     {{-- mission ar --}} 
 
-                                    <!-- title ar input -->
+                                    @endforeach 
+                                    @endif
+                                    <!-- url page input -->
                                     <div class="form-group">
                                         <label class="control-label col-lg-3">@lang('home.url_page') <span class="text-danger" title="@lang('home.required')">*</span></label>
                                         <div class="col-lg-9">
                                             <input type="text" name="url" class="form-control"  placeholder="@lang('home.url_page')" value="{{@@$info->url}}">
                                         </div>
                                     </div>
-                                    <!-- /title ar input -->
+                                    <!-- /url page input -->
+
                                     <!-- Meta Tags input -->
                                     <div class="form-group">
                                         <label class="control-label col-lg-3">@lang('home.meta_tags') <span class="text-danger" title="@lang('home.required')">*</span></label>

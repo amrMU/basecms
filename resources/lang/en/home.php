@@ -147,9 +147,12 @@
 		'embedded_map'=>'Embedded Map ',
 		'price'=>'price',
 		'images'=>'Images',
+		'image'=>'Image',
 		'add_type'=>'Add Type',
 		'site_lang'=>'Site Lang',
-		'languages'=>'Languages'
+		'languages'=>'Languages',
+		'mission_en'=>'Mission English',
+		'goals_en'=>'Goals English'
 
 
 

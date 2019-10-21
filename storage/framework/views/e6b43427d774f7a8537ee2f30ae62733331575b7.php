@@ -7,7 +7,7 @@
     <div class="form-group">
         <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.title_'.@$lang->info->local); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
         <div class="col-lg-9">
-            <input type="text" name="title[]" class="form-control" placeholder="<?php echo app('translator')->getFromJson('home.title_'.@$lang->info->local); ?>" value="<?php echo e(@$info->translations->where('lang_id',$lang->id)->first()->title); ?>">
+            <input type="text" name="title[]" class="form-control" placeholder="<?php echo app('translator')->getFromJson('home.title_'.@$lang->info->local); ?>" value="<?php if($info != null): ?> <?php echo e(@$info->translations->where('lang_id',$lang->id)->first()->title); ?> <?php endif; ?>">
         </div>
     </div>
     <!-- /title ar input -->
@@ -15,7 +15,8 @@
     <div class="form-group">
         <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.content_'.@$lang->info->local); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
         <div class="col-lg-9">
-           <textarea name="content[]" id="editor<?php echo e(@$key); ?>" rows="4" cols="4"  placeholder="<?php echo app('translator')->getFromJson('home.content_'.@$lang->info->local); ?>"><?php echo e(@$info->translations->where('lang_id',$lang->id)->first()->content); ?></textarea>
+           <textarea name="content[]" id="editor<?php echo e(@$key); ?>" rows="4" cols="4"  placeholder="<?php echo app('translator')->getFromJson('home.content_'.$lang->info->local); ?>"><?php if($info != null): ?> <?php echo e(@$info->translations->where('lang_id',@$lang->id)->first()->content); ?> <?php endif; ?></textarea>
+        
        </div>
    </div>
    
