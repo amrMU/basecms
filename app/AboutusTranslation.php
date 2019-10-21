@@ -12,6 +12,7 @@ class AboutusTranslation extends Model
     	'content',
     	'mission',
     	'goals',
-    	'about_id'
+    	'about_id',
+    	'lang_id'
     ];
 }

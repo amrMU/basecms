@@ -10,7 +10,11 @@ class SettingsSocialMediaTranslate extends Model
     protected $fillable = [
 				'setting_id',
 				'media_id',
-				'language',
+				'lang_id',
 				'name',
 				    ];
+ 	public function lang()
+    {
+        return $this->belongsTo('App\Languages','lang_id','id');
+    }
 }

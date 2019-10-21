@@ -76,44 +76,80 @@
                                 {{-- general Info --}}
                                 <fieldset class="content-group">
                                     <legend class="text-bold">@lang('home.basic_info')</legend>
-
+                                    @if($info->translations->count()==  0)
+                                    @foreach($site_langs as $lang)
                                     <!-- title ar input -->
                                     <div class="form-group">
-                                        <label class="control-label col-lg-3">@lang('home.title_ar') <span class="text-danger" title="@lang('home.required')">*</span></label>
+                                        <label class="control-label col-lg-3">@lang('home.title_'.@$lang->info->local) <span class="text-danger" title="@lang('home.required')">*</span></label>
                                         <div class="col-lg-9">
-                                            <input type="text" name="title[]" class="form-control" placeholder="@lang('home.placeholder_text')" value="{{@$info->translation->title}}">
-                                            <input type="hidden" name="title_lang[]" value="ar">
+                                            <input type="text" name="title[]" class="form-control" placeholder="@lang('home.placeholder_text')" value="">
+                                            <input type="hidden" name="title_lang[]" value="{{ @$lang->info->id }}">
                                         </div>
                                     </div>
-                                    <!-- /title ar input -->
-
-                                    <!-- title ar input -->
-                                 <!--    <div class="form-group">
-                                        <label class="control-label col-lg-3">@lang('home.title_en') <span class="text-danger" title="@lang('home.required')">*</span></label>
-                                        <div class="col-lg-9">
-                                            <input type="text" name="title_en" class="form-control"  placeholder="@lang('home.placeholder_text')" value="{{@$info->title_en}}">
-                                        </div>
-                                    </div> -->
                                     <!-- /title ar input -->
 
                                  <!-- content ar input -->
                                     <div class="form-group">
-                                        <label class="control-label col-lg-3">@lang('home.content_ar') <span class="text-danger" title="@lang('home.required')">*</span></label>
+                                        <label class="control-label col-lg-3">@lang('home.content_'.@$lang->info->local) <span class="text-danger" title="@lang('home.required')">*</span></label>
                                         <div class="col-lg-9">
-                                            <textarea name="content[]" class="form-control"  placeholder="@lang('home.placeholder_text')">{{@$info->translation->content}}</textarea>
-                                            <input type="hidden" name="content_lang[]" value="ar">
+                                            <textarea name="content[]" class="form-control"  placeholder="@lang('home.placeholder_text')"></textarea>
+                                            <input type="hidden" name="content_lang[]" value={{ @$lang->info->id  }}">
 
                                         </div>
                                     </div>
                                     <!-- /content ar input -->
-                                    <!-- content en input -->
-                                   <!--  <div class="form-group">
-                                        <label class="control-label col-lg-3">@lang('home.content_en') <span class="text-danger" title="@lang('home.required')">*</span></label>
-                                        <div class="col-lg-9"> 
-                                            <textarea name="content_en" class="form-control"  placeholder="@lang('home.placeholder_text')">{{@$info->content_en}}</textarea>
+                                    @endforeach
+                                    @else
+
+                                    @foreach($info->translations as $tranlate)
+                                    <!-- title ar input -->
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-3">@lang('home.title_'.@$tranlate->lang->local) <span class="text-danger" title="@lang('home.required')">*</span></label>
+                                        <div class="col-lg-9">
+                                            <input type="text" name="title[]" class="form-control" placeholder="@lang('home.placeholder_text')" value="{{@$tranlate->title}}">
+                                            <input type="hidden" name="title_lang[]" value="{{ @$tranlate->lang_id }}">
                                         </div>
-                                    </div> -->
-                                    <!-- /content en input -->                                    
+                                    </div>
+                                    <!-- /title ar input -->
+
+                                 <!-- content ar input -->
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-3">@lang('home.content_'.@$tranlate->lang->local) <span class="text-danger" title="@lang('home.required')">*</span></label>
+                                        <div class="col-lg-9">
+                                            <textarea name="content[]" class="form-control"  placeholder="@lang('home.placeholder_text')">{{@$tranlate->content}}</textarea>
+                                            <input type="hidden" name="content_lang[]" value="{{ @$tranlate->lang_id }}">
+
+                                        </div>
+                                    </div>
+                                    <!-- /content ar input -->
+                                    @endforeach
+
+                                    @endif
+
+
+                                    {{-- <!-- title ar input -->
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-3">@lang('home.title_'.@$tranlate->lang->local) <span class="text-danger" title="@lang('home.required')">*</span></label>
+                                        <div class="col-lg-9">
+                                            <input type="text" name="title[]" class="form-control" placeholder="@lang('home.placeholder_text')" value="{{@$tranlate->title}}">
+                                            <input type="hidden" name="title_lang[]" value="{{ @$tranlate->lang_id }}">
+                                        </div>
+                                    </div>
+                                    <!-- /title ar input -->
+
+                                 <!-- content ar input -->
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-3">@lang('home.content_'.@$tranlate->lang->local) <span class="text-danger" title="@lang('home.required')">*</span></label>
+                                        <div class="col-lg-9">
+                                            <textarea name="content[]" class="form-control"  placeholder="@lang('home.placeholder_text')">{{@$tranlate->content}}</textarea>
+                                            <input type="hidden" name="content_lang[]" value="{{ @$tranlate->lang_id }}">
+
+                                        </div>
+                                    </div>
+                                    <!-- /content ar input --> --}}
+                                    
+                                    <!-- content en input -->
+
                                     <!-- Meta Tags input -->
                                     <div class="form-group">
                                         <label class="control-label col-lg-3">@lang('home.meta_tags') <span class="text-danger" title="@lang('home.required')">*</span></label>
@@ -148,6 +184,27 @@
                                     <!-- /files uploader -->
                                 </fieldset>
                                 {{-- general Info --}}
+                                {{-- Lang Configure --}}
+                                <fieldset class="content-group">
+
+                                    <legend class="text-bold">@lang('home.site_lang')</legend>
+                                        <!-- /lang Chooser-->
+                                        <div class="form-group" >
+                                            <label class="control-label col-lg-2">@lang('home.languages') </label>
+                                            <div class="col-lg-9">
+                                                <select name="languages[]" class="form-control" multiple="">
+                                                    <option value="">@lang('home.select_one')</option>
+                                                    @foreach($languages as $lang)
+                                                    @foreach($site_langs as $local)
+                                                      <option value="{{ @$lang->id }}" @if($lang->id ==$local->lang_id) selected @endif>{{ @$lang->local }}</option>
+                                                    @endforeach
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!-- lang Chooser -->
+                                </fieldset>
+                                {{-- Lang Configure --}}
                                 {{-- SMTP MAil --}}
                                 <fieldset class="content-group">
                                     <legend class="text-bold">@lang('home.smtp_builder')</legend>
@@ -236,7 +293,7 @@
                                     </div>
                                 </fieldset>
                                 {{-- Email --}}
-                                
+
                                 {{-- address --}}
                                 <fieldset class="content-group">
                                     <legend class="text-bold">@lang('home.company_address')</legend>
@@ -247,7 +304,7 @@
                                             <div class="col-lg-9">
                                                 <input type="text" name="address[]" class="form-control" id="text" placeholder="@lang('home.address')">
                                             </div>
-                                            
+
                                             <div class="col-2  m-10">
                                                <button class="btn btn-primary add_new_address"> + </button>
                                             </div>
@@ -261,13 +318,13 @@
                                             <div class="col-lg-9">
                                                 <input type="text" name="address[]" class="form-control" id="text" placeholder="@lang('home.address')" value="{{@$address->address_ar}}">
                                             </div>
-                                            
+
                                             <div class="col-2  m-10">
                                             <button class="remove_field btn btn-danger">-</button>
                                             </div>
                                         </div>
-                                        @endforeach    
-                                        @endif                                        
+                                        @endforeach
+                                        @endif
                                         </div>
                                     </div>
                                 </fieldset>
@@ -282,7 +339,7 @@
                                             <div class="col-lg-9">
                                                 <input type="text" name="phone[]" class="form-control" id="phone"  placeholder="@lang('home.phone')" >
                                             </div>
-                                          
+
                                             <div class="col-2  m-10">
                                                <button class="btn btn-primary add_new_phone"> + </button>
                                             </div>
@@ -300,8 +357,8 @@
                                             <button class="remove_field btn btn-danger">-</button>
                                             </div>
                                         </div>
-                                        @endforeach   
-                                        @endif                                         
+                                        @endforeach
+                                        @endif
                                         </div>
                                     </div>
                                 </fieldset>
@@ -316,7 +373,7 @@
                                             <div class="col-lg-9">
                                                 <input type="text" name="whatsapp[]" class="form-control" id="whatsapp" placeholder="@lang('home.whatsapp')">
                                             </div>
-                                          
+
                                             <div class="col-2  m-10">
                                                <button class="btn btn-primary add_new_whatsapp"> + </button>
                                             </div>
@@ -330,13 +387,13 @@
                                             <div class="col-lg-9">
                                                 <input type="text" name="whatsapp[]" class="form-control" id="whatsapp" placeholder="@lang('home.whatsapp')" value="{{@$whatsapp->whatsapp}}">
                                             </div>
-                                          
-                                            <div class="col-2  m-10">                                        
+
+                                            <div class="col-2  m-10">
                                             <button class="remove_field btn btn-danger">-</button>
                                             </div>
                                         </div>
-                                        @endforeach   
-                                        @endif                                                                                     
+                                        @endforeach
+                                        @endif
                                         </div>
                                     </div>
                                 </fieldset>
@@ -346,15 +403,18 @@
                                     <legend class="text-bold">@lang('home.social_media_generator')</legend>
                                     <!-- social Media field -->
                                     <div class="wrap_social_media">
+                                    @foreach($site_langs as $lang)
                                         <div class="form-group" >
+                                           
                                             <div class="col-lg-2">
                                                <a hreg="#" class="btn btn-primary add_new_social_media"> + </a>
                                             </div>
-                                                <input type="hidden" name="social_media_lang[]" value="ar"  multiple>
+
+                                            <input type="hidden" name="social_media_lang[]" value="{{ $lang->info->id }}"  multiple>
+
                                             <div class="col-lg-4">
-                                                <input type="text" name="name_media[]" class="form-control" id="title_ar" placeholder="@lang('home.name')"  multiple>
+                                                <input type="text" name="name_media[]" class="form-control" id="title_ar" placeholder="@lang('home.name_'.@$lang->info->local)"  multiple>
                                             </div>
-                                           
                                              <div class="col-lg-2">
                                                 <input type="text" name="url[]" class="form-control" id="url" placeholder="@lang('home.url')" multiple>
                                             </div>
@@ -362,20 +422,25 @@
                                                 <input type="file" name="social_logo[]" class="file-styled" multiple>
                                             </div>
                                         </div>
+                                        @endforeach
+                        
                                         <!-- /social Media field -->
                                         <div id="space_social_media">
+                                     
+
                                         @if(isset($info))
                                         @foreach($info->social_media_link as $link)
-                                        <input type="hidden" name="social_media_lang[]" value="ar"  multiple>
+                                        <input type="hidden" name="social_media_lang[]" value="{{ @$link->social_media_translation->lang_id }}"  multiple>
 
                                         <div class="form-group" >
                                             <div class="col-lg-2">
                                             <button class="remove_field btn btn-danger">-</button>
                                             </div>
-                                            <div class="col-lg-4"> 
-                                                <input type="text" name="name_media[]" class="form-control" id="title_ar" placeholder="@lang('home.name_ar')"  multiple  value="{{@$link->social_media_translation->name}}">
+                                            <div class="col-lg-4">
+                                                <input type="text" name="name_media[]" class="form-control" id="title_ar" placeholder="@lang('home.name_'.@$link->social_media_translation->lang->local)"  multiple  value="{{@$link->social_media_translation->name}}">
+                                               
                                             </div>
-                                           
+
                                             <div class="col-lg-2">
                                                 <input type="text" name="url[]" class="form-control" id="url" placeholder="@lang('home.url')" multiple value="{{@$link->url}}" >
                                             </div>
@@ -383,9 +448,11 @@
                                                 <input type="file" name="social_logo[]" class="file-styled" multiple>
                                             </div>
                                         </div>
-                                        @endforeach                                                                                        
+                                        @endforeach
                                         @endif
+
                                         </div>
+
                                     </div>
                                 </fieldset>
                                 {{-- social media  --}}
@@ -403,7 +470,7 @@
                     <img src="{{url('/').@$info->logo}}" class="img-responsive" style="max-width:100%" >
                     @endif
                     </div>
-                    @if(isset($info))                    
+                    @if(isset($info))
                     @foreach($info->external_resources as $file)
                     <div class="col-md-2">
                     <a href="{{@$file->file}}" target="_blank">
@@ -429,21 +496,21 @@
    var add_new_email = $(".add_new_email");
    $(add_new_email).click(function (e) {
     e.preventDefault();
-    $(wrap_emails).append('<div class="form-group" ><label class="control-label col-lg-2">@lang('home.email') </label><div class="col-lg-5"><input type="email" name="email[]" class="form-control" id="email" placeholder="@lang('home.email')"></div><div class="col-lg-4"><input type="text" name="department[]" class="form-control" id="text"  placeholder="@lang('home.department')"></div><div class="col-2  m-10"><button class="remove_field btn btn-danger">-</button></div>'); 
+    $(wrap_emails).append('<div class="form-group" ><label class="control-label col-lg-2">@lang('home.email') </label><div class="col-lg-5"><input type="email" name="email[]" class="form-control" id="email" placeholder="@lang('home.email')"></div><div class="col-lg-4"><input type="text" name="department[]" class="form-control" id="text"  placeholder="@lang('home.department')"></div><div class="col-2  m-10"><button class="remove_field btn btn-danger">-</button></div>');
   });
     //start email generator
    var wrap_address = $(".wrap_address>#space_address");
    var add_new_address = $(".add_new_address");
    $(add_new_address).click(function (e) {
     e.preventDefault();
-    $(wrap_address).append('<div class="form-group" ><label class="control-label col-lg-2">@lang('home.address') </label><div class="col-lg-9"><input type="text" name="address[]" class="form-control" id="text" placeholder="@lang('home.address')"></div><div class="col-2  m-10"><button class="remove_field btn btn-danger">-</button></div></div>'); 
+    $(wrap_address).append('<div class="form-group" ><label class="control-label col-lg-2">@lang('home.address') </label><div class="col-lg-9"><input type="text" name="address[]" class="form-control" id="text" placeholder="@lang('home.address')"></div><div class="col-2  m-10"><button class="remove_field btn btn-danger">-</button></div></div>');
   });
    //start phones generator
    var wrap_phones = $(".wrap_phones>#space_phones");
    var add_new_phone = $(".add_new_phone");
    $(add_new_phone).click(function (e) {
     e.preventDefault();
-    $(wrap_phones).append('<div class="form-group" ><label class="control-label col-lg-2">@lang('home.phone') </label><div class="col-lg-9"><input type="text" name="phone[]" class="form-control" id="phone" placeholder="@lang('home.phone')"></div><div class="col-2  m-10"><button class="remove_field btn btn-danger">-</button></div></div>'); 
+    $(wrap_phones).append('<div class="form-group" ><label class="control-label col-lg-2">@lang('home.phone') </label><div class="col-lg-9"><input type="text" name="phone[]" class="form-control" id="phone" placeholder="@lang('home.phone')"></div><div class="col-2  m-10"><button class="remove_field btn btn-danger">-</button></div></div>');
   });
 
    //start whatsapp generator
@@ -451,14 +518,14 @@
    var add_new_whatsapp = $(".add_new_whatsapp");
    $(add_new_whatsapp).click(function (e) {
     e.preventDefault();
-    $(wrap_whatsapp).append('<div class="form-group" ><label class="control-label col-lg-2">@lang('home.whatsapp') </label><div class="col-lg-9"><input type="text" name="whatsapp[]" class="form-control" id="whatsapp" placeholder="@lang('home.whatsapp')"></div><div class="col-2  m-10"><button class="remove_field btn btn-danger">-</button></div></div>'); 
+    $(wrap_whatsapp).append('<div class="form-group" ><label class="control-label col-lg-2">@lang('home.whatsapp') </label><div class="col-lg-9"><input type="text" name="whatsapp[]" class="form-control" id="whatsapp" placeholder="@lang('home.whatsapp')"></div><div class="col-2  m-10"><button class="remove_field btn btn-danger">-</button></div></div>');
   });
    //start  social media generator
    var wrap_social_media = $(".wrap_social_media>#space_social_media");
    var add_new_social_media = $(".add_new_social_media");
    $(add_new_social_media).click(function (e) {
     e.preventDefault();
-    $(wrap_social_media).append('<div class="form-group" ><div class="col-lg-2"><button class="remove_field btn btn-danger">-</button></div><input type="hidden" name="social_media_lang[]" value="ar"  multiple><div class="col-lg-4"><input type="text" name="name_media[]" class="form-control" id="title_ar" placeholder="@lang('home.name')"  multiple></div><div class="col-lg-2"><input type="text" name="url[]" multiple class="form-control" id="url"  placeholder="@lang('home.url')"></div><div class="col-2"><input type="file" name="social_logo[]" class="file-styled"  multiple></div></div>'); 
+    $(wrap_social_media).append('@foreach($site_langs as $lang)<div class="form-group" ><div class="col-lg-2"><button class="remove_field btn btn-danger">-</button></div><input type="hidden" name="social_media_lang[]" value="{{ @$lang->info->local }}"  multiple><div class="col-lg-4"><input type="text"name="name_media[]" class="form-control" id="title_ar" placeholder="@lang('home.name_'.@$lang->info->local)"  multiple></div><div class="col-lg-2"><input type="text" name="url[]" multiple class="form-control" id="url"  placeholder="@lang('home.url')"></div><div class="col-2"><input type="file" name="social_logo[]" class="file-styled"  multiple></div></div>@endforeach');
   });
 
    $(document).on("click",".remove_field",function(){

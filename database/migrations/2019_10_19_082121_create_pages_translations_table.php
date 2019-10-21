@@ -19,7 +19,8 @@ class CreatePagesTranslationsTable extends Migration
             $table->longtext('content');
             $table->unsignedInteger('page_id');
             $table->foreign('page_id')->references('id')->on('pages')->onDelete('cascade');
-            $table->enum('language',['ar','en']);
+            $table->unsignedInteger('lang_id');
+            $table->foreign('lang_id')->references('id')->on('languages')->onDelete('cascade');
             $table->softDeletes();
            $table->timestamps();
         });

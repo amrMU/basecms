@@ -12,7 +12,7 @@ class AdsTranslations extends Model
     protected $table = "ads_translations";
     protected $filable = [
     	'ad_id',
-		'language',
+		'lang_id',
 		'title',
 		'address',
 		'content',

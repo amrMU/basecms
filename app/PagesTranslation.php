@@ -11,6 +11,6 @@ class PagesTranslation extends Model
     	'title',
     	'content',
     	'page_id',
-    	'language',
+    	'lang_id',
     ];
 }

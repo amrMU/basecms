@@ -5,7 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use App\Setting,App\City,App\Aboutus;
-use App\Category;
+use App\Category,App\Languages,App\SettingLangs;
 use App;
 use Config;
 
@@ -22,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
         {
             if (\Schema::hasTable('settings')) {
                 $setting = Setting::with('social_media_link')->first();
+                // dd($setting);
                 Config::set('app.name',@$setting->translation->title);
                 Config::set('mail.driver',@$setting->mail_provider_info->MAIL_DRIVER);
                 Config::set('mail.host',@$setting->mail_provider_info->MAIL_HOST);
@@ -38,9 +39,18 @@ class AppServiceProvider extends ServiceProvider
                 $info = Aboutus::first();
                 view()->share('info', $info);
             }
-             if (\Schema::hasTable('categories')) {
+            if (\Schema::hasTable('categories')) {
                 $categories = Category::take(4)->get();
                 view()->share('categories', $categories);
+            }
+            if (\Schema::hasTable('languages')) {
+                $languages = Languages::all();
+                view()->share('languages', $languages);
+            }
+
+            if (\Schema::hasTable('setting_langs')) {
+                $site_langs = SettingLangs::all();
+                view()->share('site_langs', $site_langs);
             }
            
             

@@ -77,44 +77,61 @@
                                 
                                 <fieldset class="content-group">
                                     <legend class="text-bold"><?php echo app('translator')->getFromJson('home.basic_info'); ?></legend>
-
+                                    <?php if($info->translations->count()==  0): ?>
+                                    <?php $__currentLoopData = $site_langs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lang): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <!-- title ar input -->
                                     <div class="form-group">
-                                        <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.title_ar'); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
+                                        <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.title_'.@$lang->info->local); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
                                         <div class="col-lg-9">
-                                            <input type="text" name="title[]" class="form-control" placeholder="<?php echo app('translator')->getFromJson('home.placeholder_text'); ?>" value="<?php echo e(@$info->translation->title); ?>">
-                                            <input type="hidden" name="title_lang[]" value="ar">
+                                            <input type="text" name="title[]" class="form-control" placeholder="<?php echo app('translator')->getFromJson('home.placeholder_text'); ?>" value="">
+                                            <input type="hidden" name="title_lang[]" value="<?php echo e(@$lang->info->id); ?>">
                                         </div>
                                     </div>
-                                    <!-- /title ar input -->
-
-                                    <!-- title ar input -->
-                                 <!--    <div class="form-group">
-                                        <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.title_en'); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
-                                        <div class="col-lg-9">
-                                            <input type="text" name="title_en" class="form-control"  placeholder="<?php echo app('translator')->getFromJson('home.placeholder_text'); ?>" value="<?php echo e(@$info->title_en); ?>">
-                                        </div>
-                                    </div> -->
                                     <!-- /title ar input -->
 
                                  <!-- content ar input -->
                                     <div class="form-group">
-                                        <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.content_ar'); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
+                                        <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.content_'.@$lang->info->local); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
                                         <div class="col-lg-9">
-                                            <textarea name="content[]" class="form-control"  placeholder="<?php echo app('translator')->getFromJson('home.placeholder_text'); ?>"><?php echo e(@$info->translation->content); ?></textarea>
-                                            <input type="hidden" name="content_lang[]" value="ar">
+                                            <textarea name="content[]" class="form-control"  placeholder="<?php echo app('translator')->getFromJson('home.placeholder_text'); ?>"></textarea>
+                                            <input type="hidden" name="content_lang[]" value=<?php echo e(@$lang->info->id); ?>">
 
                                         </div>
                                     </div>
                                     <!-- /content ar input -->
-                                    <!-- content en input -->
-                                   <!--  <div class="form-group">
-                                        <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.content_en'); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
-                                        <div class="col-lg-9"> 
-                                            <textarea name="content_en" class="form-control"  placeholder="<?php echo app('translator')->getFromJson('home.placeholder_text'); ?>"><?php echo e(@$info->content_en); ?></textarea>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    <?php else: ?>
+
+                                    <?php $__currentLoopData = $info->translations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tranlate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <!-- title ar input -->
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.title_'.@$tranlate->lang->local); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
+                                        <div class="col-lg-9">
+                                            <input type="text" name="title[]" class="form-control" placeholder="<?php echo app('translator')->getFromJson('home.placeholder_text'); ?>" value="<?php echo e(@$tranlate->title); ?>">
+                                            <input type="hidden" name="title_lang[]" value="<?php echo e(@$tranlate->lang_id); ?>">
                                         </div>
-                                    </div> -->
-                                    <!-- /content en input -->                                    
+                                    </div>
+                                    <!-- /title ar input -->
+
+                                 <!-- content ar input -->
+                                    <div class="form-group">
+                                        <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.content_'.@$tranlate->lang->local); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
+                                        <div class="col-lg-9">
+                                            <textarea name="content[]" class="form-control"  placeholder="<?php echo app('translator')->getFromJson('home.placeholder_text'); ?>"><?php echo e(@$tranlate->content); ?></textarea>
+                                            <input type="hidden" name="content_lang[]" value="<?php echo e(@$tranlate->lang_id); ?>">
+
+                                        </div>
+                                    </div>
+                                    <!-- /content ar input -->
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+                                    <?php endif; ?>
+
+
+                                    
+                                    
+                                    <!-- content en input -->
+
                                     <!-- Meta Tags input -->
                                     <div class="form-group">
                                         <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.meta_tags'); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
@@ -147,6 +164,27 @@
                                         </div>
                                     </div> -->
                                     <!-- /files uploader -->
+                                </fieldset>
+                                
+                                
+                                <fieldset class="content-group">
+
+                                    <legend class="text-bold"><?php echo app('translator')->getFromJson('home.site_lang'); ?></legend>
+                                        <!-- /lang Chooser-->
+                                        <div class="form-group" >
+                                            <label class="control-label col-lg-2"><?php echo app('translator')->getFromJson('home.languages'); ?> </label>
+                                            <div class="col-lg-9">
+                                                <select name="languages[]" class="form-control" multiple="">
+                                                    <option value=""><?php echo app('translator')->getFromJson('home.select_one'); ?></option>
+                                                    <?php $__currentLoopData = $languages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lang): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <?php $__currentLoopData = $site_langs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $local): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                      <option value="<?php echo e(@$lang->id); ?>" <?php if($lang->id ==$local->lang_id): ?> selected <?php endif; ?>><?php echo e(@$lang->local); ?></option>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <!-- lang Chooser -->
                                 </fieldset>
                                 
                                 
@@ -237,7 +275,7 @@
                                     </div>
                                 </fieldset>
                                 
-                                
+
                                 
                                 <fieldset class="content-group">
                                     <legend class="text-bold"><?php echo app('translator')->getFromJson('home.company_address'); ?></legend>
@@ -248,7 +286,7 @@
                                             <div class="col-lg-9">
                                                 <input type="text" name="address[]" class="form-control" id="text" placeholder="<?php echo app('translator')->getFromJson('home.address'); ?>">
                                             </div>
-                                            
+
                                             <div class="col-2  m-10">
                                                <button class="btn btn-primary add_new_address"> + </button>
                                             </div>
@@ -262,13 +300,13 @@
                                             <div class="col-lg-9">
                                                 <input type="text" name="address[]" class="form-control" id="text" placeholder="<?php echo app('translator')->getFromJson('home.address'); ?>" value="<?php echo e(@$address->address_ar); ?>">
                                             </div>
-                                            
+
                                             <div class="col-2  m-10">
                                             <button class="remove_field btn btn-danger">-</button>
                                             </div>
                                         </div>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>    
-                                        <?php endif; ?>                                        
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        <?php endif; ?>
                                         </div>
                                     </div>
                                 </fieldset>
@@ -283,7 +321,7 @@
                                             <div class="col-lg-9">
                                                 <input type="text" name="phone[]" class="form-control" id="phone"  placeholder="<?php echo app('translator')->getFromJson('home.phone'); ?>" >
                                             </div>
-                                          
+
                                             <div class="col-2  m-10">
                                                <button class="btn btn-primary add_new_phone"> + </button>
                                             </div>
@@ -301,8 +339,8 @@
                                             <button class="remove_field btn btn-danger">-</button>
                                             </div>
                                         </div>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>   
-                                        <?php endif; ?>                                         
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        <?php endif; ?>
                                         </div>
                                     </div>
                                 </fieldset>
@@ -317,7 +355,7 @@
                                             <div class="col-lg-9">
                                                 <input type="text" name="whatsapp[]" class="form-control" id="whatsapp" placeholder="<?php echo app('translator')->getFromJson('home.whatsapp'); ?>">
                                             </div>
-                                          
+
                                             <div class="col-2  m-10">
                                                <button class="btn btn-primary add_new_whatsapp"> + </button>
                                             </div>
@@ -331,13 +369,13 @@
                                             <div class="col-lg-9">
                                                 <input type="text" name="whatsapp[]" class="form-control" id="whatsapp" placeholder="<?php echo app('translator')->getFromJson('home.whatsapp'); ?>" value="<?php echo e(@$whatsapp->whatsapp); ?>">
                                             </div>
-                                          
-                                            <div class="col-2  m-10">                                        
+
+                                            <div class="col-2  m-10">
                                             <button class="remove_field btn btn-danger">-</button>
                                             </div>
                                         </div>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>   
-                                        <?php endif; ?>                                                                                     
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        <?php endif; ?>
                                         </div>
                                     </div>
                                 </fieldset>
@@ -347,15 +385,18 @@
                                     <legend class="text-bold"><?php echo app('translator')->getFromJson('home.social_media_generator'); ?></legend>
                                     <!-- social Media field -->
                                     <div class="wrap_social_media">
+                                    <?php $__currentLoopData = $site_langs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lang): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <div class="form-group" >
+                                           
                                             <div class="col-lg-2">
                                                <a hreg="#" class="btn btn-primary add_new_social_media"> + </a>
                                             </div>
-                                                <input type="hidden" name="social_media_lang[]" value="ar"  multiple>
+
+                                            <input type="hidden" name="social_media_lang[]" value="<?php echo e($lang->info->id); ?>"  multiple>
+
                                             <div class="col-lg-4">
-                                                <input type="text" name="name_media[]" class="form-control" id="title_ar" placeholder="<?php echo app('translator')->getFromJson('home.name'); ?>"  multiple>
+                                                <input type="text" name="name_media[]" class="form-control" id="title_ar" placeholder="<?php echo app('translator')->getFromJson('home.name_'.@$lang->info->local); ?>"  multiple>
                                             </div>
-                                           
                                              <div class="col-lg-2">
                                                 <input type="text" name="url[]" class="form-control" id="url" placeholder="<?php echo app('translator')->getFromJson('home.url'); ?>" multiple>
                                             </div>
@@ -363,20 +404,25 @@
                                                 <input type="file" name="social_logo[]" class="file-styled" multiple>
                                             </div>
                                         </div>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        
                                         <!-- /social Media field -->
                                         <div id="space_social_media">
+                                     
+
                                         <?php if(isset($info)): ?>
                                         <?php $__currentLoopData = $info->social_media_link; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $link): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <input type="hidden" name="social_media_lang[]" value="ar"  multiple>
+                                        <input type="hidden" name="social_media_lang[]" value="<?php echo e(@$link->social_media_translation->lang_id); ?>"  multiple>
 
                                         <div class="form-group" >
                                             <div class="col-lg-2">
                                             <button class="remove_field btn btn-danger">-</button>
                                             </div>
-                                            <div class="col-lg-4"> 
-                                                <input type="text" name="name_media[]" class="form-control" id="title_ar" placeholder="<?php echo app('translator')->getFromJson('home.name_ar'); ?>"  multiple  value="<?php echo e(@$link->social_media_translation->name); ?>">
+                                            <div class="col-lg-4">
+                                                <input type="text" name="name_media[]" class="form-control" id="title_ar" placeholder="<?php echo app('translator')->getFromJson('home.name_'.@$link->social_media_translation->lang->local); ?>"  multiple  value="<?php echo e(@$link->social_media_translation->name); ?>">
+                                               
                                             </div>
-                                           
+
                                             <div class="col-lg-2">
                                                 <input type="text" name="url[]" class="form-control" id="url" placeholder="<?php echo app('translator')->getFromJson('home.url'); ?>" multiple value="<?php echo e(@$link->url); ?>" >
                                             </div>
@@ -384,9 +430,11 @@
                                                 <input type="file" name="social_logo[]" class="file-styled" multiple>
                                             </div>
                                         </div>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>                                                                                        
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         <?php endif; ?>
+
                                         </div>
+
                                     </div>
                                 </fieldset>
                                 
@@ -404,7 +452,7 @@
                     <img src="<?php echo e(url('/').@$info->logo); ?>" class="img-responsive" style="max-width:100%" >
                     <?php endif; ?>
                     </div>
-                    <?php if(isset($info)): ?>                    
+                    <?php if(isset($info)): ?>
                     <?php $__currentLoopData = $info->external_resources; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $file): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="col-md-2">
                     <a href="<?php echo e(@$file->file); ?>" target="_blank">
@@ -430,21 +478,21 @@
    var add_new_email = $(".add_new_email");
    $(add_new_email).click(function (e) {
     e.preventDefault();
-    $(wrap_emails).append('<div class="form-group" ><label class="control-label col-lg-2"><?php echo app('translator')->getFromJson('home.email'); ?> </label><div class="col-lg-5"><input type="email" name="email[]" class="form-control" id="email" placeholder="<?php echo app('translator')->getFromJson('home.email'); ?>"></div><div class="col-lg-4"><input type="text" name="department[]" class="form-control" id="text"  placeholder="<?php echo app('translator')->getFromJson('home.department'); ?>"></div><div class="col-2  m-10"><button class="remove_field btn btn-danger">-</button></div>'); 
+    $(wrap_emails).append('<div class="form-group" ><label class="control-label col-lg-2"><?php echo app('translator')->getFromJson('home.email'); ?> </label><div class="col-lg-5"><input type="email" name="email[]" class="form-control" id="email" placeholder="<?php echo app('translator')->getFromJson('home.email'); ?>"></div><div class="col-lg-4"><input type="text" name="department[]" class="form-control" id="text"  placeholder="<?php echo app('translator')->getFromJson('home.department'); ?>"></div><div class="col-2  m-10"><button class="remove_field btn btn-danger">-</button></div>');
   });
     //start email generator
    var wrap_address = $(".wrap_address>#space_address");
    var add_new_address = $(".add_new_address");
    $(add_new_address).click(function (e) {
     e.preventDefault();
-    $(wrap_address).append('<div class="form-group" ><label class="control-label col-lg-2"><?php echo app('translator')->getFromJson('home.address'); ?> </label><div class="col-lg-9"><input type="text" name="address[]" class="form-control" id="text" placeholder="<?php echo app('translator')->getFromJson('home.address'); ?>"></div><div class="col-2  m-10"><button class="remove_field btn btn-danger">-</button></div></div>'); 
+    $(wrap_address).append('<div class="form-group" ><label class="control-label col-lg-2"><?php echo app('translator')->getFromJson('home.address'); ?> </label><div class="col-lg-9"><input type="text" name="address[]" class="form-control" id="text" placeholder="<?php echo app('translator')->getFromJson('home.address'); ?>"></div><div class="col-2  m-10"><button class="remove_field btn btn-danger">-</button></div></div>');
   });
    //start phones generator
    var wrap_phones = $(".wrap_phones>#space_phones");
    var add_new_phone = $(".add_new_phone");
    $(add_new_phone).click(function (e) {
     e.preventDefault();
-    $(wrap_phones).append('<div class="form-group" ><label class="control-label col-lg-2"><?php echo app('translator')->getFromJson('home.phone'); ?> </label><div class="col-lg-9"><input type="text" name="phone[]" class="form-control" id="phone" placeholder="<?php echo app('translator')->getFromJson('home.phone'); ?>"></div><div class="col-2  m-10"><button class="remove_field btn btn-danger">-</button></div></div>'); 
+    $(wrap_phones).append('<div class="form-group" ><label class="control-label col-lg-2"><?php echo app('translator')->getFromJson('home.phone'); ?> </label><div class="col-lg-9"><input type="text" name="phone[]" class="form-control" id="phone" placeholder="<?php echo app('translator')->getFromJson('home.phone'); ?>"></div><div class="col-2  m-10"><button class="remove_field btn btn-danger">-</button></div></div>');
   });
 
    //start whatsapp generator
@@ -452,14 +500,14 @@
    var add_new_whatsapp = $(".add_new_whatsapp");
    $(add_new_whatsapp).click(function (e) {
     e.preventDefault();
-    $(wrap_whatsapp).append('<div class="form-group" ><label class="control-label col-lg-2"><?php echo app('translator')->getFromJson('home.whatsapp'); ?> </label><div class="col-lg-9"><input type="text" name="whatsapp[]" class="form-control" id="whatsapp" placeholder="<?php echo app('translator')->getFromJson('home.whatsapp'); ?>"></div><div class="col-2  m-10"><button class="remove_field btn btn-danger">-</button></div></div>'); 
+    $(wrap_whatsapp).append('<div class="form-group" ><label class="control-label col-lg-2"><?php echo app('translator')->getFromJson('home.whatsapp'); ?> </label><div class="col-lg-9"><input type="text" name="whatsapp[]" class="form-control" id="whatsapp" placeholder="<?php echo app('translator')->getFromJson('home.whatsapp'); ?>"></div><div class="col-2  m-10"><button class="remove_field btn btn-danger">-</button></div></div>');
   });
    //start  social media generator
    var wrap_social_media = $(".wrap_social_media>#space_social_media");
    var add_new_social_media = $(".add_new_social_media");
    $(add_new_social_media).click(function (e) {
     e.preventDefault();
-    $(wrap_social_media).append('<div class="form-group" ><div class="col-lg-2"><button class="remove_field btn btn-danger">-</button></div><input type="hidden" name="social_media_lang[]" value="ar"  multiple><div class="col-lg-4"><input type="text" name="name_media[]" class="form-control" id="title_ar" placeholder="<?php echo app('translator')->getFromJson('home.name'); ?>"  multiple></div><div class="col-lg-2"><input type="text" name="url[]" multiple class="form-control" id="url"  placeholder="<?php echo app('translator')->getFromJson('home.url'); ?>"></div><div class="col-2"><input type="file" name="social_logo[]" class="file-styled"  multiple></div></div>'); 
+    $(wrap_social_media).append('<?php $__currentLoopData = $site_langs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lang): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><div class="form-group" ><div class="col-lg-2"><button class="remove_field btn btn-danger">-</button></div><input type="hidden" name="social_media_lang[]" value="<?php echo e(@$lang->info->local); ?>"  multiple><div class="col-lg-4"><input type="text"name="name_media[]" class="form-control" id="title_ar" placeholder="<?php echo app('translator')->getFromJson('home.name_'.@$lang->info->local); ?>"  multiple></div><div class="col-lg-2"><input type="text" name="url[]" multiple class="form-control" id="url"  placeholder="<?php echo app('translator')->getFromJson('home.url'); ?>"></div><div class="col-2"><input type="file" name="social_logo[]" class="file-styled"  multiple></div></div><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>');
   });
 
    $(document).on("click",".remove_field",function(){

@@ -16,7 +16,7 @@ use App\SettingMailProviderInfo,App\SettingAddress,App\SettingWatsapp;
 use App\SettingPhone,App\SettingSocialMedia,App\SettingEmail;
 use App\Http\Controllers\ImagesController,App\ExternalResources;
 use App\SettingsTranslation,App\SettingsSocialMediaTranslate;
-
+use App\SettingLangs;
 use Auth;
 class SettingProgressController extends Controller
 {
@@ -28,7 +28,7 @@ class SettingProgressController extends Controller
 								// 'extirnal_code'=> isset($request['extirnal_code']) ? $request['extirnal_code'] : '',
 					            'created_by'=>Auth::id()
 							]);
-		
+		SettingProgressController::SiteLang($request,$model->first()->id);
 		SettingProgressController::setTranslation($request,$model->first()->id);
 		SettingProgressController::external_resources($request,$model->first()->id);
 		SettingProgressController::store_mail_provider($request,$model->first()->id);
@@ -57,22 +57,11 @@ class SettingProgressController extends Controller
 		$update_base_info =  $model->find($model->first()->id)->update([
 											
 									            'meta_tags'=>$request['meta_tags'],
-									            // 'extirnal_code'=>$request['extirnal_code'],
 									            'created_by'=>Auth::id()
 											]);
-		
-			//has file
-			if(isset($request['logo'])){
-				$image =ImagesController::uploadSingle(
-					$request['logo'],
-					$path=public_path().'/uploads/images/logos/'.str_replace( ' ','_',$model->first()->translation->title),
-					$db_path = '/uploads/images/logos/'.str_replace( ' ','_',$model->first()->translation->title)
-				);
-				$model->find($model->first()->id)->update([
-					'logo'=>@$image,
-				]);
-			}
-			//end upload file
+
+			
+		SettingProgressController::SiteLang($request,$model->first()->id);
 		SettingProgressController::setTranslation($request,$model->first()->id);
 		SettingProgressController::external_resources($request,$model->first()->id);
 		SettingProgressController::store_mail_provider($request,$model->first()->id);
@@ -81,24 +70,49 @@ class SettingProgressController extends Controller
 		SettingProgressController::store_whatsapp($request,$model->first()->id);
 		SettingProgressController::store_address($request,$model->first()->id);
 		SettingProgressController::store_social_media_chanels($request,$model->first()->id);
+		//has file
+		if(isset($request['logo'])){
+			$image =ImagesController::uploadSingle(
+				$request['logo'],
+				$path=public_path().'/uploads/images/logos/'.str_replace( ' ','_',$model->first()->translation->title),
+				$db_path = '/uploads/images/logos/'.str_replace( ' ','_',$model->first()->translation->title)
+			);
+			$model->find($model->first()->id)->update([
+				'logo'=>@$image,
+			]);
+		}
+			//end upload file
+
 		return $update_base_info;
 	}
 
-
+	public static function SiteLang($request,$setting_id)
+	{
+		foreach ($request['languages'] as $key => $local) {
+		$find = SettingLangs::where('lang_id',$local)->count();
+			if ($find == 0 ) {
+				SettingLangs::where('lang_id','!=',$local)->create([						'lang_id'=>$local,
+					'setting_id'=>$setting_id
+				]);
+			}
+		}
+	}
 	public static function setTranslation($request,$setting_id)
 	{
 		if (SettingsTranslation::count() > 0 ) {
 			$delete_latest = SettingsTranslation::where('setting_id',$setting_id)->delete();
 		}
 		$translation = [];
+
 		foreach ($request['title'] as $key => $value) {
 		$translation = 	SettingsTranslation::create([
 				'title'=>$request['title'][$key],
 				'content'=>$request['content'][$key],
-				'language'=>$request['title_lang'][$key],
+				'lang_id'=>$request['title_lang'][$key],
 				'setting_id'=>$setting_id,
 			]);
 		}
+
 	return $translation;
 	}
 
@@ -219,19 +233,17 @@ class SettingProgressController extends Controller
 		}
 		$SettingSocialMedia = [];
 		$media_translate = [];
-		foreach ($request['name_media'] as $key => $brand_ar) {
-			if($brand_ar != null ){
+		foreach ($request['name_media'] as $key => $brand) {
+			if($brand != null ){
 
 				$create_chanel = SettingSocialMedia::create([
 					'setting_id'=>$setting_id,
-					// 'name_ar'=>$request['name_media_ar'][$key],
-					// 'name_en'=>$request['name_media_en'][$key],
 					'url'=>$request['url'][$key]
 				]);
 				$media_translate = SettingsSocialMediaTranslate::create([
 					'setting_id'=>$setting_id,
 					'media_id'=>$create_chanel->id,
-					'language'=>$request['social_media_lang'][$key],
+					'lang_id'=>$request['social_media_lang'][$key],
 					'name'=>$request['name_media'][$key]
 				]);
 				//has file
@@ -249,8 +261,7 @@ class SettingProgressController extends Controller
 				//end upload file
 			}
 		}
-		// dd($SettingSocialMedia,$media_translate);
-
+		
 		return "Okay";
 	}
 }

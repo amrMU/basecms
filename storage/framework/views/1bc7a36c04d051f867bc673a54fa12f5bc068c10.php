@@ -76,7 +76,7 @@
                                 </div>
                                 <?php endif; ?>
                                 <?php echo csrf_field(); ?>
-                           
+                                <?php echo $__env->make('dashboard.ads.form', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                                 <div class="text-right">
                                     <button type="reset" class="btn btn-default" id="reset">Reset <i class="icon-reload-alt position-right"></i></button>
                                     <button type="submit" class="btn btn-primary">Submit <i class="icon-arrow-left13 position-right"></i></button>

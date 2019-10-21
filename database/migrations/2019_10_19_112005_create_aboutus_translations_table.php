@@ -19,7 +19,8 @@ class CreateAboutusTranslationsTable extends Migration
             $table->longText('content');
             $table->longText('mission');
             $table->longText('goals');
-            $table->enum('language',['ar','en']);
+            $table->unsignedInteger('lang_id');
+            $table->foreign('lang_id')->references('id')->on('languages')->onDelete('cascade');
             $table->unsignedInteger('about_id');
             $table->foreign('about_id')->references('id')->on('aboutus')->onDelete('cascade');
             $table->timestamps();

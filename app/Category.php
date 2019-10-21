@@ -23,7 +23,7 @@ class Category extends Model
 
 	public function category_translation()
 	{
-        return $this->belongsTo('App\CategoryTranslation','id','category_id')->where('language','ar');
+        return $this->belongsTo('App\CategoryTranslation','id','category_id')->where('lang','ar');;
 		
 	}
 }

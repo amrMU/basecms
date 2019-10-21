@@ -20,10 +20,16 @@ class Setting extends Model
 
     public function translation()
     {
-        // return $this->belongsTo('App\SettingsTranslation','id','setting_id')->where('language',LaravelLocalization::getCurrentLocale()); //if you your website is multi language activate this line to get lang from session.
-        return $this->belongsTo('App\SettingsTranslation','id','setting_id')->where('language','ar');
+       
+        $find_lang = languages::where('local',LaravelLocalization::getCurrentLocale())->first();
+        return $this->belongsTo('App\SettingsTranslation','id','setting_id')->where('lang_id',$find_lang->id);
     }
 
+    public function translations()
+    {
+        return $this->hasMany('App\SettingsTranslation','setting_id','id');
+        
+    }
     
 
     public function mail_provider_info()

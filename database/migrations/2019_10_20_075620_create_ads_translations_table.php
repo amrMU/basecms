@@ -17,7 +17,8 @@ class CreateAdsTranslationsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('ad_id');
             $table->foreign('ad_id')->references('id')->on('ads')->onDelete('cascade');
-            $table->enum('language',['ar','en']);
+            $table->unsignedInteger('lang_id');
+            $table->foreign('lang_id')->references('id')->on('languages')->onDelete('cascade');
             $table->string('title')->nullabe();
             $table->string('address')->nullabe();
             $table->longText('content');

@@ -18,7 +18,8 @@ class CreateCategoryTranslationsTable extends Migration
             $table->string('name')->nullable();
             $table->unsignedInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->enum('language',['ar','en']);
+            $table->unsignedInteger('lang_id');
+            $table->foreign('lang_id')->references('id')->on('languages')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

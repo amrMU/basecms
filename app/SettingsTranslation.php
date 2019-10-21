@@ -10,7 +10,12 @@ class SettingsTranslation extends Model
     protected $fillable = [
     		'title',
 			'content',
-			'language',
+			'lang_id',
 			'setting_id',
     ];
+
+    public function lang()
+    {
+    	return $this->belongsTo('App\Languages','lang_id');
+    }
 }

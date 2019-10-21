@@ -34,7 +34,6 @@ class SettingController extends Controller
         $agent = $agent->platform().','.$agent->browser().$agent->version($agent->browser());
         $data = ['key'=>'dashboard_browse_setting','text'=>'Browse Setting','browser'=>$agent];
         $info = $this->setting->with('translation')->first();
-        // dd($info);
         DoFire::MK_REPORT($data,Auth::id(),null,$request->ipinfo);
 		return view($this->view.'.setting.update',compact('info'));
 	}
