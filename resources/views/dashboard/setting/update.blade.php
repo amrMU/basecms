@@ -410,10 +410,10 @@
                                             </div>
 
 
-                                            <input type="hidden" name="social_img[]" value="/img/icon.png"multiple>
+                                            <input type="hidden" name="social_img[]" value="/img/unknown.png"multiple>
                                             <input type="hidden" name="social_media_lang[]" value="{{ $lang->id }}"  multiple>
                                             <div class="col-lg-2">
-                                              <img src="{{url('/img/icon.png')}}" class="img-responsive" style="max-height: 46px" >
+                                              <img src="{{url('/img/unknown.png')}}" class="img-responsive" style="max-height: 46px" >
                                             </div>
 
                                              <div class="col-lg-4">
@@ -525,7 +525,7 @@
    var add_new_social_media = $(".add_new_social_media");
    $(add_new_social_media).click(function (e) {
     e.preventDefault();
-    $(wrap_social_media).append('@foreach($site_langs as $lang)<div class="form-group" ><div class="col-lg-2"><button class="remove_field btn btn-danger">-</button></div><input type="hidden" name="social_img[]" value="/img/icon.png"multiple><input type="hidden" name="social_media_lang[]" value="{{ $lang->id }}"  multiple><div class="col-lg-2"><img src="{{url('/img/icon.png')}}" class="img-responsive" style="max-height: 46px" ></div><div class="col-lg-4"><input type="text" name="url[]" multiple class="form-control" id="url"  placeholder="@lang('home.url')"></div><div class="col-2"><input type="file" name="social_logo[]" class="file-styled"  multiple></div></div>@endforeach');
+    $(wrap_social_media).append('<div class="form-group" ><div class="col-lg-2"><button class="remove_field btn btn-danger">-</button></div><input type="hidden" name="social_img[]" value="/img/unknown.png"multiple><input type="hidden" name="social_media_lang[]" value="{{ $lang->id }}"  multiple><div class="col-lg-2"><img src="{{url('/img/unknown.png')}}" class="img-responsive" style="max-height: 46px" ></div><div class="col-lg-4"><input type="text" name="url[]" multiple class="form-control" id="url"  placeholder="@lang('home.url')"></div><div class="col-2"><input type="file" name="social_logo[]" class="file-styled"  multiple></div></div>');
   });
 
    $(document).on("click",".remove_field",function(){

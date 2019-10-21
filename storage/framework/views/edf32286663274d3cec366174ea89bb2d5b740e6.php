@@ -392,10 +392,10 @@
                                             </div>
 
 
-                                            <input type="hidden" name="social_img[]" value="/img/icon.png"multiple>
+                                            <input type="hidden" name="social_img[]" value="/img/unknown.png"multiple>
                                             <input type="hidden" name="social_media_lang[]" value="<?php echo e($lang->id); ?>"  multiple>
                                             <div class="col-lg-2">
-                                              <img src="<?php echo e(url('/img/icon.png')); ?>" class="img-responsive" style="max-height: 46px" >
+                                              <img src="<?php echo e(url('/img/unknown.png')); ?>" class="img-responsive" style="max-height: 46px" >
                                             </div>
 
                                              <div class="col-lg-4">
@@ -507,7 +507,7 @@
    var add_new_social_media = $(".add_new_social_media");
    $(add_new_social_media).click(function (e) {
     e.preventDefault();
-    $(wrap_social_media).append('<?php $__currentLoopData = $site_langs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lang): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><div class="form-group" ><div class="col-lg-2"><button class="remove_field btn btn-danger">-</button></div><input type="hidden" name="social_img[]" value="/img/icon.png"multiple><input type="hidden" name="social_media_lang[]" value="<?php echo e($lang->id); ?>"  multiple><div class="col-lg-2"><img src="<?php echo e(url('/img/icon.png')); ?>" class="img-responsive" style="max-height: 46px" ></div><div class="col-lg-4"><input type="text" name="url[]" multiple class="form-control" id="url"  placeholder="<?php echo app('translator')->getFromJson('home.url'); ?>"></div><div class="col-2"><input type="file" name="social_logo[]" class="file-styled"  multiple></div></div><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>');
+    $(wrap_social_media).append('<div class="form-group" ><div class="col-lg-2"><button class="remove_field btn btn-danger">-</button></div><input type="hidden" name="social_img[]" value="/img/unknown.png"multiple><input type="hidden" name="social_media_lang[]" value="<?php echo e($lang->id); ?>"  multiple><div class="col-lg-2"><img src="<?php echo e(url('/img/unknown.png')); ?>" class="img-responsive" style="max-height: 46px" ></div><div class="col-lg-4"><input type="text" name="url[]" multiple class="form-control" id="url"  placeholder="<?php echo app('translator')->getFromJson('home.url'); ?>"></div><div class="col-2"><input type="file" name="social_logo[]" class="file-styled"  multiple></div></div>');
   });
 
    $(document).on("click",".remove_field",function(){
