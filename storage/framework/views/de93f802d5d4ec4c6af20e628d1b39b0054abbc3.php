@@ -59,7 +59,7 @@
                         <div class="panel-body">
                             <form class="form-horizontal form-validate-jquery" method="post" action="<?php echo e(route('pages.update',$info)); ?>" enctype='multipart/form-data'  >
                             <input name="_method" type="hidden" value="PUT">
-                            <input name="use" type="hidden" value="<?php echo e(@$info->id); ?>">
+                                <input name="use" type="hidden" value="<?php echo e(@$info->id); ?>">
 
                                 <?php if($errors->any()): ?>
                                 <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -79,74 +79,8 @@
                                 
                                 <fieldset class="content-group">
                                 <legend class="text-bold"><?php echo app('translator')->getFromJson('home.add_new_page'); ?></legend>
-                                    <input type="hidden" name="lang[]" value="ar">
-
-                                    <!-- title ar input -->
-                                    <div class="form-group">
-                                        <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.title_ar'); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
-                                        <div class="col-lg-9">
-                                            <input type="text" name="title[]" class="form-control" placeholder="<?php echo app('translator')->getFromJson('home.title_ar'); ?>" value="<?php echo e(@$info->translation->title); ?>">
-                                        </div>
-                                    </div>
-                                    <!-- /title ar input -->
-
-                                    <!-- url input -->
-                                    <div class="form-group">
-                                        <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.url_page'); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
-                                        <div class="col-lg-9">
-                                            <input type="text" name="url" class="form-control"  placeholder="<?php echo app('translator')->getFromJson('home.url_page'); ?>" value="<?php echo e(@$info->url); ?>">
-                                        </div>
-                                    </div>
-                                    <!-- /url input -->
-                                    <!-- Meta Tags input -->
-                                    <div class="form-group">
-                                        <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.meta_tags'); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
-                                        <div class="col-lg-9">
-                                            <input type="text" name="meta_tags" class="form-control tokenfield" value="<?php echo app('translator')->getFromJson('home.placeholder_metatags'); ?>" value="<?php echo e(@$info->meta_tags); ?>">
-                                        </div>
-                                    </div>
-                                    <!-- /Meta Tags input -->
-                                    
-                                     <div class="form-group">
-                                        <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.content'); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
-                                        <div class="col-lg-9">
-                                             <textarea name="content[]" id="editor1" rows="4" cols="4"  placeholder="<?php echo app('translator')->getFromJson('home.content_ar'); ?>"><?php echo e(@$info->translation->content); ?></textarea>
-                                        </div>
-                                    </div>
-                                   
-                                    
-                                  
-                                    
-                                     <div class="form-group">
-                                        <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.status'); ?></label>
-                                        <div class="col-lg-4">
-                                            <div class="checkbox checkbox-switch">
-                                                        <input type="radio" name="status" class="switch" value="show" <?php if($info->status  == 'show'): ?> checked="checked"  <?php endif; ?>>
-                                                    <label>
-                                                         <?php echo app('translator')->getFromJson('home.show'); ?>
-                                                    </label>
-                                            </div>
-                                        </div>
-                                         <div class="col-lg-4">
-                                            <div class="checkbox checkbox-switch">
-                                                    <input type="radio" name="status" class="switch" value="hide" <?php if($info->status  == 'hide'): ?> checked="checked" <?php endif; ?> >
-                                                    <label>
-                                                        <?php echo app('translator')->getFromJson('home.hide'); ?>
-                                                    </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                     
-                                    <!-- Logo uploader -->
-                                    <div class="form-group">
-                                        <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.icon'); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>"> *</span></label>
-                                        <div class="col-lg-9">
-                                            <input type="file" name="icon" class="file-styled" >
-                                        </div>
-                                    </div>
-                                    <!-- /Logo uploader -->
-                                 
+                                <?php echo $__env->make('dashboard.pages.form', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                                
                                  
                                 </fieldset>
                                 
@@ -173,11 +107,11 @@
 
 <?php $__env->startSection('jsCode'); ?>
     <script type="text/javascript">
-          // Full featured editor
-        CKEDITOR.replace( 'editor1',{
+           // Full featured editor
+        CKEDITOR.replace( 'editor0',{
             extraPlugins: 'forms'
         });
-        CKEDITOR.replace( 'editor2',{
+        CKEDITOR.replace( 'editor1',{
             extraPlugins: 'forms'
         });
     </script>

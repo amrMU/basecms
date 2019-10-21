@@ -77,73 +77,7 @@
                                 {{-- general Info --}}
                                 <fieldset class="content-group">
                                     <legend class="text-bold">@lang('home.add_new_page')</legend>
-                                    <input type="hidden" name="lang[]" value="ar">
-                                    <!-- title ar input -->
-                                    <div class="form-group">
-                                        <label class="control-label col-lg-3">@lang('home.title_ar') <span class="text-danger" title="@lang('home.required')">*</span></label>
-                                        <div class="col-lg-9">
-                                            <input type="text" name="title[]" class="form-control" placeholder="@lang('home.title_ar')" value="">
-                                        </div>
-                                    </div>
-                                    <!-- /title ar input -->
-
-                                 
-                                    <!-- title ar input -->
-                                    <div class="form-group">
-                                        <label class="control-label col-lg-3">@lang('home.url_page') <span class="text-danger" title="@lang('home.required')">*</span></label>
-                                        <div class="col-lg-9">
-                                            <input type="text" name="url" class="form-control"  placeholder="@lang('home.url_page')" value="{{Request::old('url')}}">
-                                        </div>
-                                    </div>
-                                    <!-- /title ar input -->
-                                    <!-- Meta Tags input -->
-                                    <div class="form-group">
-                                        <label class="control-label col-lg-3">@lang('home.meta_tags') <span class="text-danger" title="@lang('home.required')">*</span></label>
-                                        <div class="col-lg-9">
-                                            <input type="text" name="meta_tags" class="form-control tokenfield" value="@lang('home.placeholder_metatags')" value="{{Request::old('meta_tags')}}">
-                                        </div>
-                                    </div>
-                                    <!-- /Meta Tags input -->
-                                    {{-- content ar --}}
-                                     <div class="form-group">
-                                        <label class="control-label col-lg-3">@lang('home.content_ar') <span class="text-danger" title="@lang('home.required')">*</span></label>
-                                        <div class="col-lg-9">
-                                             <textarea name="content[]" id="editor1" rows="4" cols="4"  placeholder="@lang('home.content_ar')"></textarea>
-                                        </div>
-                                    </div>
-                                   
-                                    {{-- content ar --}}
-                                   
-                                    {{-- Show page --}}
-                                     <div class="form-group">
-                                        <label class="control-label col-lg-3">@lang('home.status')</label>
-                                        <div class="col-lg-4">
-                                            <div class="checkbox checkbox-switch">
-                                                        <input type="radio" name="status" class="switch" value="show" >
-                                                    <label>
-                                                         @lang('home.show')
-                                                    </label>
-                                            </div>
-                                        </div>
-                                         <div class="col-lg-4">
-                                            <div class="checkbox checkbox-switch">
-                                                    <input type="radio" name="status" class="switch" value="hide"  >
-                                                    <label>
-                                                        @lang('home.hide')
-                                                    </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {{--Show page --}}
-                                     
-                                    <!-- Logo uploader -->
-                                    <div class="form-group">
-                                        <label class="control-label col-lg-3">@lang('home.icon') <span class="text-danger" title="@lang('home.required')"> *</span></label>
-                                        <div class="col-lg-9">
-                                            <input type="file" name="icon" class="file-styled" >
-                                        </div>
-                                    </div>
-                                    <!-- /Logo uploader -->
+                                    @include('dashboard.pages.form')
                                  
                                 </fieldset>
                                 {{-- general Info --}}
@@ -169,10 +103,10 @@
 @section('jsCode')
     <script type="text/javascript">
           // Full featured editor
-        CKEDITOR.replace( 'editor1',{
+        CKEDITOR.replace( 'editor0',{
             extraPlugins: 'forms'
         });
-        CKEDITOR.replace( 'editor2',{
+        CKEDITOR.replace( 'editor1',{
             extraPlugins: 'forms'
         });
     </script>

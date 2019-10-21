@@ -58,7 +58,7 @@ class PagesController extends Controller
             'page_id'=>$create->id,
             'title'=>$request->title[$key],
             'content'=>$request->content[$key],
-            'language'=>$request->lang[$key],
+            'lang_id'=>$request->lang[$key],
           ]);
        }
        $agent = new Agent();
@@ -94,7 +94,7 @@ class PagesController extends Controller
             'page_id'=>$id,
             'title'=>$request->title[$key],
             'content'=>$request->content[$key],
-            'language'=>$request->lang[$key],
+            'lang_id'=>$request->lang[$key],
           ]);
        }
       

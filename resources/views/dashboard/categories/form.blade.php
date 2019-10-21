@@ -12,7 +12,6 @@
     </div>
     <!-- /title ar input -->
 @endforeach
- 
 @endif
 
 

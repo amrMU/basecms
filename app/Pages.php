@@ -43,7 +43,13 @@ class Pages extends Model
 
     public function translation()
     {
-        return $this->belongsTo('App\PagesTranslation','id','page_id')->where('lang','ar');
+        return $this->belongsTo('App\PagesTranslation','id','page_id');
+        
+    }
+
+    public function translations()
+    {
+        return $this->hasMany('App\PagesTranslation','page_id','id');
         
     }
 }
