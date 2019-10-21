@@ -20,7 +20,7 @@ class CreateAboutusTranslationsTable extends Migration
             $table->longText('mission');
             $table->longText('goals');
             $table->unsignedInteger('lang_id');
-            $table->foreign('lang_id')->references('id')->on('languages')->onDelete('cascade');
+            $table->foreign('lang_id')->references('id')->on('setting_langs')->onDelete('cascade');
             $table->unsignedInteger('about_id');
             $table->foreign('about_id')->references('id')->on('aboutus')->onDelete('cascade');
             $table->timestamps();

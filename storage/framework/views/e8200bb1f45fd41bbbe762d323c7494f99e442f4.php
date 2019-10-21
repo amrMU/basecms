@@ -43,7 +43,7 @@
                 <!-- Form validation -->
                     <div class="panel panel-flat col-md-10">
                         <div class="panel-heading">
-                            <h5 class="panel-title"><?php echo app('translator')->getFromJson('home.create_users'); ?></h5>
+                            <h5 class="panel-title"><?php echo app('translator')->getFromJson('home.update_info'); ?></h5>
                             <div class="heading-elements">
                                 <ul class="icons-list">
                                     <li><a data-action="collapse"></a></li>
@@ -54,7 +54,7 @@
                         </div>
 
                         <div class="panel-body">
-                            <form class="form-horizontal form-validate-jquery" method="post" action="<?php echo e(route('categories.update',$info)); ?>" enctype='multipart/form-data'  >
+                            <form class="form-horizontal form-validate-jquery" method="post" action="<?php echo e(@route('categories.update',$info)); ?>" enctype='multipart/form-data'  >
                             <input name="_method" type="hidden" value="PUT">
                             <input name="use" type="hidden" value="<?php echo e(@$info->id); ?>">
 
@@ -101,36 +101,8 @@
                                         </div>
                                     </div>
                                     <!-- /choose category input -->  
-                                    <input type="hidden" name="lang[]" value="ar">
-                                    <!-- title ar input -->
-                                    <div class="form-group">
-                                        <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.name_ar'); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
-                                        <div class="col-lg-9">
-                                            <input type="text" name="name[]" class="form-control" placeholder="<?php echo app('translator')->getFromJson('home.name_ar'); ?>" value="<?php echo e(@$info->category_translation->name); ?>">
-                                        </div>
-                                    </div>
-                                    <!-- /title ar input -->
-
-                                   
-                                    <!-- Meta Tags input -->
-                                    <div class="form-group">
-                                        <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.meta_tags'); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
-                                        <div class="col-lg-9">
-                                            <input type="text" name="meta_tags" class="form-control tokenfield" value="<?php echo app('translator')->getFromJson('home.placeholder_metatags'); ?>" value="<?php echo e(@$info->meta_tags); ?>">
-                                        </div>
-                                    </div>
-                                    <!-- /Meta Tags input -->
-                                    <!-- Logo uploader -->
-                                    <div class="form-group">
-                                        <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.icon'); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>"> *</span></label>
-                                        <div class="col-lg-9">
-                                            <input type="file" name="icon" class="file-styled" >
-                                        </div>
-                                    </div>
-                                    <!-- /Logo uploader -->
-
-                                 
-                                </fieldset>
+                                <?php echo $__env->make('dashboard.categories.form', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                            </fieldset>
                                 
                               
                            

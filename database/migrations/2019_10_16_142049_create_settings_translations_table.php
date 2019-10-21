@@ -18,7 +18,7 @@ class CreateSettingsTranslationsTable extends Migration
             $table->string('title')->nullable();
             $table->string('content')->nullable();
             $table->unsignedInteger('lang_id');
-            $table->foreign('lang_id')->references('id')->on('languages')->onDelete('cascade');
+            $table->foreign('lang_id')->references('id')->on('setting_langs')->onDelete('cascade');
             $table->unsignedInteger('setting_id');
             $table->foreign('setting_id')->references('id')->on('settings')->onDelete('cascade');
             $table->timestamps();

@@ -14,16 +14,19 @@ class CategoriesListExport implements FromCollection
     public function collection()
     {
        
-       return $categories = DB::table('categories')
+        $categories = DB::table('categories')
                              ->join('category_translations','categories.id','category_translations.category_id')
 
+                             ->groupby('category_translations.category_id')
+                             ->distinct()
                             ->select(
                                  'categories.id',
                                 'category_translations.name',
-                                // 'categories.name_en',
+                                'category_translations.lang_id',
                                 'categories.parent_id'
                             )->get();
 
+        return $categories;
     }
 
     public function headings(): array

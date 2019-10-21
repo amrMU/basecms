@@ -33,14 +33,15 @@ class CategoriesController extends Controller
     public function ExportExelSheet(Request $request)
     {
         $lists = DB::table('categories')
-                ->join('category_translations','categories.id','category_translations.category_id')
-                    ->select(
-                        'categories.id',
-                        'category_translations.name',
-                        // 'categories.name_en',
-                        'categories.parent_id'
-                    )->get();
-                    // dd($lists);
+                             ->join('category_translations','categories.id','category_translations.category_id')
+                             ->groupby('category_translations.category_id')
+                             ->distinct()
+                            ->select(
+                                 'categories.id',
+                                'category_translations.name',
+                                'category_translations.lang_id',
+                                'categories.parent_id'
+                            )->get();
         $agent = new Agent();
         $agent = $agent->platform().','.$agent->browser().$agent->version($agent->browser());
         $data = ['key'=>'dashboard_export_Categories_list','text'=>'Export Categories List','browser'=>$agent];
@@ -99,7 +100,7 @@ class CategoriesController extends Controller
             $translations = CategoryTranslation::create([
                 'name'=>$request->name[$key],
                 'category_id'=>$category->id,
-                'language'=>$request->lang[$key],
+                'lang_id'=>$request->lang[$key],
             ]);
          }
 
@@ -156,7 +157,8 @@ class CategoriesController extends Controller
             $translations = CategoryTranslation::create([
                 'category_id'=>$id,
                 'name'=>$request->name[$key],
-                'language'=>$request->lang[$key],
+                'lang_id'=>$request->lang[$key],
+
             ]);
          }
         $agent = new Agent();

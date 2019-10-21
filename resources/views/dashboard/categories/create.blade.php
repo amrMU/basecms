@@ -102,35 +102,7 @@
                                         </select>
                                         </div>
                                     </div>
-                                    <!-- /choose category input -->  
-                                    <input type="hidden" name="lang[]" value="ar">
-
-                                    <!-- title ar input -->
-                                    <div class="form-group">
-                                        <label class="control-label col-lg-3">@lang('home.name_ar') <span class="text-danger" title="@lang('home.required')">*</span></label>
-                                        <div class="col-lg-9">
-                                            <input type="text" name="name[]" class="form-control" placeholder="@lang('home.name_ar')" value="">
-                                        </div>
-                                    </div>
-                                    <!-- /title ar input -->
-
-                                    <!-- Meta Tags input -->
-                                    <div class="form-group">
-                                        <label class="control-label col-lg-3">@lang('home.meta_tags') <span class="text-danger" title="@lang('home.required')">*</span></label>
-                                        <div class="col-lg-9">
-                                            <input type="text" name="meta_tags" class="form-control tokenfield" value="@lang('home.placeholder_metatags')" value="{{@$info->meta_tags}}">
-                                        </div>
-                                    </div>
-                                    <!-- /Meta Tags input -->
-                                    <!-- Logo uploader -->
-                                    <div class="form-group">
-                                        <label class="control-label col-lg-3">@lang('home.icon') <span class="text-danger" title="@lang('home.required')"> *</span></label>
-                                        <div class="col-lg-9">
-                                            <input type="file" name="icon" class="file-styled" >
-                                        </div>
-                                    </div>
-                                    <!-- /Logo uploader -->
-                                 
+                                @include('dashboard.categories.form')
                                 </fieldset>
                                 {{-- general Info --}}
                               

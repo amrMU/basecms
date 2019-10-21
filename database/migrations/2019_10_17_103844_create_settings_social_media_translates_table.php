@@ -20,7 +20,7 @@ class CreateSettingsSocialMediaTranslatesTable extends Migration
             $table->unsignedInteger('media_id');
             $table->foreign('media_id')->references('id')->on('setting_social_media')->onDelete('cascade');
             $table->unsignedInteger('lang_id');
-            $table->foreign('lang_id')->references('id')->on('languages')->onDelete('cascade');
+            $table->foreign('lang_id')->references('id')->on('setting_langs')->onDelete('cascade');
             $table->string('name')->nullable();
             $table->timestamps();
         });

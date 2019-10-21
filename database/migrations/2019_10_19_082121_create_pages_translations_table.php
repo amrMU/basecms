@@ -20,7 +20,7 @@ class CreatePagesTranslationsTable extends Migration
             $table->unsignedInteger('page_id');
             $table->foreign('page_id')->references('id')->on('pages')->onDelete('cascade');
             $table->unsignedInteger('lang_id');
-            $table->foreign('lang_id')->references('id')->on('languages')->onDelete('cascade');
+            $table->foreign('lang_id')->references('id')->on('setting_langs')->onDelete('cascade');
             $table->softDeletes();
            $table->timestamps();
         });

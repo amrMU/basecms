@@ -104,35 +104,7 @@
                                         </select>
                                         </div>
                                     </div>
-                                    <!-- /choose category input -->  
-                                    <input type="hidden" name="lang[]" value="ar">
-
-                                    <!-- title ar input -->
-                                    <div class="form-group">
-                                        <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.name_ar'); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
-                                        <div class="col-lg-9">
-                                            <input type="text" name="name[]" class="form-control" placeholder="<?php echo app('translator')->getFromJson('home.name_ar'); ?>" value="">
-                                        </div>
-                                    </div>
-                                    <!-- /title ar input -->
-
-                                    <!-- Meta Tags input -->
-                                    <div class="form-group">
-                                        <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.meta_tags'); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
-                                        <div class="col-lg-9">
-                                            <input type="text" name="meta_tags" class="form-control tokenfield" value="<?php echo app('translator')->getFromJson('home.placeholder_metatags'); ?>" value="<?php echo e(@$info->meta_tags); ?>">
-                                        </div>
-                                    </div>
-                                    <!-- /Meta Tags input -->
-                                    <!-- Logo uploader -->
-                                    <div class="form-group">
-                                        <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.icon'); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>"> *</span></label>
-                                        <div class="col-lg-9">
-                                            <input type="file" name="icon" class="file-styled" >
-                                        </div>
-                                    </div>
-                                    <!-- /Logo uploader -->
-                                 
+                                <?php echo $__env->make('dashboard.categories.form', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                                 </fieldset>
                                 
                               

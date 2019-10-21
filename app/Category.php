@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Input;
-
+use LaravelLocalization;
 class Category extends Model
 {
     protected $table = "categories";
@@ -23,7 +23,13 @@ class Category extends Model
 
 	public function category_translation()
 	{
-        return $this->belongsTo('App\CategoryTranslation','id','category_id')->where('lang','ar');;
-		
+        return $this->belongsTo('App\CategoryTranslation','id','category_id');		
+	}
+	
+	public function translations()
+	{
+
+        return $this->hasMany('App\CategoryTranslation','category_id','id')->orderBy('created_at','DESC');		
+
 	}
 }

@@ -72,16 +72,18 @@
                 @foreach($categories as $category)
                 <tr>
                     <td><span class="text-semibold">{{ @$category->id }}</span></td>
-                    <td><span class="text-semibold">{{ @$category->category_translation->name }}</span></td>
+                    <td>
+                        <span class="text-semibold"> {{@$category->translations->first()->name}}</span>
+                    </td>
                     <td><span class="text-muted">
                         @if($category->parent_id != NULL)
-                        {{@$category->category_translation->name}}
+                            {{@$category->translations->first()->name}}
                         @else 
                         @lang('home.non_parent')
                         @endif 
                     </span></td>
                     <td>
-                        <img src="{{url('/'). @$category->icon }}" width="50" height="50" class="img-responsive" alt="{{ @$category->name_ar }}">
+                        <img src="{{url('/'). @$category->icon }}" width="50" height="50" class="img-responsive" alt="{{@$category->translations->first()->name}}">
                     </td>
                     <td>
                         <a href="{{URL::to('ar/admin/categories/').'/'.$category->id.'/edit'}}" class="btn btn-warning "><li class="icon-pencil5"></li></a>

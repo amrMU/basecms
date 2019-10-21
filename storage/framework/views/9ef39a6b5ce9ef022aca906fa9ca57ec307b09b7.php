@@ -71,17 +71,19 @@
                 <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr>
                     <td><span class="text-semibold"><?php echo e(@$category->id); ?></span></td>
-                    <td><span class="text-semibold"><?php echo e(@$category->category_translation->name); ?></span></td>
+                    <td>
+                        <span class="text-semibold"> <?php echo e(@$category->translations->first()->name); ?></span>
+                    </td>
                     <td><span class="text-muted">
                         <?php if($category->parent_id != NULL): ?>
-                        <?php echo e(@$category->category_translation->name); ?>
+                            <?php echo e(@$category->translations->first()->name); ?>
 
                         <?php else: ?> 
                         <?php echo app('translator')->getFromJson('home.non_parent'); ?>
                         <?php endif; ?> 
                     </span></td>
                     <td>
-                        <img src="<?php echo e(url('/'). @$category->icon); ?>" width="50" height="50" class="img-responsive" alt="<?php echo e(@$category->name_ar); ?>">
+                        <img src="<?php echo e(url('/'). @$category->icon); ?>" width="50" height="50" class="img-responsive" alt="<?php echo e(@$category->translations->first()->name); ?>">
                     </td>
                     <td>
                         <a href="<?php echo e(URL::to('ar/admin/categories/').'/'.$category->id.'/edit'); ?>" class="btn btn-warning "><li class="icon-pencil5"></li></a>
