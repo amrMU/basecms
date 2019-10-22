@@ -1,5 +1,12 @@
 <?php
-
+/*
+*********************************
+* Name: Amr Muhamed             *
+* Email: amrmuhamed9@gmail.com  *
+* Phone: +201061637022          *
+* Copywrits @amrMU Githup       *
+* *******************************
+*/
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
@@ -25,7 +32,6 @@ class BlogsController extends Controller
 	public function index(Request $request)
 	{
 		$blogs = $this->blog->paginate(30);
-		// dd($blogs);
 		$agent = new Agent();
         $agent = $agent->platform().','.$agent->browser().$agent->version($agent->browser());
         $data = ['key'=>'dashboard_List_Blogs_Article','text'=>'List Blogs Article  ','browser'=>$agent];

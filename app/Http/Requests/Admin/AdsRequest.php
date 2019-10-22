@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class AdsRequest extends FormRequest
 {
@@ -39,6 +40,10 @@ class AdsRequest extends FormRequest
                 'language.*'=>'required',
                 'image.*'=>'required|mimes:jpeg,bmp,png,jpg',
                 'price'=>'required',
+                'add_type'=>[
+                        'required',
+                        Rule::in(['own','rent','purchase','other']),
+                        ],
                 'url'=>'required',
                 'map'=>'required'
             ];
@@ -46,12 +51,18 @@ class AdsRequest extends FormRequest
         case 'PUT':
         {
             return [
+                'category_id'=>'required',
                 'title.*'=>'required',
+                'content.*'=>'required',
                 'address.*'=>'required',
                 'language.*'=>'required',
-                'image.*'=>'mimes:jpeg,bmp,png,jpg',
+                'image.*'=>'required|mimes:jpeg,bmp,png,jpg',
                 'price'=>'required',
-                'url'=>'required',
+                'add_type'=>[
+                        'required',
+                        Rule::in(['own','rent','purchase','other']),
+                        ],
+                'url'=>'required|unique:ads,url,'.$this->segment(4),
                 'map'=>'required'
             ];
         }

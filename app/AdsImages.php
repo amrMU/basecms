@@ -10,7 +10,7 @@ class AdsImages extends Model
 	 use SoftDeletes;
 
     protected $table = "ads_images";
-    protected $filable = [
+    protected $fillable = [
     	'image',
     	'ad_id',
     ];

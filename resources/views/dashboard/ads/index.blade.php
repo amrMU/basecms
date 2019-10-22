@@ -59,8 +59,7 @@
                 <thead>                  
                 <tr>                                     
                     <th class="col-md-2">#</th>
-                    <th class="col-md-2">@lang('home.name_ar')</th>
-                    <th class="col-md-2">@lang('home.name_en')</th>
+                    <th class="col-md-2">@lang('home.title')</th>
                     <th class="col-md-2">@lang('home.icon')</th>
                     <th class="col-md-2">@lang('home.status')</th>
                     <th class="col-md-2">@lang('home.edit')</th>
@@ -69,15 +68,15 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($pages as $page)
+                @foreach($ads as $ad)
                 <tr>
-                    <td><span class="text-semibold">{{ @$page->id }}</span></td>
-                    <td><span class="text-semibold">{{ @$page->translation->title }}</span></td>
+                    <td><span class="text-semibold">{{ @$ad->id }}</span></td>
+                    <td><span class="text-semibold">{{ @$ad->translations->first()->title }}</span></td>
                     <td>
-                        <img src="{{url('/'). @$page->icon }}" width="50" height="50" class="img-responsive" alt="{{ @$page->name_ar }}">
+                        <img src="{{url('/').'/'.@$ad->images->first()->image }}" width="50" height="50" class="img-responsive" alt="{{ @$ad->translations->first()->title }}">
                     </td>
                     <td>
-                        @if($page->status == 'show')
+                        @if(@$ad->status == 'show')
                             @lang('home.show')
                         @else
                             @lang('home.hide')
@@ -86,10 +85,10 @@
 
                     </td> 
                     <td>
-                        <a href="{{URL::to('ar/admin/pages/').'/'.$page->id.'/edit'}}" class="btn btn-warning "><li class="icon-pencil5"></li></a>
+                        <a href="{{URL::to('ar/admin/ads/').'/'.$ad->id.'/edit'}}" class="btn btn-warning "><li class="icon-pencil5"></li></a>
                     </td>
                    
-                    <td>@include('dashboard.pages.delete_from_list')</td> 
+                    <td>@include('dashboard.ads.delete_from_list')</td> 
                 </tr>
                 @endforeach
                 </tbody>

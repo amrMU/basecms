@@ -42,7 +42,7 @@ class AppServiceProvider extends ServiceProvider
                 view()->share('info', $info);
             }
             if (\Schema::hasTable('categories')) {
-                $categories = Category::take(4)->get();
+                $categories = Category::where('parent_id',NULL)->take(4)->get();
                 view()->share('categories', $categories);
             }
             if (\Schema::hasTable('languages')) {

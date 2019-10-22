@@ -94,14 +94,50 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('jsCode'); ?>
-    <script type="text/javascript">
-          // Full featured editor
-        CKEDITOR.replace( 'editor1',{
-            extraPlugins: 'forms'
+<script type="text/javascript">
+// Full featured editor
+CKEDITOR.replace( 'editor1',{
+    extraPlugins: 'forms'
+});
+CKEDITOR.replace( 'editor2',{
+    extraPlugins: 'forms'
+});
+
+//script getting sub categories fillter
+$('#sub_categoris_unknown').hide()
+$('#parent_id').on('change',function () {
+    if ($(this).val() != '') {
+        var parent_id = $(this).val();
+        $.ajax({
+            'url' : '<?php echo e(URL::to('/')); ?>/api/categories/' + parent_id,
+            'type' : 'GET',
+            'success' : function(data) {     
+               console.log(data.data.length );
+                if (data.data.length == 0) {
+                    $('#sub_categoris').fadeOut();
+                    $('#sub_categoris_unknown').fadeIn(3000);
+                } //where sub categories list  length = 0
+                else{//where sub categories list  length  > 0 will append in #sub_categoris
+
+                    $('#sub_categoris').fadeIn(4000);
+                    $('#sub_categoris_unknown').fadeOut();
+                    $('#sub_categoris').empty()
+                    for (var i = data.data.length - 1; i >= 0; i--) {
+                        $('#sub_categoris').append("<option value='"+data.data[i].id+"'>"+data.data[i].category_translation.name+"</option")   
+                    }
+                }   
+            }//server success case 
+            ,'error' : function(request,error)
+            {
+                $('#sub_categoris').fadeOut();
+                $('#sub_categoris_unknown').fadeIn(4000);
+            }//server error case 
         });
-        CKEDITOR.replace( 'editor2',{
-            extraPlugins: 'forms'
-        });
-    </script>
+    }else{
+        $('#sub_categoris').fadeOut();
+        $('#sub_categoris_unknown').fadeIn(400);
+    }
+});
+</script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('dashboard.layouts.main', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>

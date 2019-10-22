@@ -155,9 +155,14 @@
 		'site_lang'=>'لغة الموقع',
 		'languages'=>'اللغات',
 		'address_ar'=>'العنوان بالعربيه',
-
-		
-
+		'categoris_unknown'=>'قسم غير معروف',
+		'empty_sub_categories'=>'لاوجد أقسام فرعيه',
+		'own'=>'تمليك',
+		'rent'=>'ايجار',
+		'purchase'=>'شراء',
+		'other'=>'أخري',
+		'location_ar'=>'الموقع  بالعربيه',
+		'title'=>'العنوان'
 
 
 

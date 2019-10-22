@@ -1,5 +1,12 @@
 <?php
-
+/*
+*********************************
+* Name: Amr Muhamed             *
+* Email: amrmuhamed9@gmail.com  *
+* Phone: +201061637022          *
+* Copywrits @amrMU Githup       *
+* *******************************
+*/
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
@@ -24,9 +31,14 @@ class AboutusController extends Controller
         $this->translation = $translation;
 	}
 
-	public function create()
+	public function create(Request $request)
 	{
 		$info  = $this->about->with('translation')->first();
+		$agent = new Agent();
+        $agent = $agent->platform().','.$agent->browser().$agent->version($agent->browser());
+        $data = ['key'=>'dashboard_show_update_about_us','text'=>'Show AboutUs update  ','browser'=>$agent];
+        DoFire::MK_REPORT($data,Auth::id(),$info,$request->ipinfo);
+
 		return view($this->view.'update',compact('info'));
 	}
 
@@ -38,6 +50,13 @@ class AboutusController extends Controller
 		}else{
 			$info = AboutusController::store($request->all());
 		}
+
+		$info  = $this->about->with('translation')->first();
+
+		$agent = new Agent();
+        $agent = $agent->platform().','.$agent->browser().$agent->version($agent->browser());
+        $data = ['key'=>'dashboard_update_about_us','text'=>'AboutUs update  ','browser'=>$agent];
+        DoFire::MK_REPORT($data,Auth::id(),$info,$request->ipinfo);
 
 		Session::flash('success',trans('home.message_success'));
 		return redirect()->back();

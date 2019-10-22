@@ -58,7 +58,7 @@
                         </div>
 
                         <div class="panel-body">
-                            <form class="form-horizontal form-validate-jquery" method="post" action="{{ route('pages.update',$info) }}" enctype='multipart/form-data'  >
+                            <form class="form-horizontal form-validate-jquery" method="post" action="{{ route('ads.update',$info) }}" enctype='multipart/form-data'  >
                             <input name="_method" type="hidden" value="PUT">
                             <input name="use" type="hidden" value="{{@$info->id}}">
 
@@ -75,82 +75,7 @@
                                 </div>
                                 @endif
                                 @csrf
-                                {{-- general Info --}}
-                                <fieldset class="content-group">
-                                <legend class="text-bold">@lang('home.add_new_page')</legend>
-                                    <input type="hidden" name="lang[]" value="ar">
-
-                                    <!-- title ar input -->
-                                    <div class="form-group">
-                                        <label class="control-label col-lg-3">@lang('home.title_ar') <span class="text-danger" title="@lang('home.required')">*</span></label>
-                                        <div class="col-lg-9">
-                                            <input type="text" name="title[]" class="form-control" placeholder="@lang('home.title_ar')" value="{{@$info->translation->title}}">
-                                        </div>
-                                    </div>
-                                    <!-- /title ar input -->
-
-                                    <!-- url input -->
-                                    <div class="form-group">
-                                        <label class="control-label col-lg-3">@lang('home.url_page') <span class="text-danger" title="@lang('home.required')">*</span></label>
-                                        <div class="col-lg-9">
-                                            <input type="text" name="url" class="form-control"  placeholder="@lang('home.url_page')" value="{{@$info->url}}">
-                                        </div>
-                                    </div>
-                                    <!-- /url input -->
-                                    <!-- Meta Tags input -->
-                                    <div class="form-group">
-                                        <label class="control-label col-lg-3">@lang('home.meta_tags') <span class="text-danger" title="@lang('home.required')">*</span></label>
-                                        <div class="col-lg-9">
-                                            <input type="text" name="meta_tags" class="form-control tokenfield" value="@lang('home.placeholder_metatags')" value="{{@$info->meta_tags}}">
-                                        </div>
-                                    </div>
-                                    <!-- /Meta Tags input -->
-                                    {{-- content ar --}}
-                                     <div class="form-group">
-                                        <label class="control-label col-lg-3">@lang('home.content') <span class="text-danger" title="@lang('home.required')">*</span></label>
-                                        <div class="col-lg-9">
-                                             <textarea name="content[]" id="editor1" rows="4" cols="4"  placeholder="@lang('home.content_ar')">{{ @$info->translation->content }}</textarea>
-                                        </div>
-                                    </div>
-                                   
-                                    {{-- content ar --}}
-                                  
-                                    {{-- Show page --}}
-                                     <div class="form-group">
-                                        <label class="control-label col-lg-3">@lang('home.status')</label>
-                                        <div class="col-lg-4">
-                                            <div class="checkbox checkbox-switch">
-                                                        <input type="radio" name="status" class="switch" value="show" @if($info->status  == 'show') checked="checked"  @endif>
-                                                    <label>
-                                                         @lang('home.show')
-                                                    </label>
-                                            </div>
-                                        </div>
-                                         <div class="col-lg-4">
-                                            <div class="checkbox checkbox-switch">
-                                                    <input type="radio" name="status" class="switch" value="hide" @if($info->status  == 'hide') checked="checked" @endif >
-                                                    <label>
-                                                        @lang('home.hide')
-                                                    </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {{--Show page --}}
-                                     
-                                    <!-- Logo uploader -->
-                                    <div class="form-group">
-                                        <label class="control-label col-lg-3">@lang('home.icon') <span class="text-danger" title="@lang('home.required')"> *</span></label>
-                                        <div class="col-lg-9">
-                                            <input type="file" name="icon" class="file-styled" >
-                                        </div>
-                                    </div>
-                                    <!-- /Logo uploader -->
-                                 
-                                 
-                                </fieldset>
-                                {{-- general Info --}}
-                              
-                           
+                                @include('dashboard.ads.form')
                                 <div class="text-right">
                                     <button type="reset" class="btn btn-default" id="reset">Reset <i class="icon-reload-alt position-right"></i></button>
                                     <button type="submit" class="btn btn-primary">Submit <i class="icon-arrow-left13 position-right"></i></button>
@@ -160,7 +85,32 @@
                     </div>
                     <!-- /form validation -->
                     <div class="col-md-2">
-                    <img src="{{url('/').'/'.@$info->icon}}" class="img-responsive" style="max-width:100%" >
+                   
+
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                      <!-- Indicators -->
+                      <ol class="carousel-indicators">
+                        @foreach($info->images as $key => $image)
+                            <li data-target="#myCarousel" data-slide-to="{{ @$key }}" class="@if($key == 0) active @endif"></li>
+                        @endforeach
+                      </ol>
+
+                      <!-- Wrapper for slides -->
+                      <div class="carousel-inner">
+                        @foreach($info->images as $key => $image)
+                       
+                        <div class="item @if($key == 0) active @endif">
+                          <img src="{{url('/').@$image->image}}"  class="img-responsive" style="max-width:100%" >
+                          <a  href="" style="position: absolute; top: 8px; right: 8px; width: 28px; height: 28px; border: 1px solid #f70606; border-radius: 50%; line-height: 28px; text-align: center; font-size: 11px; color: #f70606">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
+                        </div>
+                        @endforeach
+
+                      </div>
+
+                    </div>
+                    {{-- <img src="{{url('/').@$image->image}}" class="img-responsive" style="max-width:100%" > --}}
                     </div>
                   
             </div>
@@ -171,13 +121,55 @@
 @stop
 
 @section('jsCode')
-    <script type="text/javascript">
-          // Full featured editor
-        CKEDITOR.replace( 'editor1',{
-            extraPlugins: 'forms'
+<script type="text/javascript">
+// Full featured editor
+CKEDITOR.replace( 'editor1',{
+    extraPlugins: 'forms'
+});
+CKEDITOR.replace( 'editor2',{
+    extraPlugins: 'forms'
+});
+
+//script getting sub categories fillter
+@if($info->category->parent_id != NULL)//show sub categories or no sub mesg condetion
+$('#sub_categoris').show();
+$('#sub_categoris_unknown').hide();
+@else
+$('#sub_categoris').hide();
+$('#sub_categoris_unknown').show();
+@endif//end condetion
+$('#parent_id').on('change',function () {
+    if ($(this).val() != '') {
+        var parent_id = $(this).val();
+        $.ajax({
+            'url' : '{{ URL::to('/') }}/api/categories/' + parent_id,
+            'type' : 'GET',
+            'success' : function(data) {     
+               console.log(data.data.length );
+                if (data.data.length == 0) {
+                    $('#sub_categoris').fadeOut();
+                    $('#sub_categoris_unknown').fadeIn(3000);
+                } //where sub categories list  length = 0
+                else{//where sub categories list  length  > 0 will append in #sub_categoris
+
+                    $('#sub_categoris').fadeIn(4000);
+                    $('#sub_categoris_unknown').fadeOut();
+                    $('#sub_categoris').empty()
+                    for (var i = data.data.length - 1; i >= 0; i--) {
+                        $('#sub_categoris').append("<option value='"+data.data[i].id+"'>"+data.data[i].category_translation.name+"</option")   
+                    }
+                }   
+            }//server success case 
+            ,'error' : function(request,error)
+            {
+                $('#sub_categoris').fadeOut();
+                $('#sub_categoris_unknown').fadeIn(4000);
+            }//server error case 
         });
-        CKEDITOR.replace( 'editor2',{
-            extraPlugins: 'forms'
-        });
-    </script>
+    }else{
+        $('#sub_categoris').fadeOut();
+        $('#sub_categoris_unknown').fadeIn(400);
+    }
+});
+</script>
 @stop

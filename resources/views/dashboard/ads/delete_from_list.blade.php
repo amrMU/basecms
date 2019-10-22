@@ -1,12 +1,12 @@
 
 <!-- Trigger the modal with a button -->
-<button type="button" class="btn btn-danger " data-toggle="modal" data-target="#DeleteFromList{{@$page->id}}">
+<button type="button" class="btn btn-danger " data-toggle="modal" data-target="#DeleteFromList{{@$ad->id}}">
 <li class="icon-trash"></li>
 </button>
 
 
 <!-- Modal -->
-<div id="DeleteFromList{{@$page->id}}" class="modal fade" role="dialog">
+<div id="DeleteFromList{{@$ad->id}}" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -20,7 +20,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">@lang('home.close')</button>
-        <a href="{{URL::to('/admin/pages/').'/'.$page->id.'/delete'}}" class="btn btn-danger "> 
+        <a href="{{URL::to('/admin/ads/').'/'.$ad->id.'/delete'}}" class="btn btn-danger "> 
         @lang('home.delete')
         </a>
 

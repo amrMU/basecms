@@ -23,12 +23,4 @@ Route::get('tell_me/{job?}',function (Request $request )
     return Artisan::call($request->job);
 });
 
-	Route::group(
-	[
-		'prefix' => LaravelLocalization::setLocale(),
-	],
-	function()
-	{
-		Route::get('contact','Api\ContactUsController@store');
-
-	});
+Route::get('categories/{parent_id}','Api\CategoriesController@categoriesFilterByParent');

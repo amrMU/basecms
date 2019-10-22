@@ -10,15 +10,12 @@ class AdsTranslations extends Model
     use SoftDeletes;
 
     protected $table = "ads_translations";
-    protected $filable = [
+    protected $fillable = [
     	'ad_id',
 		'lang_id',
 		'title',
 		'address',
 		'content',
-		'space',
-		'bed_room',
-		'bathroom',
-		'parking',
+		
     ];
 }

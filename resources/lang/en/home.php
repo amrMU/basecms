@@ -153,7 +153,15 @@
 		'languages'=>'Languages',
 		'mission_en'=>'Mission English',
 		'goals_en'=>'Goals English',
-		'address_en'=>'Address English'
+		'address_en'=>'Address English',
+		'categoris_unknown'=>'Unknown Category',
+		'empty_sub_categories'=>'None Sub categories',
+		'own'=>'Own',
+		'rent'=>'rent',
+		'purchase'=>'purchase',
+		'other'=>'Other',
+		'location_en'=>'location English',
+		'title'=>'Title'
 
 
 
