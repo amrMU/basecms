@@ -22,10 +22,7 @@ class CreateAdsTranslationsTable extends Migration
             $table->string('title')->nullabe();
             $table->string('address')->nullabe();
             $table->longText('content');
-            $table->string('space')->nullabe();
-            $table->string('bed_room')->nullabe();
-            $table->string('bathroom')->nullabe();
-            $table->string('parking')->nullabe();
+           
             $table->softDeletes();
             $table->timestamps();
         });

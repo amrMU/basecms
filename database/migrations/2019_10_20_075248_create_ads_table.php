@@ -23,6 +23,10 @@ class CreateAdsTable extends Migration
             $table->enum('type_ad',['own','rent','purchase']);
             $table->unsignedInteger('category_id');
             $table->foreign('category_id')->references('id')->on('aboutus')->onDelete('cascade');
+            $table->string('space')->nullabe();
+            $table->string('bed_room')->nullabe();
+            $table->string('bathroom')->nullabe();
+            $table->string('parking')->nullabe();
             $table->softDeletes();
             $table->timestamps();
         });

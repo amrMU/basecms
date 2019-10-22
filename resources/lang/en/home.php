@@ -13,9 +13,9 @@
 		'name'=>'Name',
 		'address'=>'address',
 		'send'=>'Send',
-		'title_ar'=>'Title Ar',
+		// 'title_ar'=>'Title Ar',
 		'title_en'=>'Title EN',
-		'name_ar'=>'Name Ar',
+		// 'name_ar'=>'Name Ar',
 		'name_en'=>'Name En',
 		'content_ar'=>'Content Ar',
 		'content_en'=>'Content En',
@@ -134,8 +134,8 @@
 		'create_new'=>'create New',
 		'key_search_blogs_list'=>'search key, title, content',
 		'about_us'=>'About Us',
-		'mission_ar'=>'Mission Ar',
-		'goals_ar'=>'Goals Ar',
+		// 'mission_ar'=>'Mission Ar',
+		// 'goals_ar'=>'Goals Ar',
 		'ads_list'=>'Ads List',
 		'ads'=>'Ads',
 		'create_ad'=>'Create Ad',
@@ -152,7 +152,8 @@
 		'site_lang'=>'Site Lang',
 		'languages'=>'Languages',
 		'mission_en'=>'Mission English',
-		'goals_en'=>'Goals English'
+		'goals_en'=>'Goals English',
+		'address_en'=>'Address English'
 
 
 

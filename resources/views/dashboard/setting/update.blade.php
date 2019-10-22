@@ -458,7 +458,7 @@
                                 {{-- social media  --}}
 
                                 <div class="text-right">
-                                    <button type="reset" class="btn btn-default" id="reset">Reset <i class="icon-reload-alt position-right"></i></button>
+{{--                                     <button type="reset" class="btn btn-default" id="reset">Reset <i class="icon-reload-alt position-right"></i></button> --}}
                                     <button type="submit" class="btn btn-primary">Submit <i class="icon-arrow-left13 position-right"></i></button>
                                 </div>
                             </form>
