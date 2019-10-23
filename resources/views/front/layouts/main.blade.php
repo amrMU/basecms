@@ -13,7 +13,7 @@
     @yield('meta_tags')
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="images/favicon.png" />
+    <link rel="shortcut icon" href="{{asset('/front/images/favicon.png')}}" />
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Cairo:200,300,400,600,700,900&display=swap" rel="stylesheet">
@@ -63,43 +63,30 @@
                         <ul>
                             <li class="nvmenu">
                                 <div class="logo">
+                                    @if($setting->logo === null )
+                                    <a href="{{URL::to('/')}}"><img src="{{asset('/front/images/logo.png')}}" alt=""></a>
+
+                                    @else 
                                     <a href="{{URL::to('/')}}"><img src="{{asset('/').@$setting->logo}}" alt=""></a>
+                                    @endif
                                 </div>
                             </li>
 
                             <li class="nvmenu">
-                                <a href="#0">الرئسية</a>
+                                <a href="{{ URL::to('/') }}">الرئسية</a>
                             </li>
-
+                            @foreach($categories as $category)
                             <li class="nvmenu">
-                                <a href="#0">العقارات</a>
-                            </li>
-
-                            <li class="nvmenu">
-                                <a href="#0">الاماكن السياحيه <span class="ti-angle-down"></span></a>
-
+                                <a href="#0">{{ @$category->category_translation->name }} @if($category->sub_categories->count() > 0)<span class="ti-angle-down"></span>@endif</a>
+                                @if($category->sub_categories->count() > 0)
                                 <ul class="menu">
-                                    <li><a href="#0">سياحة</a></li>
-                                    <li><a href="#0">كافيهات</a></li>
-                                    <li><a href="#0">مطاعم</a></li>
-                                    <li><a href="#0">مولات</a></li>
-                                    <li><a href="#0">مراكز صحيه</a></li>
+                                    @foreach($category->sub_categories as $sub)
+                                    <li><a href="#0">{{ @$sub->category_translation->name }}</a></li>
+                                    @endforeach
                                 </ul>
+                                @endif
                             </li>
-
-                            <li class="nvmenu">
-                                <a href="#0">فنادق وشقق</a>
-                            </li>
-
-                            <li class="nvmenu">
-                                <a href="#0">الخدمات العامة <span class="ti-angle-down"></span></a>
-
-                                <ul class="menu">
-                                    <li><a href="#0">سباكه</a></li>
-                                    <li><a href="#0">كهربا</a></li>
-                                    <li><a href="#0">خدمات عامة</a></li>
-                                </ul>
-                            </li>
+                            @endforeach
 
                             <div class="clear-fix"></div>
                         </ul>
@@ -305,80 +292,6 @@
         new WOW().init();
     </script>
 
-    <script>
-        var x, i, j, selElmnt, a, b, c;
-        /*look for any elements with the class "aselect":*/
-        x = document.getElementsByClassName("aselect");
-        for (i = 0; i < x.length; i++) {
-            selElmnt = x[i].getElementsByTagName("select")[0];
-            /*for each element, create a new DIV that will act as the selected item:*/
-            a = document.createElement("DIV");
-            a.setAttribute("class", "select-selected");
-            a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
-            x[i].appendChild(a);
-            /*for each element, create a new DIV that will contain the option list:*/
-            b = document.createElement("DIV");
-            b.setAttribute("class", "select-items select-hide");
-            for (j = 1; j < selElmnt.length; j++) {
-                /*for each option in the original select element,
-                create a new DIV that will act as an option item:*/
-                c = document.createElement("DIV");
-                c.innerHTML = selElmnt.options[j].innerHTML;
-                c.addEventListener("click", function (e) {
-                    /*when an item is clicked, update the original select box,
-                    and the selected item:*/
-                    var y, i, k, s, h;
-                    s = this.parentNode.parentNode.getElementsByTagName("select")[0];
-                    h = this.parentNode.previousSibling;
-                    for (i = 0; i < s.length; i++) {
-                        if (s.options[i].innerHTML == this.innerHTML) {
-                            s.selectedIndex = i;
-                            h.innerHTML = this.innerHTML;
-                            y = this.parentNode.getElementsByClassName("same-as-selected");
-                            for (k = 0; k < y.length; k++) {
-                                y[k].removeAttribute("class");
-                            }
-                            this.setAttribute("class", "same-as-selected");
-                            break;
-                        }
-                    }
-                    h.click();
-                });
-                b.appendChild(c);
-            }
-            x[i].appendChild(b);
-            a.addEventListener("click", function (e) {
-                /*when the select box is clicked, close any other select boxes,
-                and open/close the current select box:*/
-                e.stopPropagation();
-                closeAllSelect(this);
-                this.nextSibling.classList.toggle("select-hide");
-                this.classList.toggle("select-arrow-active");
-            });
-        }
-        function closeAllSelect(elmnt) {
-            /*a function that will close all select boxes in the document,
-            except the current select box:*/
-            var x, y, i, arrNo = [];
-            x = document.getElementsByClassName("select-items");
-            y = document.getElementsByClassName("select-selected");
-            for (i = 0; i < y.length; i++) {
-                if (elmnt == y[i]) {
-                    arrNo.push(i)
-                } else {
-                    y[i].classList.remove("select-arrow-active");
-                }
-            }
-            for (i = 0; i < x.length; i++) {
-                if (arrNo.indexOf(i)) {
-                    x[i].classList.add("select-hide");
-                }
-            }
-        }
-        /*if the user clicks anywhere outside the select box,
-        then close all select boxes:*/
-        document.addEventListener("click", closeAllSelect);
-    </script>
 
     <script>
         $(function () {
@@ -395,6 +308,7 @@
                 " - $" + $("#slider-range").slider("values", 1));
         });
     </script>
+    @yield('jsCode')
 
 
 </body>

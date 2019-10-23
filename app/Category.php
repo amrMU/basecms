@@ -29,8 +29,11 @@ class Category extends Model
 	
 	public function translations()
 	{
-
         return $this->hasMany('App\CategoryTranslation','category_id','id')->orderBy('created_at','DESC');		
+	}
 
+	public function sub_categories()
+	{
+        return $this->hasMany('App\Category','parent_id','id')->orderBy('created_at','DESC');		
 	}
 }

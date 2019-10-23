@@ -103,7 +103,6 @@
                     @elseif(isset($info) != false)
                         value="{{@$info->translations->where('lang_id',@$lang->id)->first()->title }} " 
                     @endif >
-            
         </div>
     </div>
     <!-- /title ar input -->

@@ -70,6 +70,7 @@ class AdsController extends Controller
 	{
 		$create_ad = $this->ads->create([
 						'category_id'=>$request->category_id,
+						'user_id'=>Auth::id(),
 						'price'=>$request->price,
 						'url'=>$request->url,
 						'map'=>$request->map,
@@ -141,6 +142,7 @@ class AdsController extends Controller
 	{
 		$update  = $this->ads->find($id)->update([
 						'category_id'=>$request->category_id,
+						'user_id'=>Auth::id(),
 						'price'=>$request->price,
 						'url'=>$request->url,
 						'map'=>$request->map,

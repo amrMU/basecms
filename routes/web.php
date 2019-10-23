@@ -74,8 +74,11 @@
 	});
 	});
 
-//site routes 
-Route::get('aboutus','Front\AboutUsController@show');
-
+	//site routes 
+	Route::group(['middleware' => 'auth'], function () {
+		Route::get('aboutus','Front\AboutUsController@show');
+		Route::get('i/advertising/create','Front\AdsController@create');
+		Route::post('i/advertising','Front\AdsController@store');
+	});
 
 Auth::routes();

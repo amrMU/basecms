@@ -41,8 +41,8 @@ class SettingProgressController extends Controller
 		if(isset($request['logo'])){
 			$image =ImagesController::uploadSingle(
 				$request['logo'],
-				$path=public_path().'/uploads/images/logos/'.str_replace( ' ','_',$create_base_info->translation->title),
-				$db_path = '/uploads/images/logos/'.str_replace( ' ','_',$create_base_info->translation->title)
+				$path=public_path().'/uploads/images/logos/',
+				$db_path = '/uploads/images/logos/'
 			);
 			$model->find($model->first()->id)->update([
 				'logo'=>@$image,
@@ -74,8 +74,8 @@ class SettingProgressController extends Controller
 		if(isset($request['logo'])){
 			$image =ImagesController::uploadSingle(
 				$request['logo'],
-				$path=public_path().'/uploads/images/logos/'.str_replace( ' ','_',$model->first()->translation->title),
-				$db_path = '/uploads/images/logos/'.str_replace( ' ','_',$model->first()->translation->title)
+				$path=public_path().'/uploads/images/logos/',
+				$db_path = '/uploads/images/logos/'
 			);
 			$model->find($model->first()->id)->update([
 				'logo'=>@$image,
@@ -88,12 +88,14 @@ class SettingProgressController extends Controller
 
 	public static function SiteLang($request,$setting_id)
 	{
-		foreach ($request['languages'] as $key => $local) {
-		$find = SettingLangs::where('lang_id',$local)->count();
-			if ($find == 0 ) {
-				SettingLangs::where('lang_id','!=',$local)->create([						'lang_id'=>$local,
-					'setting_id'=>$setting_id
-				]);
+		if (isset($request['languages'])) {
+			foreach ($request['languages'] as $key => $local) {
+			$find = SettingLangs::where('lang_id',$local)->count();
+				if ($find == 0 ) {
+					SettingLangs::where('lang_id','!=',$local)->create([						'lang_id'=>$local,
+						'setting_id'=>$setting_id
+					]);
+				}
 			}
 		}
 	}
@@ -140,15 +142,17 @@ class SettingProgressController extends Controller
 	if (SettingMailProviderInfo::count() > 0 ) {
 		$delete_latest = SettingMailProviderInfo::where('setting_id',$setting_id)->forceDelete();
 	}
-	$insert_mail_info =	SettingMailProviderInfo::create([
-			 		'setting_id'=>$setting_id,
-				    'MAIL_DRIVER'=>$request['mail_driver'],
-				    'MAIL_HOST'=>$request['mail_host'],
-				    'MAIL_USERNAME'=>$request['mail_username'],
-				    'MAIL_PASSWORD'=>$request['mail_password'],
-				    'MAIL_port'=>$request['mail_port'],
-					]);
-		return $insert_mail_info;
+		if (isset($request['mail_driver'])) {
+			$insert_mail_info =	SettingMailProviderInfo::create([
+					 		'setting_id'=>$setting_id,
+						    'MAIL_DRIVER'=>$request['mail_driver'],
+						    'MAIL_HOST'=>$request['mail_host'],
+						    'MAIL_USERNAME'=>$request['mail_username'],
+						    'MAIL_PASSWORD'=>$request['mail_password'],
+						    'MAIL_port'=>$request['mail_port'],
+							]);
+				return $insert_mail_info;
+		}
 	}
 
 

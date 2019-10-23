@@ -12,6 +12,7 @@ class Ads extends Model
     protected $table = "ads";
     protected $fillable = [
     	'category_id',
+        'user_id',
     	'price',
     	'url',
     	'map',
