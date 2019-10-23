@@ -100,10 +100,10 @@
                     placeholder="@lang('home.title_'.@$lang->info->local)" 
                     @if(isset(Request::old('title')[$key]))
                         value="{{Request::old('title')[$key]}}"
-                    @else
-                        value="{{ $info->translations->where('lang_id',$lang->id)->first()->title }}" 
-                    
-                    @endif>
+                    @elseif(isset($info) != false)
+                        value="{{@$info->translations->where('lang_id',@$lang->id)->first()->title }} " 
+                    @endif >
+            
         </div>
     </div>
     <!-- /title ar input -->
@@ -117,8 +117,8 @@
                    placeholder="@lang('home.location_'.@$lang->info->local)" 
                     @if(isset(Request::old('address')[$key]))
                      value="{{Request::old('address')[$key]}}"
-                    @else
-                        value="{{ $info->translations->where('lang_id',$lang->id)->first()->address }}"
+                    @elseif(isset($info) != false)
+                        value="{{ @$info->translations->where('lang_id',@$lang->id)->first()->address }}"
                     @endif>
         </div>
     </div>
@@ -134,7 +134,7 @@
                        placeholder="@lang('home.content_'.@$lang->info->local)"> 
                         @if(isset(Request::old('content')[$key]))
                             {{Request::old('content')[$key]}}
-                        @else
+                        @elseif(isset($info) != false)
                         {{ $info->translations->where('lang_id',$lang->id)->first()->content }}
                         @endif
             </textarea>
@@ -163,6 +163,8 @@
             <input type="text" 
             name="bed_room" 
             class="form-control" 
+            placeholder="@lang('home.bed_room')" 
+            
             value="{{ @$info->bed_room }}"  >
         </div>
     </div>
@@ -174,6 +176,7 @@
             <input type="text" 
             name="bathroom" 
             class="form-control" 
+            placeholder="@lang('home.bathroom')" 
             value="{{ @$info->bathroom }}" 
              >
         </div>
@@ -186,6 +189,7 @@
             <input type="text" 
             name="parking" 
             class="form-control" 
+            placeholder="@lang('home.parking')" 
             value=" {{ @$info->parking }}" >
         </div>
     </div>
@@ -239,9 +243,13 @@
                         <input type="radio" 
                         name="status" 
                         class="switch" 
-                        value="show" @if($info->status == "show")
+                        value="show"
+                        @if(isset($info) != false)
+                        @if($info->status == "show")
                                     checked 
-                                     @endif>
+                        @endif
+                        @endif
+                        >
                     <label>
                          @lang('home.show')
                     </label>
@@ -253,9 +261,12 @@
                      name="status"
                      class="switch"
                      value="hide"  
+                    @if(isset($info) != false)
                     @if($info->status == "hide")
                         checked 
-                    @endif>
+                    @endif
+                    @endif
+                    >
                     <label>
                         @lang('home.hide')
                     </label>

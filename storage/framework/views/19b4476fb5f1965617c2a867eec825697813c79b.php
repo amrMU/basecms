@@ -101,10 +101,10 @@
                     placeholder="<?php echo app('translator')->getFromJson('home.title_'.@$lang->info->local); ?>" 
                     <?php if(isset(Request::old('title')[$key])): ?>
                         value="<?php echo e(Request::old('title')[$key]); ?>"
-                    <?php else: ?>
-                        value="<?php echo e($info->translations->where('lang_id',$lang->id)->first()->title); ?>" 
-                    
-                    <?php endif; ?>>
+                    <?php elseif(isset($info) != false): ?>
+                        value="<?php echo e(@$info->translations->where('lang_id',@$lang->id)->first()->title); ?> " 
+                    <?php endif; ?> >
+            
         </div>
     </div>
     <!-- /title ar input -->
@@ -118,8 +118,8 @@
                    placeholder="<?php echo app('translator')->getFromJson('home.location_'.@$lang->info->local); ?>" 
                     <?php if(isset(Request::old('address')[$key])): ?>
                      value="<?php echo e(Request::old('address')[$key]); ?>"
-                    <?php else: ?>
-                        value="<?php echo e($info->translations->where('lang_id',$lang->id)->first()->address); ?>"
+                    <?php elseif(isset($info) != false): ?>
+                        value="<?php echo e(@$info->translations->where('lang_id',@$lang->id)->first()->address); ?>"
                     <?php endif; ?>>
         </div>
     </div>
@@ -136,7 +136,7 @@
                         <?php if(isset(Request::old('content')[$key])): ?>
                             <?php echo e(Request::old('content')[$key]); ?>
 
-                        <?php else: ?>
+                        <?php elseif(isset($info) != false): ?>
                         <?php echo e($info->translations->where('lang_id',$lang->id)->first()->content); ?>
 
                         <?php endif; ?>
@@ -166,6 +166,8 @@
             <input type="text" 
             name="bed_room" 
             class="form-control" 
+            placeholder="<?php echo app('translator')->getFromJson('home.bed_room'); ?>" 
+            
             value="<?php echo e(@$info->bed_room); ?>"  >
         </div>
     </div>
@@ -177,6 +179,7 @@
             <input type="text" 
             name="bathroom" 
             class="form-control" 
+            placeholder="<?php echo app('translator')->getFromJson('home.bathroom'); ?>" 
             value="<?php echo e(@$info->bathroom); ?>" 
              >
         </div>
@@ -189,6 +192,7 @@
             <input type="text" 
             name="parking" 
             class="form-control" 
+            placeholder="<?php echo app('translator')->getFromJson('home.parking'); ?>" 
             value=" <?php echo e(@$info->parking); ?>" >
         </div>
     </div>
@@ -242,9 +246,13 @@
                         <input type="radio" 
                         name="status" 
                         class="switch" 
-                        value="show" <?php if($info->status == "show"): ?>
+                        value="show"
+                        <?php if(isset($info) != false): ?>
+                        <?php if($info->status == "show"): ?>
                                     checked 
-                                     <?php endif; ?>>
+                        <?php endif; ?>
+                        <?php endif; ?>
+                        >
                     <label>
                          <?php echo app('translator')->getFromJson('home.show'); ?>
                     </label>
@@ -256,9 +264,12 @@
                      name="status"
                      class="switch"
                      value="hide"  
+                    <?php if(isset($info) != false): ?>
                     <?php if($info->status == "hide"): ?>
                         checked 
-                    <?php endif; ?>>
+                    <?php endif; ?>
+                    <?php endif; ?>
+                    >
                     <label>
                         <?php echo app('translator')->getFromJson('home.hide'); ?>
                     </label>

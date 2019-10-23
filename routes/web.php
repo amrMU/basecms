@@ -53,6 +53,7 @@
 			Route::get('pages/{id}/delete','Admin\PagesController@destroy');
 
 			Route::resource('ads','Admin\AdsController');
+			Route::get('ads/{id}/image/delete','Admin\AdsController@DestroyImage');
 			Route::get('ads/{id}/delete','Admin\AdsController@destroy');
 
 			Route::get('aboutus','Admin\AboutusController@create');

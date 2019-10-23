@@ -7,7 +7,7 @@
 <div class="page-header page-header-default">
     <div class="page-header-content">
         <div class="page-title">
-        <h4><i class="icon-arrow-right6 position-left"></i> <span class="text-semibold">@lang('home.home')</span> - @lang('home.pages_list')</h4>
+        <h4><i class="icon-arrow-right6 position-left"></i> <span class="text-semibold">@lang('home.home')</span> - @lang('home.ads') -  @lang('home.ads_list')</h4>
         </div>
 
         <div class="heading-elements">
@@ -18,8 +18,9 @@
 
     <div class="breadcrumb-line">
         <ul class="breadcrumb">
-            <li><a href="{{URL::to('ar/admin/home')}}"><i class="icon-home2 position-left"></i> @lang('home.home')</a></li>
-            <li class="active">@lang('home.pages_list')</li>
+            <li><a href="{{URL::to(LaravelLocalization::getCurrentLocale().'/admin/home')}}"><i class="icon-home2 position-left"></i> @lang('home.home')</a></li>
+            <li><a href="{{URL::to(LaravelLocalization::getCurrentLocale().'/admin/ads')}}"><i class="icon-statistics"></i> @lang('home.ads') </a></li>
+            <li class="active">@lang('home.ads_list')</li>
         </ul>
 
         <ul class="breadcrumb-elements">

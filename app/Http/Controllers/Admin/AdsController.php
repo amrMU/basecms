@@ -114,6 +114,7 @@ class AdsController extends Controller
         $agent = $agent->platform().','.$agent->browser().$agent->version($agent->browser());
         $data = ['key'=>'dashboard_Store_New_Ad','text'=>'Store New Add  ','browser'=>$agent];
         DoFire::MK_REPORT($data,Auth::id(),$create_ad,$request->ipinfo);
+        Session::flash('success',trans('home.message_success'));
 
 		return redirect()->back();
 	}
@@ -138,13 +139,14 @@ class AdsController extends Controller
 
 	public function update($id,AdsRequest $request)
 	{
-		$this->ads->find($id)->update([
+		$update  = $this->ads->find($id)->update([
 						'category_id'=>$request->category_id,
 						'price'=>$request->price,
 						'url'=>$request->url,
 						'map'=>$request->map,
 						'meta_tags'=>$request->meta_tags,
 						'status'=>$request->status,
+						'type_ad'=>$request->add_type,
 						'space'=>$request->space,
 						'bed_ro=>$request->bed_room'=>$request->om,
 						'bathroom'=>$request->bathroom,
@@ -186,7 +188,32 @@ class AdsController extends Controller
         $agent = $agent->platform().','.$agent->browser().$agent->version($agent->browser());
         $data = ['key'=>'dashboard_Store_New_Ad','text'=>'Store New Add  ','browser'=>$agent];
         DoFire::MK_REPORT($data,Auth::id(),$this->ads->find($id),$request->ipinfo);
+        Session::flash('success',trans('home.message_success'));
 
+		return redirect()->back();
+	}
+
+
+	public function DestroyImage($image_id,Request $request)
+	{
+		$image = $this->images->where('id',$image_id)->first();
+		$agent = new Agent();
+        $agent = $agent->platform().','.$agent->browser().$agent->version($agent->browser());
+        $data = ['key'=>'dashboar_remove_add_image_id_$'.$image_id,'text'=>'Remove Ad Image','browser'=>$agent];
+        DoFire::MK_REPORT($data,Auth::id(),$image,$request->ipinfo);
+		$this->images->where('id',$image_id)->delete();
+        Session::flash('success',trans('home.message_success'));
+		return redirect()->back();
+	}
+
+	public function Destroy($ad_id,Request $request)
+	{
+		$this->ads->where('id',$ad_id)->delete();
+		$agent = new Agent();
+        $agent = $agent->platform().','.$agent->browser().$agent->version($agent->browser());
+        $data = ['key'=>'dashboar_remove_add_image','text'=>'Remove Ad Image','browser'=>$agent];
+        DoFire::MK_REPORT($data,Auth::id(),$this->ads->find($ad_id),$request->ipinfo);
+        Session::flash('success',trans('home.message_success'));
 		return redirect()->back();
 	}
 
