@@ -142,12 +142,6 @@
                     <!-- /password recovery -->
 
 
-                    <!-- Footer -->
-                    <div class="footer text-muted text-center">
-                        Copyright &copy; 2014. <a href="#">Limitless admin template</a> by <a href="http://interface.club">Eugene Kopyov</a>
-                    </div>
-                    <!-- /footer -->
-
                 </div>
                 <!-- /content area -->
 

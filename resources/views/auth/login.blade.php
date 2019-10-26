@@ -1,4 +1,105 @@
-<!DOCTYPE html>
+@extends('front.layouts.main')
+@section('meta_tags')
+    <title>تسجيل الدخول | {{@$setting->translation->title}}</title>
+    <meta name='description' itemprop='description' content='{!! @$info->translation->content!!}' />
+    <meta name='keywords' content='{!!@$setting->meta_tags!!},{!!@$info->translation->title !!},{!!@$info->mission !!},{!!@$info->goals!!}' />
+    <meta property="og:description"content="{{ @$info->translation->content }}" />
+    <meta property="og:title"content="تسجيل الدخول  | {{@$setting->translation->title}} " />
+    <meta property="og:url"content="{{URL::to('/about_us')}}" />
+    <meta property="og:site_name"content="{{@$setting->translation->title}}" />
+    <meta property="og:image" content="{{URL::to('/').@$setting->logo}}">
+
+    <meta name="twitter:card"content="summary" />
+    <meta name="twitter:title"content="تسجيل الدخول  | {{@$setting->translation->title}}" />
+    <meta name="twitter:site"content="@wait" />
+@stop
+@section('content')
+
+    <main>
+
+        <!-- =====================================
+        ==== Start Header -->
+
+        <header id="home" class="header pages bg-img valign" data-overlay-dark="7"
+            data-background="{{ asset('/front/images/banner-1.jpg') }}">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center caption">
+                        <h1>حساب جديد</h1>
+                        <h5><a href="index.html">الرئسية</a><span>/</span><a href="#0">إنشاء حساب</a></h5>
+                    </div>
+                </div>
+            </div>
+
+        </header>
+
+        <!-- End Header ====
+        ======================================= -->
+
+
+
+        <!-- =====================================
+        ==== Start login  -->
+
+        <section class="login section-padding">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-lg-10 offset-lg-1">
+                        <div class="row">
+
+                            <div class="col-lg-8 col-md-10 offset-lg-2 offset-md-1">
+                                <div class="register-form">
+                                    <h5 class="title"><span>تسجيل الدخول</span></h5>
+                                    <form method="POST" action="{{ route('login') }}">
+                                    @csrf
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"  name="email" value="{{ old('email') }}" placeholder="البريد الالكترونى">
+                                                @if ($errors->has('email'))
+                                                <span class="invalid-feedback " role="alert">
+                                                    <strong class="text-danger">{{ $errors->first('email') }}</strong>
+                                                </span>
+                                                @endif
+                                            </div>
+                                            <div class="col-md-12">
+                                                <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="الرقم السرى">
+                                                @if ($errors->has('password'))
+                                                <span class="invalid-feedback " role="alert">
+                                                    <strong class="text-danger">{{ $errors->first('password') }}</strong>
+                                                </span>
+                                                @endif
+                                            </div>
+                                            <div class="col-md-12 text-center">
+                                                <button>تسجيل</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="text hvcont">
+                                        ليس لديك حساب حتى الآن؟ <a href="{{ URL::to('/register') }}">أنشئ حسابا</a> <br>
+                                         @if (Route::has('password.request'))
+                                        نسيت  كلمة المرور <a  href="{{ route('password.request') }}">استعاده</a>
+                                         @endif
+                                    </div>
+                                    
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- End login  ====
+        ======================================= -->
+
+
+    </main>
+@stop
+{{-- <!DOCTYPE html>
 <html lang="en" dir="rtl">
 <head>
     <meta charset="utf-8">
@@ -125,3 +226,4 @@
 
 </body>
 </html>
+ --}}

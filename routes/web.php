@@ -83,7 +83,10 @@
 	Route::get('categories/{id}/{name}','Front\CategoriesController@show');
 	Route::get('ads/{id}/{name}','Front\AdsController@show');
 	Route::get('/','Front\HomeController@index');
-	Route::get('/a/login','Auth\LoginController@showLoginForm');
 
+
+
+Route::get('/a/login','Auth\CustomAuthController@adminLogin');
+Route::get('/register','Auth\CustomAuthController@Getsignup');
 
 Auth::routes();

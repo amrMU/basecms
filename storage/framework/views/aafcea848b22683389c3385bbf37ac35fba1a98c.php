@@ -98,16 +98,24 @@
                 <div class="col-lg-4 left">
                     <div class="user-area">
                         <ul>
+                            <?php if(Auth::guest()): ?>
                             <li class="nav-user">
-                                <a href="#0" class="butn butn-bg">
+                                <a href="<?php echo e(URL::to('login')); ?>" class="butn butn-bg">
                                     <span>تسجيل دخول</span>
                                 </a>
                             </li>
                             <li class="nav-user">
-                                <a href="#0" class="butn butn-bord">
+                                <a href="<?php echo e(URL::to('/register')); ?>" class="butn butn-bord">
                                     <span>حساب جديد</span>
                                 </a>
                             </li>
+                            <?php elseif(Auth::user()->type_user == 'admin'): ?>
+                            <li class="nav-user">
+                                <a href="<?php echo e(URL::to('ar/admin/home')); ?>" target="_blank" class="butn butn-bord">
+                                    <span>لوحة التحكم</span>
+                                </a>
+                            </li>
+                            <?php endif; ?>
                             <div class="clear-fix"></div>
                         </ul>
                     </div>
@@ -131,7 +139,7 @@
                                 <div class="logo">
                                     <?php if(isset($setting)): ?>
                                     <?php if(isset($setting->logo)): ?>
-                                    <a href="#0"><img src="<?php echo e(asset('/')); ?>.@$setting->logo" alt=""></a>
+                                    <a href="#0"><img src="<?php echo e(asset('/').@$setting->logo); ?>" alt=""></a>
                                     <?php else: ?>
                                     <a href="#0"><img src="<?php echo e(asset('/front/images/logo.png')); ?>" alt=""></a>
                                     <?php endif; ?>
