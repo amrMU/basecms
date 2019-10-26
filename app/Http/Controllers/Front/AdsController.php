@@ -93,4 +93,15 @@ class AdsController extends Controller
 	}
 
 
+	public function show($id,$name)
+	{
+		$ad = $this->ads->find($id);
+		// dd($);
+		if ($ad == null) {
+			return abort(404);
+		}
+		return view($this->view.'show',compact('ad'));
+	}
+
+
 }

@@ -43,8 +43,12 @@ class AppServiceProvider extends ServiceProvider
             }
             if (\Schema::hasTable('categories')) {
                 $categories = Category::where('parent_id',NULL)->take(4)->get();
+                $categories_has_ads = Category::whereHas('ads')->with('ads','ads.images')->get();
+                // dd($categories_has_ads);
                 view()->share('categories', $categories);
+                view()->share('categories_has_ads', $categories_has_ads);
             }
+
             if (\Schema::hasTable('languages')) {
                 $languages = Languages::all();
                 view()->share('languages', $languages);

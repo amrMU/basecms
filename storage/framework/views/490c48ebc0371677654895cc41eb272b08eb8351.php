@@ -125,9 +125,9 @@
                                         <img src="<?php echo e(asset('/').@$ad->images->first()->image); ?>" alt="">
                                         <span class="tag"><?php echo e(@$category->category_translation->name); ?></span>
                                         <div class="icons">
-                                            <a href="#0" class="icon"><span class="ti-gallery"></span></a>
+                                            
                                             <a href="#0" class="icon"><span class="ti-heart"></span></a>
-                                            <a href="#0" class="icon"><span class="ti-location-pin"></span></a>
+                                            
                                         </div>
                                     </div>
                                     <div class="cont">
@@ -159,7 +159,7 @@
                                         </div>
                                         <div class="det">
                                             <h6 class="price"><span><?php echo e(@$ad->price); ?></span></h6>
-                                            <a href="#0" class="more"><span>اعرف المزيد</span></a>
+                                            <a href="<?php echo e(URL::to('/').'/ads/'.$ad->id.'/'.@str_replace(' ', '_', $ad->translations->first()->title)); ?>" class="more"><span>اعرف المزيد</span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -169,7 +169,7 @@
                                 <p class="">لايوجد إعلانات بهذا القسم</p>
                             <?php endif; ?>
 
-                          
+                    
                         </div>
 
                     </div>

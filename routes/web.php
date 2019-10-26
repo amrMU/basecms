@@ -81,5 +81,9 @@
 		Route::post('i/advertising','Front\AdsController@store');
 	});
 	Route::get('categories/{id}/{name}','Front\CategoriesController@show');
+	Route::get('ads/{id}/{name}','Front\AdsController@show');
+	Route::get('/','Front\HomeController@index');
+	Route::get('/a/login','Auth\LoginController@showLoginForm');
+
 
 Auth::routes();
