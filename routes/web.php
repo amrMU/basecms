@@ -80,5 +80,6 @@
 		Route::get('i/advertising/create','Front\AdsController@create');
 		Route::post('i/advertising','Front\AdsController@store');
 	});
+	Route::get('categories/{id}/{name}','Front\CategoriesController@show');
 
 Auth::routes();

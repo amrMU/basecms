@@ -77,11 +77,11 @@
                             </li>
                             @foreach($categories as $category)
                             <li class="nvmenu">
-                                <a href="#0">{{ @$category->category_translation->name }} @if($category->sub_categories->count() > 0)<span class="ti-angle-down"></span>@endif</a>
+                                <a href="{{ URL::to('/').'/categories/'.$category->id.'/'.str_replace(' ', '_', $category->category_translation->name) }}">{{ @$category->category_translation->name }} @if($category->sub_categories->count() > 0)<span class="ti-angle-down"></span>@endif</a>
                                 @if($category->sub_categories->count() > 0)
                                 <ul class="menu">
                                     @foreach($category->sub_categories as $sub)
-                                    <li><a href="#0">{{ @$sub->category_translation->name }}</a></li>
+                                    <li><a href="{{ URL::to('/').'/categories/'.$sub->id.'/'.str_replace(' ', '_', $sub->category_translation->name) }}">{{ @$sub->category_translation->name }}</a></li>
                                     @endforeach
                                 </ul>
                                 @endif

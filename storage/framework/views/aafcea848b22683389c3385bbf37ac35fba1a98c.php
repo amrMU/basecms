@@ -77,11 +77,11 @@
                             </li>
                             <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <li class="nvmenu">
-                                <a href="#0"><?php echo e(@$category->category_translation->name); ?> <?php if($category->sub_categories->count() > 0): ?><span class="ti-angle-down"></span><?php endif; ?></a>
+                                <a href="<?php echo e(URL::to('/').'/categories/'.$category->id.'/'.str_replace(' ', '_', $category->category_translation->name)); ?>"><?php echo e(@$category->category_translation->name); ?> <?php if($category->sub_categories->count() > 0): ?><span class="ti-angle-down"></span><?php endif; ?></a>
                                 <?php if($category->sub_categories->count() > 0): ?>
                                 <ul class="menu">
                                     <?php $__currentLoopData = $category->sub_categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sub): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <li><a href="#0"><?php echo e(@$sub->category_translation->name); ?></a></li>
+                                    <li><a href="<?php echo e(URL::to('/').'/categories/'.$sub->id.'/'.str_replace(' ', '_', $sub->category_translation->name)); ?>"><?php echo e(@$sub->category_translation->name); ?></a></li>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </ul>
                                 <?php endif; ?>
