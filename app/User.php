@@ -73,6 +73,7 @@ class User extends Authenticatable
 		}
 
 	}
+
     public function reports()
     {
     return $this->hasMany('App\Report','user_id','id');
@@ -87,4 +88,16 @@ class User extends Authenticatable
     {
     return $this->belongsTo('App\City','city_id');
     }
+
+        public function ads()
+    {
+    return $this->hasMany('App\Ads','user_id','id');
+    }
+
+    public function last_ads()
+    {
+    return $this->ads()->orderBy('created_at','DESC')->first();
+    }
+
 }
+

@@ -104,7 +104,6 @@
                     <?php elseif(isset($info) != false): ?>
                         value="<?php echo e(@$info->translations->where('lang_id',@$lang->id)->first()->title); ?> " 
                     <?php endif; ?> >
-            
         </div>
     </div>
     <!-- /title ar input -->

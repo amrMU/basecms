@@ -87,6 +87,18 @@
                                 @endif
                             </li>
                             @endforeach
+                            @if(Auth::check())
+                            <li class="nvmenu">
+                                <a href="">روابط خاصه<span class="ti-angle-down"></span></a>
+                                <ul class="menu">
+                                   
+                                    <li><a href="{{ URL::to('/i/advertising/create') }}">اضافة اعلان</a></li>
+                                    <li><a href="{{ URL::to('/i/profile') }}">الملف الشخصي</a></li>
+                                    <li><a href="{{ URL::to('/logout') }}">تسجيل خروج</a></li>
+                                </ul>
+
+                            </li>
+                            @endif
 
                             <div class="clear-fix"></div>
                         </ul>

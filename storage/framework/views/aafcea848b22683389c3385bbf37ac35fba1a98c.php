@@ -87,6 +87,18 @@
                                 <?php endif; ?>
                             </li>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php if(Auth::check()): ?>
+                            <li class="nvmenu">
+                                <a href="">روابط خاصه<span class="ti-angle-down"></span></a>
+                                <ul class="menu">
+                                   
+                                    <li><a href="<?php echo e(URL::to('/i/advertising/create')); ?>">اضافة اعلان</a></li>
+                                    <li><a href="<?php echo e(URL::to('/i/profile')); ?>">الملف الشخصي</a></li>
+                                    <li><a href="<?php echo e(URL::to('/logout')); ?>">تسجيل خروج</a></li>
+                                </ul>
+
+                            </li>
+                            <?php endif; ?>
 
                             <div class="clear-fix"></div>
                         </ul>

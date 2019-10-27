@@ -26,7 +26,7 @@
                 <div class="row">
                     <div class="col-lg-12 text-center caption">
                         <h1>إضافه اعلان</h1>
-                        <h5><a href="index.html">الرئسية</a><span>/</span><a href="#0">إضافه اعلان</a></h5>
+                        <h5><a href="<?php echo e(URL::to('/')); ?>">الرئسية</a><span>/</span><a href="#0">إضافه اعلان</a></h5>
                     </div>
                 </div>
             </div>
@@ -51,21 +51,21 @@
                 <div class="row">
                     <form  method="POST" action="<?php echo e(URL::to('/i/advertising')); ?>" enctype='multipart/form-data'>
                         <?php echo csrf_field(); ?>
-                             <?php if($errors->any()): ?>
-                                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <div class="alert alert-danger alert-dismissible">
-                                    <?php echo e($error); ?>
+                        <?php if($errors->any()): ?>
+                        <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <div class="alert alert-danger alert-dismissible">
+                            <?php echo e($error); ?>
 
-                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                </div>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                <?php endif; ?>
-                                <?php if(Session::has('success')): ?>
-                                <div class="alert alert-success alert-dismissible">
-                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><?php echo e(Session::get('success')); ?>
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        </div>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <?php endif; ?>
+                        <?php if(Session::has('success')): ?>
+                        <div class="alert alert-success alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><?php echo e(Session::get('success')); ?>
 
-                                </div>
-                                <?php endif; ?>
+                        </div>
+                        <?php endif; ?>
                     <div class="col-lg-10 offset-lg-1">
                         <div class="content">
 

@@ -123,7 +123,7 @@
                             <div class="col-lg-3 col-md-6">
                                 <div class="item">
                                     <div class="img">
-                                        <img src="{{ asset('/').@$ad->images->first()->image }}" alt="">
+                                        <img src="{{ asset('/').@$ad->images->first()->image }}" alt="{{ @$ad->translations->first()->title }}">
                                         <span class="tag">{{ @$category->category_translation->name }}</span>
                                         <div class="icons">
                                             {{-- <a href="#0" class="icon"><span class="ti-gallery"></span></a> --}}
