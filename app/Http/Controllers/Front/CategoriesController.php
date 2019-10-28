@@ -23,7 +23,6 @@ class CategoriesController extends Controller
 	public function show($id,$name)
 	{
 		$category = $this->category->find($id);
-
 		if ($category == null) {
 			return abort(404);
 		}

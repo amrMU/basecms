@@ -24,3 +24,4 @@ Route::get('tell_me/{job?}',function (Request $request )
 });
 
 Route::get('categories/{parent_id}','Api\CategoriesController@categoriesFilterByParent');
+Route::POST('i/fav/{ad_id}/{user_id}','Api\FavAdsController@fav');

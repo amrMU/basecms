@@ -77,7 +77,19 @@
                                
                                 @include('front.tag')
                                 <div class="icons">
-                                    <a href="#0" class="icon"><span class="ti-heart"></span></a>
+                                     {{-- <a href="#0" class="icon"><span class="ti-gallery"></span></a> --}}
+                                    @if(Auth::check())
+                                    <small  data-ad-id="{{ @$ad->id }}" data-user-id="{{ @Auth::id() }}" class="icon fav">
+                                        @if($ad->user_fav !== null)
+                                        {{-- <span id="like" class="ti-heart"></span> --}}
+                                        <i id="disLike" class="fas fa-heart"></i>
+                                        @else
+                                        <i id="like"    class="far fa-heart"></i>
+                                        @endif
+                                    </small>
+                                    @else
+                                    <a href="{{ URL::to('/login') }}"  class="icon "><span class="ti-heart"></span></a>
+                                    @endif
                                 </div>
                             </div>
                             <div class="cont">
@@ -128,4 +140,42 @@
     <!-- End Featured  ====
         ======================================= -->
 
+@stop
+@section('jsCode')
+    <script>
+        $('.fav').on('click',function () {
+         
+            var ad_id = $(this).attr('data-ad-id');
+            var user_id = $(this).attr('data-user-id');
+            console.log(ad_id);
+                   // console.log(($user_id).children());
+                   
+                   // console.log($(this).child().attr('class'));
+
+            $.ajax({
+                'url' : '{{ URL::to('/') }}/api/i/fav/' + ad_id+'/'+user_id,
+                'type' : 'post',
+                'success' : function(data) {     
+                   console.log(data);
+                   if (data.message == 'UnFav') {
+                        $(this.children(1).hide());
+                        $(this.children(2).sohow());
+                   }else{
+                      $(this.children(1).sohow());
+                      $(this.children(2).hide());
+
+                   }
+                   console.log(data.message == 'UnFav');
+                   console.log(data.message );
+                      
+                }//server success case 
+                ,'error' : function(request,error)
+                {
+                  
+                }//server error case 
+            });
+
+
+        });    
+    </script>
 @stop

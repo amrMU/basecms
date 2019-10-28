@@ -41,4 +41,5 @@ class Category extends Model
 	{
         return $this->hasMany('App\Ads','category_id','id')->orderBy('created_at','DESC');		
 	}
+	
 }

@@ -26,8 +26,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center caption">
-                        <h1>حساب جديد</h1>
-                        <h5><a href="index.html">الرئسية</a><span>/</span><a href="#0">إنشاء حساب</a></h5>
+                        <h1>الدخول</h1>
+                        <h5><a href="{{ url('/') }}">الرئسية</a><span>/</span><a href="#0">تسجيل الدخول</a></h5>
                     </div>
                 </div>
             </div>

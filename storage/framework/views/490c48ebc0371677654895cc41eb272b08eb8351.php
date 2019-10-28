@@ -21,7 +21,7 @@
                 ==== Start Header -->
 
         <header id="home" class="header pages bg-img valign" data-overlay-dark="7"
-            data-background="images/banner-1.jpg">
+            data-background="<?php echo e(URL::to('front/images/banner-1.jpg')); ?>">
 
             <div class="container">
                 <div class="row">
@@ -122,11 +122,24 @@
                             <div class="col-lg-3 col-md-6">
                                 <div class="item">
                                     <div class="img">
-                                        <img src="<?php echo e(asset('/').@$ad->images->first()->image); ?>" alt="">
-                                        <span class="tag"><?php echo e(@$category->category_translation->name); ?></span>
+                                        <img src="<?php echo e(asset('/').@$ad->images->first()->image); ?>" alt="<?php echo e(@$ad->translations->first()->title); ?>">
+                                        <span class="tag"><?php echo e(@$category->category_translation->name); ?> - <?php echo e(@$ad->id); ?></span>
                                         <div class="icons">
                                             
-                                            <a href="#0" class="icon"><span class="ti-heart"></span></a>
+                                            <?php if(Auth::check()): ?>
+                                            <small  data-ad-id="<?php echo e(@$ad->id); ?>" data-user-id="<?php echo e(@Auth::id()); ?>" class="icon fav">
+                                                <?php if($ad->user_fav !== null): ?>
+                                                
+                                                <i id="disLike" class="fas fa-heart"></i>
+                                                <?php else: ?>
+                                                <i id="like"    class="far fa-heart"></i>
+                                                <?php endif; ?>
+
+                                            </small>
+                                            <?php else: ?>
+                                            <a href="<?php echo e(URL::to('/login')); ?>"  class="icon "><span class="ti-heart"></span></a>
+
+                                            <?php endif; ?>
                                             
                                         </div>
                                     </div>
@@ -244,12 +257,45 @@
             </div>
         </section>
 
-        <!-- End testim ====
-                ======================================= -->
-
-
+        <!-- End testim =========================================== -->
     </main>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('jsCode'); ?>
+    <script>
+        $('.fav').on('click',function () {
+         
+            var ad_id = $(this).attr('data-ad-id');
+            var user_id = $(this).attr('data-user-id');
+            console.log(ad_id);
+                   // console.log(($user_id).children());
+                   
+                   // console.log($(this).child().attr('class'));
+
+            $.ajax({
+                'url' : '<?php echo e(URL::to('/')); ?>/api/i/fav/' + ad_id+'/'+user_id,
+                'type' : 'post',
+                'success' : function(data) {     
+                   console.log(data);
+                   if (data.message == 'UnFav') {
+                        $(this.children(1).hide());
+                        $(this.children(2).sohow());
+                   }else{
+                      $(this.children(1).sohow());
+                      $(this.children(2).hide());
+
+                   }
+                   console.log(data.message == 'UnFav');
+                   console.log(data.message );
+                      
+                }//server success case 
+                ,'error' : function(request,error)
+                {
+                  
+                }//server error case 
+            });
 
 
+        });    
+    </script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('front.layouts.main', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>

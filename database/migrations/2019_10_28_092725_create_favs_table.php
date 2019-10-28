@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCitiesTable extends Migration
+class CreateFavsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,15 @@ class CreateCitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('cities', function (Blueprint $table) {
+        Schema::create('favs', function (Blueprint $table) {
             $table->increments('id');
           
-            $table->integer('country_id')->nullable()->unsigned();
-            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
-            $table->softDeletes();
+            $table->unsignedInteger('ad_id');
+            $table->foreign('ad_id')->references('id')->on('ads')->onDelete('cascade');
+          
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }
@@ -30,6 +33,6 @@ class CreateCitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cities');
+        Schema::dropIfExists('favs');
     }
 }

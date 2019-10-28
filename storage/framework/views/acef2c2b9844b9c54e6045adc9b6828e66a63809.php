@@ -26,7 +26,7 @@
                 <div class="row">
                     <div class="col-lg-12 text-center caption">
                         <h1>حسابى</h1>
-                        <h5><a href="index.html">الرئسية</a><span>/</span><a href="#0">حسابى</a></h5>
+                        <h5><a href="<?php echo e(URL::to('/')); ?>">الرئسية</a><span>/</span><a href="#">حسابى</a></h5>
                     </div>
                 </div>
             </div>
@@ -48,16 +48,14 @@
                         <div class="profile-user">
                             <div class="user-img">
                                 <div class="img">
-                                    <img id="blah" src="<?php echo e(asset('front/images/profile.jpg')); ?>" alt="">
+                                    <img id="blah" src="<?php echo e(asset('/').Auth::user()->image); ?>" alt="">
                                 </div>
-                                <span class="icon"><i class="far fa-edit"></i></span>
-                                <input type="file" name="pic" accept="image/*" onchange="readURL(this);">
+                             
                             </div>
                             <div class="user-info">
                                 <ul>
-                                    <li><span>الاسم : </span><?php echo e(@Auth::user()->fname.' '.@Auth::user()->fname); ?></li>
+                                    <li><span>الاسم : </span><?php echo e(@Auth::user()->fname.' '.@Auth::user()->lname); ?></li>
                                     <li><span>رقم الهاتف : </span> <?php echo e(@Auth::user()->phone); ?></li>
-                                    
                                     <li><span>البريد الالكترونى : </span><?php echo e(@Auth::user()->email); ?></li>
                                 </ul>
                                 <div class="text-center">
@@ -93,6 +91,7 @@
                             </div>
 
                             <div class="tab-cont">
+                             
                                 <div id="tab-1" class="tab-content profile-edit current">
                                     <div class="form">
                                         <form action="">
@@ -100,13 +99,13 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="">الاسم الاول</label>
-                                                        <input type="text" name="user_firstname">
+                                                        <input type="text" name="fname" value="<?php echo e(Auth()->user()->fname); ?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="">الاسم الاخير</label>
-                                                        <input type="text" name="user_lastname">
+                                                        <input type="text"  name="lname" value="<?php echo e(Auth()->user()->lname); ?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -126,7 +125,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="">رقم الهاتف</label>
-                                                        <input type="text" name="user_phone">
+                                                        <input type="text"  name="phone" value="<?php echo e(Auth()->user()->phone); ?>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -139,7 +138,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="">البريد الالكترونى</label>
-                                                        <input type="email" name="user_email">
+                                                        <input type="email" name="email" value="<?php echo e(Auth()->user()->email); ?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -148,6 +147,12 @@
                                                         <input type="text" name="user_pass">
                                                     </div>
                                                 </div>
+                                                <div class="col-md-6">
+                                                </div>
+                                                    <div class="form-group">
+                                                        <label for="">صورة الملف الشخصصي</label>
+                                                        <input type="file" name="image">
+                                                    </div>
                                                 <div class="col-lg-12 text-center">
                                                     <button type="submit" class="butn butn-bg"><span>حفظ</span></button>
                                                 </div>
@@ -155,76 +160,29 @@
                                         </form>
                                     </div>
                                 </div>
+
                                 <div id="tab-2" class="tab-content favorites">
                                     <div class="row">
+                                        <?php $__currentLoopData = Auth()->user()->fav_ads; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $fav): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <div class="col-md-4">
                                             <div class="item">
                                                 <div class="img">
-                                                    <a href="#0"><img src="<?php echo e(asset('front/images/1.jpg')); ?>" alt=""></a>
+                                                     <img src="<?php echo e(asset('/').@$fav->ad->images->first()->image); ?>" alt="<?php echo e(@$fav->ad->translations->first()->title); ?>">
                                                 </div>
                                                 <div class="cont">
-                                                    <a href="#0" class="det">تفاصيل الإعلان</a>
-                                                    <a href="#0" class="del">حذف</a>
+                                                    <a href="<?php echo e(URL::to('/').'/ads/'.$fav->ad_id.'/'.@str_replace(' ', '_', $fav->ad->translations->first()->title)); ?>" class="det" title="<?php echo e(@$fav->ad->translations->first()->title); ?>">
+                                                        <?php echo e(@substr($fav->ad->translations->first()->title,0,33).'...'); ?>
+
+                                                    </a>
+                                                    <small class="del fav"  data-ad-id="<?php echo e(@$fav->ad_id); ?>" data-user-id="<?php echo e(@Auth::id()); ?>"  >حذف</small>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-4">
-                                            <div class="item">
-                                                <div class="img">
-                                                    <a href="#0"><img src="<?php echo e(asset('front/images/2.jpg')); ?>" alt=""></a>
-                                                </div>
-                                                <div class="cont">
-                                                    <a href="#0" class="det">تفاصيل الإعلان</a>
-                                                    <a href="#0" class="del">حذف</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="item">
-                                                <div class="img">
-                                                    <a href="#0"><img src="<?php echo e(asset('front/images/3.jpg')); ?>" alt=""></a>
-                                                </div>
-                                                <div class="cont">
-                                                    <a href="#0" class="det">تفاصيل الإعلان</a>
-                                                    <a href="#0" class="del">حذف</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="item">
-                                                <div class="img">
-                                                    <a href="#0"><img src="<?php echo e(asset('front/images/4.jpg')); ?>" alt=""></a>
-                                                </div>
-                                                <div class="cont">
-                                                    <a href="#0" class="det">تفاصيل الإعلان</a>
-                                                    <a href="#0" class="del">حذف</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="item">
-                                                <div class="img">
-                                                    <a href="#0"> <img src="<?php echo e(asset('front/images/1.jpg')); ?>" alt=""></a>
-                                                </div>
-                                                <div class="cont">
-                                                    <a href="#0" class="det">تفاصيل الإعلان</a>
-                                                    <a href="#0" class="del">حذف</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="item">
-                                                <div class="img">
-                                                    <a href="#0"><img src="<?php echo e(asset('front/images/2.jpg')); ?>" alt=""></a>
-                                                </div>
-                                                <div class="cont">
-                                                    <a href="#0" class="det">تفاصيل الإعلان</a>
-                                                    <a href="#0" class="del">حذف</a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                  
                                     </div>
                                 </div>
+                               
                                 <div id="tab-3" class="tab-content myadd">
                                     <ul>
                                        <?php $__currentLoopData = Auth::user()->ads; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ad): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -259,5 +217,44 @@
 
 
     </main>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('jsCode'); ?>
+    <script>
+        $('.fav').on('click',function () {
+         
+            var ad_id = $(this).attr('data-ad-id');
+            var user_id = $(this).attr('data-user-id');
+            console.log(ad_id);
+                   // console.log(($user_id).children());
+                   
+                   // console.log($(this).child().attr('class'));
+
+            $.ajax({
+                'url' : '<?php echo e(URL::to('/')); ?>/api/i/fav/' + ad_id+'/'+user_id,
+                'type' : 'post',
+                'success' : function(data) {     
+                   console.log(data);
+                   if (data.message == 'UnFav') {
+                        $(this.children(1).hide());
+                        $(this.children(2).sohow());
+                   }else{
+                      $(this.children(1).sohow());
+                      $(this.children(2).hide());
+
+                   }
+                   console.log(data.message == 'UnFav');
+                   console.log(data.message );
+                      
+                }//server success case 
+                ,'error' : function(request,error)
+                {
+                  
+                }//server error case 
+            });
+
+
+        });    
+    </script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('front.layouts.main', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>

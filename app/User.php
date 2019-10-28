@@ -99,5 +99,9 @@ class User extends Authenticatable
     return $this->ads()->orderBy('created_at','DESC')->first();
     }
 
+    public function fav_ads()
+    {
+        return $this->hasMany('App\Fav','user_id','id');
+    }
 }
 
