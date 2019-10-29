@@ -82,9 +82,9 @@
 <div class="navbar navbar-inverse bg-indigo">
     <div class="navbar-header">
         @if(isset($setting))
-        <a class="navbar-brand" href="{{URL::to('ar/admin/home')}}"><img src="{{url('/').@$setting->logo}}"  class="img-responsive"></a>
+        <a class="navbar-brand" href="{{URL::to('ar/admin/home')}}"><img src="{{url('/').'/'.@$setting->logo}}"  class="img-responsive"></a>
         @else
-        <a class="navbar-brand" href="{{URL::to('ar/admin/home')}}"><img src="{{ asset('/') }}assets/images/logo_light.png" class="img-responsive"></a>
+        <a class="navbar-brand" href="{{URL::to('ar/admin/home')}}"><img src="{{ asset('/') }}/assets/images/logo_light.png" class="img-responsive"></a>
 
         @endif
         <ul class="nav navbar-nav visible-xs-block">
@@ -283,7 +283,7 @@
                         <ul class="media-list dropdown-content-body">
                             <li class="media">
                                 <div class="media-left">
-                                    <img src="{{ asset('/') }}assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
+                                    <img src="{{ asset('/') }}/assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
                                     <span class="badge bg-danger-400 media-badge">5</span>
                                 </div>
 
@@ -299,7 +299,7 @@
 
                             <li class="media">
                                 <div class="media-left">
-                                    <img src="{{ asset('/') }}assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
+                                    <img src="{{ asset('/') }}/assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
                                     <span class="badge bg-danger-400 media-badge">4</span>
                                 </div>
 
@@ -314,7 +314,7 @@
                             </li>
 
                             <li class="media">
-                                <div class="media-left"><img src="{{ asset('/') }}assets/images/placeholder.jpg" class="img-circle img-sm" alt=""></div>
+                                <div class="media-left"><img src="{{ asset('/') }}/assets/images/placeholder.jpg" class="img-circle img-sm" alt=""></div>
                                 <div class="media-body">
                                     <a href="#" class="media-heading">
                                         <span class="text-semibold">Jeremy Victorino</span>
@@ -406,8 +406,12 @@
                             <!-- Main -->
                             <!-- <li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li> -->
                             <li class="active "><a href="{{ URL::to('ar/admin/home') }}"><i class="icon-home4"></i> <span>@lang('home.dashboard')</span></a></li>
-                            <li>
+                          {{--   <li>
                                 <a href="{{ URL::to('ar/admin/wating_lists') }}"><i class="icon-stack2"></i> <span>@lang('home.wating_lists')</span></a>
+                               
+                            </li> --}}
+                            <li>
+                                <a href="{{ URL::to('/') }}" target="_blank"><i class="icon-stack2"></i> <span>@lang('home.site')</span></a>
                                
                             </li>
                             <li class="">

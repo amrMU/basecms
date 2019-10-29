@@ -126,7 +126,11 @@
                                     <!-- /Meta Tags input -->
                                      <!-- password input -->
                                      <div class="form-group">
-                                        <label class="control-label col-lg-3">@lang('home.password') <span class="text-danger" title="@lang('home.required')">*</span> </label>
+
+                                        <div class="col-lg-3">
+                                        <label class="control-label">@lang('home.password')<span class="text-danger" title="@lang('home.required')">*</span> </label> <br>
+                                          <small> - الأحرف الكبيرة الإنجليزية (A - Z) <br>- الأحرف الصغيرة الإنجليزية (a - z) <br>- الأساس 10 أرقام (0 - 9) <br>- غير الأبجدية الرقمية (على سبيل المثال:! ، $ </small>
+                                        </div>
                                         <div class="col-lg-9">
                                             <div class="input-group">
                                             @if(LaravelLocalization::getCurrentLocale() == 'en')

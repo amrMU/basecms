@@ -85,11 +85,9 @@
                                         <?php else: ?>
                                         <i id="like"    class="far fa-heart"></i>
                                         <?php endif; ?>
-
                                     </small>
                                     <?php else: ?>
                                     <a href="<?php echo e(URL::to('/login')); ?>"  class="icon "><span class="ti-heart"></span></a>
-
                                     <?php endif; ?>
                                 </div>
                             </div>

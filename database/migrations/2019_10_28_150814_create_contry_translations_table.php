@@ -18,7 +18,8 @@ class CreateContryTranslationsTable extends Migration
             $table->string('name');
             $table->unsignedInteger('country_id');
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
-            
+            $table->unsignedInteger('lang_id');
+            $table->foreign('lang_id')->references('id')->on('setting_langs')->onDelete('cascade');
             $table->timestamps();
         });
     }

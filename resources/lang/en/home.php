@@ -161,7 +161,8 @@
 		'purchase'=>'purchase',
 		'other'=>'Other',
 		'location_en'=>'location English',
-		'title'=>'Title'
+		'title'=>'Title',
+		'site'=>'site'
 
 
 

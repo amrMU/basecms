@@ -79,8 +79,12 @@
 		Route::get('aboutus','Front\AboutUsController@show');
 		Route::get('i/advertising/create','Front\AdsController@create');
 		Route::post('i/advertising','Front\AdsController@store');
-		Route::put('i/advertising/{id}','Front\AdsController@update');
+		Route::put('i/advertising/{id}','Auth\AdsController@update');
+		
 		Route::get('i/profile','Auth\ProfileController@getProfile');
+		
+		Route::post('i/update_profile','Auth\ProfileController@PutUpdate');
+
 		Route::get('i/ads/{id}/delete','Front\AdsController@destroy');
 		Route::get('i/ads/{id}/edit','Front\AdsController@edit');
 		Route::get('i/ads/{id}/image/delete','Front\AdsController@DestroyImage');

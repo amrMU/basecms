@@ -26,6 +26,7 @@ class User extends Authenticatable
     'lat',
     'long',
     'city_id',
+    'country_id',
     'gander',
     'type_user',
     'status',

@@ -32,25 +32,16 @@ class SettingsRequest extends FormRequest
            case 'POST':
            {
                return array(
-                // 'title_ar'=>'required',
-                // 'title_en'=>'required',
-                // 'content_ar'=>'required',
-                // 'content_ar'=>'required',
+              
                 'logo'=>'mimes:jpeg,bmp,png,jpg',
                 'meta_tags'=>'required',
-                // 'extirnal_code'=>'required',
                 );
            }
            case 'PUT':
            {
                return array(
-                // 'title_ar'=>'required',
-                // 'title_en'=>'required',
-                // 'content_ar'=>'required',
-                // 'content_en'=>'required',
                 'logo'=>'mimes:jpeg,bmp,png,jpg',
                 'meta_tags'=>'required',
-                // 'extirnal_code'=>'required',
                 );
            }
            case 'PATCH':

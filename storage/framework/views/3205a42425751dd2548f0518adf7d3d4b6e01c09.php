@@ -82,9 +82,9 @@
 <div class="navbar navbar-inverse bg-indigo">
     <div class="navbar-header">
         <?php if(isset($setting)): ?>
-        <a class="navbar-brand" href="<?php echo e(URL::to('ar/admin/home')); ?>"><img src="<?php echo e(url('/').@$setting->logo); ?>"  class="img-responsive"></a>
+        <a class="navbar-brand" href="<?php echo e(URL::to('ar/admin/home')); ?>"><img src="<?php echo e(url('/').'/'.@$setting->logo); ?>"  class="img-responsive"></a>
         <?php else: ?>
-        <a class="navbar-brand" href="<?php echo e(URL::to('ar/admin/home')); ?>"><img src="<?php echo e(asset('/')); ?>assets/images/logo_light.png" class="img-responsive"></a>
+        <a class="navbar-brand" href="<?php echo e(URL::to('ar/admin/home')); ?>"><img src="<?php echo e(asset('/')); ?>/assets/images/logo_light.png" class="img-responsive"></a>
 
         <?php endif; ?>
         <ul class="nav navbar-nav visible-xs-block">
@@ -283,7 +283,7 @@
                         <ul class="media-list dropdown-content-body">
                             <li class="media">
                                 <div class="media-left">
-                                    <img src="<?php echo e(asset('/')); ?>assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
+                                    <img src="<?php echo e(asset('/')); ?>/assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
                                     <span class="badge bg-danger-400 media-badge">5</span>
                                 </div>
 
@@ -299,7 +299,7 @@
 
                             <li class="media">
                                 <div class="media-left">
-                                    <img src="<?php echo e(asset('/')); ?>assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
+                                    <img src="<?php echo e(asset('/')); ?>/assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
                                     <span class="badge bg-danger-400 media-badge">4</span>
                                 </div>
 
@@ -314,7 +314,7 @@
                             </li>
 
                             <li class="media">
-                                <div class="media-left"><img src="<?php echo e(asset('/')); ?>assets/images/placeholder.jpg" class="img-circle img-sm" alt=""></div>
+                                <div class="media-left"><img src="<?php echo e(asset('/')); ?>/assets/images/placeholder.jpg" class="img-circle img-sm" alt=""></div>
                                 <div class="media-body">
                                     <a href="#" class="media-heading">
                                         <span class="text-semibold">Jeremy Victorino</span>
@@ -406,8 +406,9 @@
                             <!-- Main -->
                             <!-- <li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li> -->
                             <li class="active "><a href="<?php echo e(URL::to('ar/admin/home')); ?>"><i class="icon-home4"></i> <span><?php echo app('translator')->getFromJson('home.dashboard'); ?></span></a></li>
+                          
                             <li>
-                                <a href="<?php echo e(URL::to('ar/admin/wating_lists')); ?>"><i class="icon-stack2"></i> <span><?php echo app('translator')->getFromJson('home.wating_lists'); ?></span></a>
+                                <a href="<?php echo e(URL::to('/')); ?>" target="_blank"><i class="icon-stack2"></i> <span><?php echo app('translator')->getFromJson('home.site'); ?></span></a>
                                
                             </li>
                             <li class="">

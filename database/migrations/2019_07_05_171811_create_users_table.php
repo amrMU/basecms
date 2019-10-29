@@ -23,6 +23,8 @@ class CreateUsersTable extends Migration
             $table->string('address')->nullable();
             $table->string('lat')->nullable();
             $table->string('long')->nullable();
+            $table->integer('country_id')->nullable()->unsigned();
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
             $table->integer('city_id')->nullable()->unsigned();
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->enum('gander',['male','female']);

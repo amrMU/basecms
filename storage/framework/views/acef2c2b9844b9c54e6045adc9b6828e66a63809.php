@@ -1,16 +1,16 @@
 <?php $__env->startSection('meta_tags'); ?>
-    <title> لملف الشخصي| <?php echo e(@$setting->translation->title); ?></title>
+    <title> لملف الشخصي| <?php echo e(@Auth::user()->fname); ?></title>
 
     <meta name='description' itemprop='description' content='<?php echo @$info->translation->content; ?>' />
     <meta name='keywords' content='<?php echo @$setting->meta_tags; ?>,<?php echo @$info->translation->title; ?>,<?php echo @$info->mission; ?>,<?php echo @$info->goals; ?>' />
     <meta property="og:description"content="<?php echo e(@$info->translation->content); ?>" />
-    <meta property="og:title"content=" <?php echo app('translator')->getFromJson('home.aboutus'); ?> | <?php echo e(@$setting->translation->title); ?> " />
-    <meta property="og:url"content="<?php echo e(URL::to('/about_us')); ?>" />
+    <meta property="og:title"content="لملف الشخصي| <?php echo e(@Auth::user()->fname); ?>" />
+    <meta property="og:url"content="<?php echo e(URL::to('/')); ?>" />
     <meta property="og:site_name"content="<?php echo e(@$setting->translation->title); ?>" />
     <meta property="og:image" content="<?php echo e(URL::to('/').@$setting->logo); ?>">
 
     <meta name="twitter:card"content="summary" />
-    <meta name="twitter:title"content="لملف الشخصي| | <?php echo e(@$setting->translation->title); ?>" />
+    <meta name="twitter:title"content="لملف الشخصي| <?php echo e(@Auth::user()->fname); ?>" />
     <meta name="twitter:site"content="@wait" />
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
@@ -58,9 +58,7 @@
                                     <li><span>رقم الهاتف : </span> <?php echo e(@Auth::user()->phone); ?></li>
                                     <li><span>البريد الالكترونى : </span><?php echo e(@Auth::user()->email); ?></li>
                                 </ul>
-                                <div class="text-center">
-                                    <a href="#0" class="butn butn-bg"><span>تعديل البيانات</span></a>
-                                </div>
+                             
                             </div>
                         </div>
                     </div>
@@ -94,7 +92,8 @@
                              
                                 <div id="tab-1" class="tab-content profile-edit current">
                                     <div class="form">
-                                        <form action="">
+                                        <form action="<?php echo e(url('i/update_profile')); ?>" method="post"  enctype="multipart/form-data">
+                                            <?php echo csrf_field(); ?>
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -111,14 +110,11 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="">الجنسية</label>
-                                                        <select>
-                                                            <option value="0">-- اختر --</option>
-                                                            <option value="1">الفجيرة</option>
-                                                            <option value="2">أبو ظبي</option>
-                                                            <option value="3">شرم أبحر</option>
-                                                            <option value="4">دومة الجندل</option>
-                                                            <option value="5">وادي الطوقي</option>
-                                                            <option value="6">دبي</option>
+                                                        <select name="country_id">
+                                                            <option value="">-- اختر --</option>
+                                                            <?php $__currentLoopData = $countries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $country): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                            <option value="<?php echo e(@$country->id); ?>" <?php if($country->id == Auth::user()->country_id): ?> selected <?php endif; ?>><?php echo e(@$country->translations->first()->name); ?></option>
+                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -129,11 +125,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </form>
-
+                                        
                                         <h6><span>بيانات الحساب</span></h6>
 
-                                        <form action="">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -143,16 +137,25 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="">الرقم السرى</label>
-                                                        <input type="text" name="user_pass">
+                                                        <label for="">كلمة المرور</label>
+
+                                                        <input type="password" name="password">
+                                                        <br>
+                                                         <small> - الأحرف الكبيرة الإنجليزية (A - Z) <br>- الأحرف الصغيرة الإنجليزية (a - z) <br>- الأساس 10 أرقام (0 - 9) <br>- غير الأبجدية الرقمية (على سبيل المثال:! ، $) </small>
+                                                    </div>
+                                                </div>
+                                                 <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">تأكيد كلمة المرور</label>
+                                                        <input type="password" name="password_confirmation">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                </div>
                                                     <div class="form-group">
                                                         <label for="">صورة الملف الشخصصي</label>
                                                         <input type="file" name="image">
                                                     </div>
+                                                </div>
                                                 <div class="col-lg-12 text-center">
                                                     <button type="submit" class="butn butn-bg"><span>حفظ</span></button>
                                                 </div>

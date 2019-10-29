@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin;
+namespace App\Http\Requests\Front;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserRequest extends FormRequest
+class ProfileUpdateequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,13 +29,11 @@ class UserRequest extends FormRequest
             'email'=>'required|unique:users,id,'.@$this->segment(3),
             'country_id'=>'required|numeric',
             'phone'=>'required|numeric',
-            'avatar'=>'mimes:jpeg,jpg,png,gif',
-            'password'=>['required', 
-                           'min:8', 
+            'image'=>'mimes:jpeg,jpg,png,gif',
+            'password'=> ['required', 
+                           'min:6', 
                            'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\X])(?=.*[!$#%]).*$/', 
-                           'confirmed'] // English uppercase characters (A – Z) - English lowercase characters (a – z) - Base 10 digits (0 – 9) - Non-alphanumeric (For example: !, $, #, or %) - Unicode characters
-
-
+                           'confirmed'],// English uppercase characters (A – Z) - English lowercase characters (a – z) - Base 10 digits (0 – 9) - Non-alphanumeric (For example: !, $, #, or %) - Unicode characters
         ];
     }
 }
