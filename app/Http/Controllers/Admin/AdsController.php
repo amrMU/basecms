@@ -45,8 +45,8 @@ class AdsController extends Controller
 	**/
 	public function index(Request $request)
 	{
-		$ads= $this->ads->with('translations','images')->get(); 
-		// dd($ads);	
+		$ads= $this->ads->with('images')->get(); 
+
 		$agent = new Agent();
         $agent = $agent->platform().','.$agent->browser().$agent->version($agent->browser());
         $data = ['key'=>'dashboard_List_Ad','text'=>'List New Add  ','browser'=>$agent];
@@ -68,8 +68,14 @@ class AdsController extends Controller
 
 	public function store(AdsRequest $request)
 	{
+		if ($reqest->has('sub_categoris')) {
+			$category_id = $request->sub_categoris;
+		}else{
+			$category_id = $request->category_id;
+		}
+
 		$create_ad = $this->ads->create([
-						'category_id'=>$request->category_id,
+						'category_id'=>$category_id,
 						'user_id'=>Auth::id(),
 						'price'=>$request->price,
 						'url'=>$request->url,

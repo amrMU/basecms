@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
    
     <!-- Title  -->
-    <title>{{@$setting->translation->title}}</title>
+    {{-- <title>{{@$setting->translation->title}}</title> --}}
     @yield('meta_tags')
 
     <!-- Favicon -->

@@ -1,6 +1,6 @@
 @extends('front.layouts.main')
 @section('meta_tags')
-    <title> اضافة اعلان | {{@$setting->translation->title}}</title>
+    <title> قسم  | {{@$category->category_translation->name}}</title>
 
     <meta name='description' itemprop='description' content='{!! @$info->translation->content!!}' />
     <meta name='keywords' content='{!!@$setting->meta_tags!!},{!!@$info->translation->title !!},{!!@$info->mission !!},{!!@$info->goals!!}' />
@@ -11,7 +11,7 @@
     <meta property="og:image" content="{{URL::to('/').@$setting->logo}}">
 
     <meta name="twitter:card"content="summary" />
-    <meta name="twitter:title"content=" اضافة اعلان | {{@$setting->translation->title}}" />
+    <meta name="twitter:title"content=" قسم  | {{@$category->category_translation->name}}" />
     <meta name="twitter:site"content="@wait" />
 @stop
 @section('content')
@@ -198,8 +198,8 @@
 
         <!-- =====================================
             ==== Start testim -->
-
-        <section class="testim section-padding bg-img" data-background="images/bg-dots.png">
+        @include('front.testmonials.show')
+      {{--   <section class="testim section-padding bg-img" data-background="images/bg-dots.png">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 head">
@@ -256,7 +256,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
 
         <!-- End testim =========================================== -->
     </main>

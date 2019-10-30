@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
    
     <!-- Title  -->
-    <title><?php echo e(@$setting->translation->title); ?></title>
+    
     <?php echo $__env->yieldContent('meta_tags'); ?>
 
     <!-- Favicon -->

@@ -18,6 +18,7 @@
 		// 'name_ar'=>'Name Ar',
 		'name_en'=>'Name En',
 		'content_ar'=>'Content Ar',
+		'content'=>'Content',
 		'content_en'=>'Content En',
 		'meta_tags'=>'Keywords',
 		'extirnal_code'=>'Extirnal Code',
@@ -162,7 +163,13 @@
 		'other'=>'Other',
 		'location_en'=>'location English',
 		'title'=>'Title',
-		'site'=>'site'
+		'site'=>'site',
+		'country'=>'country',
+		'testmonials'=>'testimonials'
+		'testmonials_list'=>'Testmonials List',
+		'create_testmonials'=>'create testimonials',
+		'category'=>'Category'
+
 
 
 

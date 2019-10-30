@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
-use App\Setting,App\City,App\Aboutus;
+use App\Setting,App\City,App\Aboutus,App\TestMonials;
 use App\Category,App\Languages,App\SettingLangs;
 use App;
 use Config;
@@ -37,6 +37,7 @@ class AppServiceProvider extends ServiceProvider
                 $cities = City::all();
                 view()->share('cities', $cities);
             }
+            
             if (\Schema::hasTable('aboutus')) {
                 $info = Aboutus::first();
                 view()->share('info', $info);

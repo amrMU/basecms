@@ -28,7 +28,7 @@
          <div class="alert alert-danger alert-dismissible" id="sub_categoris_unknown">
             <a href="#" class="close" data-dismiss="alert" aria-label="close" style="right: 5px;">&times;</a>@lang('home.empty_sub_categories')
         </div>
-        <select name="category_id" id="sub_categoris" class="form-control" >
+        <select name="sub_categoris" id="sub_categoris" class="form-control" >
             <option value="">@lang('home.select_one')</option>
             @if(isset($info))
             @include('dashboard.ads.select_sub_categories_loop_for_update')

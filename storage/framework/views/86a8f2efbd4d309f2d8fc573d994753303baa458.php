@@ -106,12 +106,12 @@
                                     <!-- /content ar input -->
                                     <!-- content en input -->
                                     <div class="form-group">
-                                        <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.city'); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
+                                        <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.country'); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
                                         <div class="col-lg-9"> 
-                                        <select name="city_id" class="form-control">
+                                        <select name="country_id" class="form-control">
                                             <option value="null"><?php echo app('translator')->getFromJson('home.address'); ?></option>
-                                                <?php $__currentLoopData = $cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $city): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                    <option value="<?php echo e(@$city->id); ?>" <?php if($info->city_id == $city->id): ?> <?php echo e('selected'); ?> <?php endif; ?>><?php echo e((App::isLocale('en')  ? @$city->nameEn : @$city->nameAr)); ?></option>
+                                                 <?php $__currentLoopData = $countries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $country): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e(@$country->id); ?>" <?php if($country->id == Auth::user()->country_id): ?> selected <?php endif; ?>><?php echo e(@$country->translations->first()->name); ?></option>
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                         </div>

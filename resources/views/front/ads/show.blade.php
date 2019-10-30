@@ -78,7 +78,7 @@
                                 <div class="title">
                                     <h5>الوصف</h5>
                                 </div>
-                                <div class="text">{{ @$ad->translations->first()->content }}</div>
+                                <div class="text">{!! @$ad->translations->first()->content !!}</div>
                             </div>
 
                             <div class="detl">
@@ -123,23 +123,23 @@
                                         <div class="title">
                                             <h5>اضافه تقييم</h5>
                                         </div>
-                                        <div class="add-rate">
-                                            <h6>التقييم :
-                                                <span>
-                                                    <input type="radio" id="star5" name="rate" value="5" />
-                                                    <label for="star5" title="text">5 stars</label>
-                                                    <input type="radio" id="star4" name="rate" value="4" />
-                                                    <label for="star4" title="text">4 stars</label>
-                                                    <input type="radio" id="star3" name="rate" value="3" />
-                                                    <label for="star3" title="text">3 stars</label>
-                                                    <input type="radio" id="star2" name="rate" value="2" />
-                                                    <label for="star2" title="text">2 stars</label>
-                                                    <input type="radio" id="star1" name="rate" value="1" />
-                                                    <label for="star1" title="text">1 star</label>
-                                                </span>
-                                            </h6>
-                                        </div>
                                         <form action="">
+                                            <div class="add-rate">
+                                                <h6>التقييم :
+                                                    <span>
+                                                        <input type="radio" id="star5" name="rate" value="5" />
+                                                        <label for="star5" title="text">5 stars</label>
+                                                        <input type="radio" id="star4" name="rate" value="4" />
+                                                        <label for="star4" title="text">4 stars</label>
+                                                        <input type="radio" id="star3" name="rate" value="3" />
+                                                        <label for="star3" title="text">3 stars</label>
+                                                        <input type="radio" id="star2" name="rate" value="2" />
+                                                        <label for="star2" title="text">2 stars</label>
+                                                        <input type="radio" id="star1" name="rate" value="1" />
+                                                        <label for="star1" title="text">1 star</label>
+                                                    </span>
+                                                </h6>
+                                            </div>
                                             <div class="form-group">
                                                 <input type="text" name="rate_title" placeholder="عنوان التقييم">
                                             </div>
@@ -155,10 +155,7 @@
                                         <div class="title">
                                             <h5>المكان على الخريطة</h5>
                                         </div>
-                                        <iframe
-                                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d950654.0413908078!2d39.77164582960116!3d21.449189838002464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15c3d01fb1137e59%3A0xe059579737b118db!2z2KzYr9ipINin2YTYs9i52YjYr9mK2Kk!5e0!3m2!1sar!2seg!4v1568626971878!5m2!1sar!2seg"
-                                            width="100%" height="450" frameborder="0" style="border:0;"
-                                            allowfullscreen=""></iframe>
+                                        {!! @$ad->map !!}
                                     </div>
                                 </div>
                             </div>

@@ -117,7 +117,7 @@
                                             <a href="#" class="close" data-dismiss="alert" aria-label="close" style="right: 5px;">&times;</a>@lang('home.empty_sub_categories')
                                         </div>
                                         <div >
-                                           <select name="category_id" id="sub_categoris" class="form-control" >
+                                           <select name="sub_categoris" id="sub_categoris" class="form-control" >
                                             <option value="">@lang('home.sub_categories')</option>
 
                                         </select>

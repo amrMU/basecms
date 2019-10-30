@@ -1,5 +1,5 @@
 <?php $__env->startSection('meta_tags'); ?>
-    <title> اضافة اعلان | <?php echo e(@$setting->translation->title); ?></title>
+    <title> قسم  | <?php echo e(@$category->category_translation->name); ?></title>
 
     <meta name='description' itemprop='description' content='<?php echo @$info->translation->content; ?>' />
     <meta name='keywords' content='<?php echo @$setting->meta_tags; ?>,<?php echo @$info->translation->title; ?>,<?php echo @$info->mission; ?>,<?php echo @$info->goals; ?>' />
@@ -10,7 +10,7 @@
     <meta property="og:image" content="<?php echo e(URL::to('/').@$setting->logo); ?>">
 
     <meta name="twitter:card"content="summary" />
-    <meta name="twitter:title"content=" اضافة اعلان | <?php echo e(@$setting->translation->title); ?>" />
+    <meta name="twitter:title"content=" قسم  | <?php echo e(@$category->category_translation->name); ?>" />
     <meta name="twitter:site"content="@wait" />
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
@@ -123,7 +123,7 @@
                                 <div class="item">
                                     <div class="img">
                                         <img src="<?php echo e(asset('/').@$ad->images->first()->image); ?>" alt="<?php echo e(@$ad->translations->first()->title); ?>">
-                                        <span class="tag"><?php echo e(@$category->category_translation->name); ?> - <?php echo e(@$ad->id); ?></span>
+                                        <span class="tag"><?php echo e(@$category->category_translation->name); ?></span>
                                         <div class="icons">
                                             
                                             <?php if(Auth::check()): ?>
@@ -197,65 +197,8 @@
 
         <!-- =====================================
             ==== Start testim -->
-
-        <section class="testim section-padding bg-img" data-background="images/bg-dots.png">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 head">
-                        <h5>اراء العملاء</h5>
-                    </div>
-
-                    <div class="col-lg-12">
-                        <div class="clients-slider wow fadeInUp">
-                            <div class="item">
-                                <div class="info">
-                                    <div class="img">
-                                        <img src="images/clients/1.png" alt="">
-                                    </div>
-                                    <h6>احمد ابراهيم</h6>
-                                </div>
-                                <div class="text">عند موافقه العميل المبدئيه على التصميم يتم ازالة هذا النص من التصميم
-                                    ويتم وضع النصوص
-                                    النهائية المطلوبة للتصميم ويقول البعض ان وضع النصوص التجريبية.</div>
-                            </div>
-                            <div class="item">
-                                <div class="info">
-                                    <div class="img">
-                                        <img src="images/clients/2.png" alt="">
-                                    </div>
-                                    <h6>احمد ابراهيم</h6>
-                                </div>
-                                <div class="text">عند موافقه العميل المبدئيه على التصميم يتم ازالة هذا النص من التصميم
-                                    ويتم وضع النصوص
-                                    النهائية المطلوبة للتصميم ويقول البعض ان وضع النصوص التجريبية.</div>
-                            </div>
-                            <div class="item">
-                                <div class="info">
-                                    <div class="img">
-                                        <img src="images/clients/2.png" alt="">
-                                    </div>
-                                    <h6>احمد ابراهيم</h6>
-                                </div>
-                                <div class="text">عند موافقه العميل المبدئيه على التصميم يتم ازالة هذا النص من التصميم
-                                    ويتم وضع النصوص
-                                    النهائية المطلوبة للتصميم ويقول البعض ان وضع النصوص التجريبية.</div>
-                            </div>
-                            <div class="item">
-                                <div class="info">
-                                    <div class="img">
-                                        <img src="images/clients/2.png" alt="">
-                                    </div>
-                                    <h6>احمد ابراهيم</h6>
-                                </div>
-                                <div class="text">عند موافقه العميل المبدئيه على التصميم يتم ازالة هذا النص من التصميم
-                                    ويتم وضع النصوص
-                                    النهائية المطلوبة للتصميم ويقول البعض ان وضع النصوص التجريبية.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <?php echo $__env->make('front.testmonials.show', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+      
 
         <!-- End testim =========================================== -->
     </main>

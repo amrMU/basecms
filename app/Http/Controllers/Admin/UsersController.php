@@ -16,7 +16,7 @@ use App\Http\Requests\Admin\UserRequest;
 use Jenssegers\Agent\Agent;
 use App\Helpers\DoFire;
 use App\Exports\UsersListExport;
-use App\User;
+use App\User,App\County;
 use Session;
 use DB;
 use Auth;
@@ -72,8 +72,9 @@ class UsersController extends Controller
         $agent = $agent->platform().','.$agent->browser().$agent->version($agent->browser());
         $data = ['key'=>'dashboard_browse_create_user','text'=>'Brwose Create  User','browser'=>$agent];
         DoFire::MK_REPORT($data,Auth::id(),null,$request->ipinfo);
+        $countries = County::all();
 
-        return view($this->view.'.create');
+        return view($this->view.'.create',compact('countries'));
         
     }
 
@@ -116,9 +117,11 @@ class UsersController extends Controller
         $agent = $agent->platform().','.$agent->browser().$agent->version($agent->browser());
         $data = ['key'=>'dashboard_browse_edit_user','text'=>'Brwose edit  User','browser'=>$agent];
         $info = User::find($id);
+        $countries = County::all();
+
         DoFire::MK_REPORT($data,Auth::id(),$info,$request->ipinfo);
 
-        return view($this->view.'.edit',compact('info'));
+        return view($this->view.'.edit',compact('info','countries'));
         
     }
 

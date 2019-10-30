@@ -35,6 +35,7 @@ class AdsController extends Controller
 
 	public function create()
 	{
+
 		return view($this->view.'create');
 
 	}
@@ -100,6 +101,8 @@ class AdsController extends Controller
 		if ($ad == null) {
 			return abort(404);
 		}
+
+
 		return view($this->view.'show',compact('ad'));
 	}
 
@@ -116,8 +119,16 @@ class AdsController extends Controller
 
 	public function update($id,AdsRequest $request)
 	{
+
+		if ($reqest->has('sub_categoris')) {
+			$category_id = $request->sub_categoris;
+		}else{
+			$category_id = $request->category_id;
+		}
+
+
 		$update  = $this->ads->find($id)->update([
-						'category_id'=>$request->category_id,
+						'category_id'=>$category_id,
 						'user_id'=>Auth::id(),
 						'price'=>$request->price,
 						'url'=>$request->url,

@@ -29,7 +29,7 @@
          <div class="alert alert-danger alert-dismissible" id="sub_categoris_unknown">
             <a href="#" class="close" data-dismiss="alert" aria-label="close" style="right: 5px;">&times;</a><?php echo app('translator')->getFromJson('home.empty_sub_categories'); ?>
         </div>
-        <select name="category_id" id="sub_categoris" class="form-control" >
+        <select name="sub_categoris" id="sub_categoris" class="form-control" >
             <option value=""><?php echo app('translator')->getFromJson('home.select_one'); ?></option>
             <?php if(isset($info)): ?>
             <?php echo $__env->make('dashboard.ads.select_sub_categories_loop_for_update', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>

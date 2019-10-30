@@ -25,8 +25,7 @@
 	Route::group(['middleware' => 'auth'], function () {
 
 		Route::group(['prefix' => '/admin'], function () {
-			// $set_local_ar =  LaravelLocalization::setLocale('ar') ;
-
+		
 			Route::get('setting','Admin\SettingController@create');
 			Route::post('setting','Admin\SettingController@store');
 
@@ -48,6 +47,10 @@
 			Route::resource('categories','Admin\CategoriesController');
 			Route::get('categories/{id}/delete','Admin\CategoriesController@destroy');
 			Route::get('categories_export','Admin\CategoriesController@ExportExelSheet');
+
+			Route::resource('testmonials','Admin\TestmonialsController');
+			Route::get('testmonials/{id}/delete','Admin\TestmonialsController@destroy');
+			Route::get('testmonials_export','Admin\TestmonialsController@ExportExelSheet');
 
 			Route::resource('pages','Admin\PagesController');
 			Route::get('pages/{id}/delete','Admin\PagesController@destroy');
