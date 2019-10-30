@@ -61,12 +61,7 @@
                     <div class="col-lg-3 valign">
                         <div class="feat">
                             <ul>
-                             <!--    <li><a href="#0"><span class="icon flaticon-home-2"></span> شقق </a></li>
-                                <li><a href="#0"><span class="icon flaticon-hotel-2"></span> فنادق </a></li>
-                                <li><a href="#0"><span class="icon flaticon-sunbed"></span> شاليهات </a></li>
-                                <li><a href="#0"><span class="icon flaticon-home"></span> فيلات </a></li>
-                                <li><a href="#0"><span class="icon flaticon-hotel-1"></span> إداري </a></li>
- -->
+                        
                                 <li><span class="icon flaticon-home-2"></span> شقق </li>
                                 <li><span class="icon flaticon-hotel-2"></span> فنادق </li>
                                 <li><span class="icon flaticon-sunbed"></span> شاليهات </li>
@@ -111,35 +106,18 @@
         <section class="numbers section-padding">
             <div class="container">
                 <div class="row">
-                    @foreach($categories as $category)
+                    @foreach($categories_has_ads as $category)
                     <div class="col-lg-3 col-md-6">
                         <div class="item">
                             <h2>
                                 <!-- <span class="icon hot-color flaticon-home-2"></span> -->
                                 <img src="{{URL::to('/').@$category->icon}}">
-                             3200 </h2>
+                             {{ @$category->ads->count() }} </h2>
                             <p>{{@$category->category_translation->name}}</p>
                         </div>
                     </div>
                     @endforeach
-                   <!--  <div class="col-lg-3 col-md-6">
-                        <div class="item">
-                            <h2><span class="icon third-color flaticon-sunbed"></span> 5738 </h2>
-                            <p>أماكن مذهلة للزيارة</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="item">
-                            <h2><span class="icon sub-color flaticon-slumber"></span> 4509 </h2>
-                            <p>أماكن مذهلة للزيارة</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="item">
-                            <h2><span class="icon main-color flaticon-hotel-1"></span> 3250 </h2>
-                            <p>أماكن مذهلة للزيارة</p>
-                        </div>
-                    </div> -->
+
                 </div>
             </div>
         </section>
@@ -169,7 +147,7 @@
         ======================================= -->
 
 
-        @include('front.testmonials.show')
+        @include('front.testmonials.for_base_pages')
 
     </main>
 

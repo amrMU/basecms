@@ -79,7 +79,6 @@
 
 	//site routes 
 	Route::group(['middleware' => 'auth'], function () {
-		Route::get('aboutus','Front\AboutUsController@show');
 		Route::get('i/advertising/create','Front\AdsController@create');
 		Route::post('i/advertising','Front\AdsController@store');
 		Route::put('i/advertising/{id}','Auth\AdsController@update');
@@ -96,6 +95,8 @@
 
 	});
 	Route::get('categories/{id}/{name}','Front\CategoriesController@show');
+	Route::get('aboutus','Front\AboutUsController@show');
+	Route::get('pages/{id}/{title}','Front\PagesController@getPage');	
 	Route::get('/ads/{id}/{name}','Front\AdsController@show');
 	Route::get('/','Front\HomeController@index');
 

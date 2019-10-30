@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use App\Setting,App\City,App\Aboutus,App\TestMonials;
 use App\Category,App\Languages,App\SettingLangs;
+use App\Pages;
 use App;
 use Config;
 
@@ -37,6 +38,16 @@ class AppServiceProvider extends ServiceProvider
                 $cities = City::all();
                 view()->share('cities', $cities);
             }
+
+            if(\Schema::hasTable('pages')){
+                $pages = Pages::where('status','show')->get();
+                view()->share('pages', $pages);
+            }
+
+            if(\Schema::hasTable('test_monials')){
+                $testmonials = TestMonials::all();
+                view()->share('testmonials', $testmonials);
+            }
             
             if (\Schema::hasTable('aboutus')) {
                 $info = Aboutus::first();
@@ -45,7 +56,6 @@ class AppServiceProvider extends ServiceProvider
             if (\Schema::hasTable('categories')) {
                 $categories = Category::where('parent_id',NULL)->take(4)->get();
                 $categories_has_ads = Category::whereHas('ads')->with('ads','ads.images')->get();
-                // dd($categories_has_ads);
                 view()->share('categories', $categories);
                 view()->share('categories_has_ads', $categories_has_ads);
             }

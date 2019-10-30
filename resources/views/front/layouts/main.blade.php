@@ -99,6 +99,15 @@
 
                             </li>
                             @endif
+                            <li class="nvmenu">
+                                <a href="">الصفحات<span class="ti-angle-down"></span></a>
+                                <ul class="menu">
+                                   <li><a href="{{ URL::to('/aboutus') }}">من نحن</a></li>
+                                   @foreach($pages as $page)
+                                    <li><a href="{{ URL::to('/pages').'/'.@$page->id.'/'.@$page->url }}">{{ @$page->translation->title }}</a></li>
+                                    @endforeach
+                                </ul>
+                            </li>
 
                             <div class="clear-fix"></div>
                         </ul>
