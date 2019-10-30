@@ -455,6 +455,19 @@
                                         <li><a href="<?php echo e(URL::to(LaravelLocalization::getCurrentLocale().'/admin/testmonials')); ?>" class=""><?php echo app('translator')->getFromJson('home.testmonials_list'); ?></a></li>
                                         <li><a href="<?php echo e(URL::to(LaravelLocalization::getCurrentLocale().'/admin/testmonials/create')); ?>" class=""><?php echo app('translator')->getFromJson('home.create_testmonials'); ?></a></li>
                                     </ul>
+                            </li>  
+                            <li class="">
+                                    <a href="#" class="has-ul ">
+                                        <i class="icon-bell3 position-left"></i>
+                                    
+                                    <span><?php echo app('translator')->getFromJson('home.contactus'); ?> <?php if($contact->count() > 0 ): ?><small class="badge badge-primary"><?php echo e(@$contact->count()); ?></small><?php endif; ?></span>
+                                    <span class="" style="left: 39.2308%; top: 63.6364%; transform: translate3d(-50%, -50%, 0px); transition-duration: 0.2s, 0.5s; width: 202.844%;">
+                                    </span>
+                                </a>
+                                    <ul class="hidden-ul" style="display: none;">
+                              
+                                        <li><a href="<?php echo e(URL::to(LaravelLocalization::getCurrentLocale().'/admin/contactus')); ?>" class=""><?php echo app('translator')->getFromJson('home.contactus_list'); ?></a></li>
+                                    </ul>
                             </li>                        
                             
                         </ul>

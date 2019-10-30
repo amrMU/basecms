@@ -168,7 +168,11 @@
 		'testmonials'=>'testimonials'
 		'testmonials_list'=>'Testmonials List',
 		'create_testmonials'=>'create testimonials',
-		'category'=>'Category'
+		'category'=>'Category',
+		'contactus'=>'Contact Us',
+		'contactus_list'=>'contactus List Request',
+		'more'=>'More',
+		'list_contactus_full_info'=>'List Info Contactus'
 
 
 

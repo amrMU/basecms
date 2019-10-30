@@ -6,7 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use App\Setting,App\City,App\Aboutus,App\TestMonials;
 use App\Category,App\Languages,App\SettingLangs;
-use App\Pages;
+use App\Pages,App\ContctUs;
 use App;
 use Config;
 
@@ -53,6 +53,12 @@ class AppServiceProvider extends ServiceProvider
                 $info = Aboutus::first();
                 view()->share('info', $info);
             }
+
+            if (\Schema::hasTable('contctus')) {
+                $contact = ContctUs::where('read','0')->get();
+                view()->share('contact', $contact);
+            }
+
             if (\Schema::hasTable('categories')) {
                 $categories = Category::where('parent_id',NULL)->take(4)->get();
                 $categories_has_ads = Category::whereHas('ads')->with('ads','ads.images')->get();

@@ -169,7 +169,11 @@
 		'testmonials'=>'أراء العملاء',
 		'testmonials_list'=>'قائة أراء العملاء',
 		'create_testmonials'=>'اضافة توصيه',
-		'category'=>'القسم'
+		'category'=>'القسم',
+		'contactus'=>'اتصل بنا',
+		'contactus_list'=>'قائمة طلبات التواصل',
+		'more'=>'المزيد',
+		'list_contactus_full_info'=>'قائمة المعلومات اتصل بنا'
 
 
 

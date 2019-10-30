@@ -67,6 +67,8 @@
 			Route::get('blogs_search','Admin\BlogsController@search');			
 			Route::get('blogs_export','Admin\BlogsController@ExportExelSheet');
 
+			Route::get('contactus','Admin\ContactUsController@list');
+
 
 			Route::get('sitemap/create','Admin\SitemapGeneratorController@create');
 			Route::post('sitemap','Admin\SitemapGeneratorController@store');
