@@ -41,55 +41,7 @@
                         <a href=""><?php echo e(@$category->category_translation->name); ?></a>
                         </h5>
                     </div>
-                    <div class="col-lg-10 offset-lg-1">
-                        <div class="find-home">
-                            <div class="row">
-                                <div class="col-md-10">
-                                    <form method="GET" action="<?php echo e(URL::to('/search')); ?>">
-                                        <?php echo csrf_field(); ?>
-                                    <div class="row">
-                                    
-                                        <div class="col-md-5 col-sm-6 custom-padding">
-                                            <div class="item">
-                                                <div class="">
-                                                    <select class="form-control" name="type_ad">
-                                                        <option value="">الغرض</option>
-
-                                                        <option value="own"><?php echo app('translator')->getFromJson('home.own'); ?></option>
-                                                        <option value="rent"><?php echo app('translator')->getFromJson('home.rent'); ?></option>
-                                                        <option value="purchase"><?php echo app('translator')->getFromJson('home.purchase'); ?></option>
-                                                        <option value="other"><?php echo app('translator')->getFromJson('home.other'); ?></option>
-
-                                                         
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5 col-sm-6 custom-padding">
-                                            <div class="item">
-                                                <div class="">
-                                                    <select class="form-control" name="category_id">
-
-                                                        
-                                                        <?php $__currentLoopData = $category->sub_categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sub): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <option value="<?php echo e(@$sub->id); ?>"><?php echo e(@$sub->translations->first()->name); ?></option>
-
-                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 custom-padding">
-                                    <div class="find">
-                                        <button>ابحث</button>
-                                    </div>
-                                </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
 
@@ -113,8 +65,8 @@
                         </div>
 
                         <div class="row">
-                            <?php if($category->ads->count() > 0 ): ?>
-                            <?php $__currentLoopData = $category->ads; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ad): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php if($ads->count() > 0 ): ?>
+                            <?php $__currentLoopData = $ads; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ad): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="col-lg-3 col-md-6">
                                 <div class="item">
                                     <div class="img">

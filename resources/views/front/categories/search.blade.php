@@ -42,69 +42,7 @@
                         <a href="">{{ @$category->category_translation->name }}</a>
                         </h5>
                     </div>
-                    <div class="col-lg-10 offset-lg-1">
-                        <div class="find-home">
-                            <div class="row">
-                                <div class="col-md-10">
-                                    <form method="GET" action="{{ URL::to('/search') }}">
-                                        @csrf
-                                    <div class="row">
-                                    {{--     <div class="col-md-4 custom-padding">
-                                            <div class="item">
-                                                <div class="">
-                                                    <select>
-                                                        <option value="0">المدينة</option>
-                                                        <option value="1">الفجيرة</option>
-                                                        <option value="2">أبو ظبي</option>
-                                                        <option value="3">شرم أبحر</option>
-                                                        <option value="4">دومة الجندل</option>
-                                                        <option value="5">وادي الطوقي</option>
-                                                        <option value="6">دبي</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div> --}}
-                                        <div class="col-md-5 col-sm-6 custom-padding">
-                                            <div class="item">
-                                                <div class="">
-                                                    <select class="form-control" name="type_ad">
-                                                        <option value="">الغرض</option>
-
-                                                        <option value="own">@lang('home.own')</option>
-                                                        <option value="rent">@lang('home.rent')</option>
-                                                        <option value="purchase">@lang('home.purchase')</option>
-                                                        <option value="other">@lang('home.other')</option>
-
-                                                         
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5 col-sm-6 custom-padding">
-                                            <div class="item">
-                                                <div class="">
-                                                    <select class="form-control" name="category_id">
-
-                                                        {{-- <option value=""></option> --}}
-                                                        @foreach($category->sub_categories as $sub)
-                                                        <option value="{{ @$sub->id }}">{{ @$sub->translations->first()->name }}</option>
-
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 custom-padding">
-                                    <div class="find">
-                                        <button>ابحث</button>
-                                    </div>
-                                </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
 
@@ -128,8 +66,8 @@
                         </div>
 
                         <div class="row">
-                            @if($category->ads->count() > 0 )
-                            @foreach($category->ads as $ad)
+                            @if($ads->count() > 0 )
+                            @foreach($ads as $ad)
                             <div class="col-lg-3 col-md-6">
                                 <div class="item">
                                     <div class="img">

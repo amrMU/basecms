@@ -104,6 +104,7 @@
 	Route::post('contactus','Front\ContctUsController@posttSendAsk');
 	Route::get('/ads/{id}/{name}','Front\AdsController@show');
 	Route::get('/','Front\HomeController@index');
+	Route::get('/search','Front\SearchController@search');
 
 
 
