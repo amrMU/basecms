@@ -176,8 +176,13 @@
                                                 <div class="cont">
                                                     <a href="{{ URL::to('/').'/ads/'.$fav->ad_id.'/'.@str_replace(' ', '_', $fav->ad->translations->first()->title) }}" class="det" title="{{ @$fav->ad->translations->first()->title }}">
                                                         {{ @substr($fav->ad->translations->first()->title,0,33).'...' }}
-                                                    </a>
-                                                    <small class="del fav"  data-ad-id="{{ @$fav->ad_id }}" data-user-id="{{ @Auth::id() }}"  >حذف</small>
+                                                    </a>{{-- 
+                                                    <small class="del fav"  data-ad-id="{{ @$fav->ad_id }}" data-user-id="{{ @Auth::id() }}"  >حذف</small> --}}
+                                                    <a href="{{ URL::to('/') }}/i/fav/{{ @$fav->ad_id.'/'.@Auth::id() }}"  class="icon ">
+                                                     
+                                                       <i id="disLike" class="fas fa-heart"></i>
+
+                                                   </a>
                                                 </div>
                                             </div>
                                         </div>

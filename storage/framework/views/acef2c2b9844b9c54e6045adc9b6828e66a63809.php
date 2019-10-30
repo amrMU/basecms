@@ -177,7 +177,11 @@
                                                         <?php echo e(@substr($fav->ad->translations->first()->title,0,33).'...'); ?>
 
                                                     </a>
-                                                    <small class="del fav"  data-ad-id="<?php echo e(@$fav->ad_id); ?>" data-user-id="<?php echo e(@Auth::id()); ?>"  >حذف</small>
+                                                    <a href="<?php echo e(URL::to('/')); ?>/i/fav/<?php echo e(@$fav->ad_id.'/'.@Auth::id()); ?>"  class="icon ">
+                                                     
+                                                       <i id="disLike" class="fas fa-heart"></i>
+
+                                                   </a>
                                                 </div>
                                             </div>
                                         </div>

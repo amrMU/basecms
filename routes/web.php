@@ -92,7 +92,8 @@
 		Route::get('i/ads/{id}/delete','Front\AdsController@destroy');
 		Route::get('i/ads/{id}/edit','Front\AdsController@edit');
 		Route::get('i/ads/{id}/image/delete','Front\AdsController@DestroyImage');
-
+		
+		Route::get('i/fav/{ad_id}/{user_id}','Api\FavAdsController@fav');
 		route::post('/do/rate/{ad_id}','Front\RateController@doRate');
 
 	});

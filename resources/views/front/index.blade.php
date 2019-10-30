@@ -78,18 +78,27 @@
                                 @include('front.tag')
                                 <div class="icons">
                                      {{-- <a href="#0" class="icon"><span class="ti-gallery"></span></a> --}}
-                                    @if(Auth::check())
-                                    <small  data-ad-id="{{ @$ad->id }}" data-user-id="{{ @Auth::id() }}" class="icon fav">
-                                        @if($ad->user_fav !== null)
-                                        {{-- <span id="like" class="ti-heart"></span> --}}
-                                        <i id="disLike" class="fas fa-heart"></i>
+                                     @if(Auth::check())
+                                        {{-- <small  data-ad-id="{{ @$ad->id }}" data-user-id="{{ @Auth::id() }}" class="icon fav">
+                                            @if($ad->user_fav !== null)
+                                            <i id="disLike" class="fas fa-heart"></i>
+                                            @else
+                                            <i id="like"    class="far fa-heart"></i>
+                                            @endif
+                                        </small> --}}
+                                        <a href="{{ URL::to('/') }}/i/fav/{{ @$ad->id.'/'.@Auth::id() }}"  class="icon ">
+                                             @if($ad->user_fav !== null)
+                                            {{-- <span id="like" class="ti-heart"></span> --}}
+                                            <i id="disLike" class="fas fa-heart"></i>
+                                            @else
+                                            <i id="like"    class="far fa-heart"></i>
+                                            @endif
+
+                                        </a>
                                         @else
-                                        <i id="like"    class="far fa-heart"></i>
+                                        <a href="{{ URL::to('/login') }}"  class="icon "><span class="ti-heart"></span></a>
+
                                         @endif
-                                    </small>
-                                    @else
-                                    <a href="{{ URL::to('/login') }}"  class="icon "><span class="ti-heart"></span></a>
-                                    @endif
                                 </div>
                             </div>
                             <div class="cont">

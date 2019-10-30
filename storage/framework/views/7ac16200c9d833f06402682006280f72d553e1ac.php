@@ -77,18 +77,21 @@
                                 <?php echo $__env->make('front.tag', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                                 <div class="icons">
                                      
-                                    <?php if(Auth::check()): ?>
-                                    <small  data-ad-id="<?php echo e(@$ad->id); ?>" data-user-id="<?php echo e(@Auth::id()); ?>" class="icon fav">
-                                        <?php if($ad->user_fav !== null): ?>
+                                     <?php if(Auth::check()): ?>
                                         
-                                        <i id="disLike" class="fas fa-heart"></i>
+                                        <a href="<?php echo e(URL::to('/')); ?>/i/fav/<?php echo e(@$ad->id.'/'.@Auth::id()); ?>"  class="icon ">
+                                             <?php if($ad->user_fav !== null): ?>
+                                            
+                                            <i id="disLike" class="fas fa-heart"></i>
+                                            <?php else: ?>
+                                            <i id="like"    class="far fa-heart"></i>
+                                            <?php endif; ?>
+
+                                        </a>
                                         <?php else: ?>
-                                        <i id="like"    class="far fa-heart"></i>
+                                        <a href="<?php echo e(URL::to('/login')); ?>"  class="icon "><span class="ti-heart"></span></a>
+
                                         <?php endif; ?>
-                                    </small>
-                                    <?php else: ?>
-                                    <a href="<?php echo e(URL::to('/login')); ?>"  class="icon "><span class="ti-heart"></span></a>
-                                    <?php endif; ?>
                                 </div>
                             </div>
                             <div class="cont">

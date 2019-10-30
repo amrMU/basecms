@@ -128,15 +128,22 @@
                                         <div class="icons">
                                             {{-- <a href="#0" class="icon"><span class="ti-gallery"></span></a> --}}
                                             @if(Auth::check())
-                                            <small  data-ad-id="{{ @$ad->id }}" data-user-id="{{ @Auth::id() }}" class="icon fav">
+                                            {{-- <small  data-ad-id="{{ @$ad->id }}" data-user-id="{{ @Auth::id() }}" class="icon fav">
                                                 @if($ad->user_fav !== null)
+                                                <i id="disLike" class="fas fa-heart"></i>
+                                                @else
+                                                <i id="like"    class="far fa-heart"></i>
+                                                @endif
+                                            </small> --}}
+                                            <a href="{{ URL::to('/') }}/i/fav/{{ @$ad->id.'/'.@Auth::id() }}"  class="icon ">
+                                                 @if($ad->user_fav !== null)
                                                 {{-- <span id="like" class="ti-heart"></span> --}}
                                                 <i id="disLike" class="fas fa-heart"></i>
                                                 @else
                                                 <i id="like"    class="far fa-heart"></i>
                                                 @endif
 
-                                            </small>
+                                            </a>
                                             @else
                                             <a href="{{ URL::to('/login') }}"  class="icon "><span class="ti-heart"></span></a>
 
@@ -194,69 +201,9 @@
         <!-- End Featured  ====
             ======================================= -->
 
-
-
         <!-- =====================================
             ==== Start testim -->
         @include('front.testmonials.show')
-      {{--   <section class="testim section-padding bg-img" data-background="images/bg-dots.png">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 head">
-                        <h5>اراء العملاء</h5>
-                    </div>
-
-                    <div class="col-lg-12">
-                        <div class="clients-slider wow fadeInUp">
-                            <div class="item">
-                                <div class="info">
-                                    <div class="img">
-                                        <img src="images/clients/1.png" alt="">
-                                    </div>
-                                    <h6>احمد ابراهيم</h6>
-                                </div>
-                                <div class="text">عند موافقه العميل المبدئيه على التصميم يتم ازالة هذا النص من التصميم
-                                    ويتم وضع النصوص
-                                    النهائية المطلوبة للتصميم ويقول البعض ان وضع النصوص التجريبية.</div>
-                            </div>
-                            <div class="item">
-                                <div class="info">
-                                    <div class="img">
-                                        <img src="images/clients/2.png" alt="">
-                                    </div>
-                                    <h6>احمد ابراهيم</h6>
-                                </div>
-                                <div class="text">عند موافقه العميل المبدئيه على التصميم يتم ازالة هذا النص من التصميم
-                                    ويتم وضع النصوص
-                                    النهائية المطلوبة للتصميم ويقول البعض ان وضع النصوص التجريبية.</div>
-                            </div>
-                            <div class="item">
-                                <div class="info">
-                                    <div class="img">
-                                        <img src="images/clients/2.png" alt="">
-                                    </div>
-                                    <h6>احمد ابراهيم</h6>
-                                </div>
-                                <div class="text">عند موافقه العميل المبدئيه على التصميم يتم ازالة هذا النص من التصميم
-                                    ويتم وضع النصوص
-                                    النهائية المطلوبة للتصميم ويقول البعض ان وضع النصوص التجريبية.</div>
-                            </div>
-                            <div class="item">
-                                <div class="info">
-                                    <div class="img">
-                                        <img src="images/clients/2.png" alt="">
-                                    </div>
-                                    <h6>احمد ابراهيم</h6>
-                                </div>
-                                <div class="text">عند موافقه العميل المبدئيه على التصميم يتم ازالة هذا النص من التصميم
-                                    ويتم وضع النصوص
-                                    النهائية المطلوبة للتصميم ويقول البعض ان وضع النصوص التجريبية.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section> --}}
 
         <!-- End testim =========================================== -->
     </main>

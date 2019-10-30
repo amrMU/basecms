@@ -32,7 +32,8 @@ class FavAdsController extends Controller
 		}
 		$code = 200;
         $response = ["status" => $code,'message'=>$msg,'data'=>$find_fav];
-        return Response::json($response,$code);
+        // return Response::json($response,$code);
+        return redirect()->back();
 	}
 
 	
