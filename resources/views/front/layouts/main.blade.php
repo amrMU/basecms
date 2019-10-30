@@ -106,6 +106,7 @@
                                    @foreach($pages as $page)
                                     <li><a href="{{ URL::to('/pages').'/'.@$page->id.'/'.@$page->url }}">{{ @$page->translation->title }}</a></li>
                                     @endforeach
+                                   <li><a href="{{ URL::to('/contactus') }}">اتصل بنا</a></li>
                                 </ul>
                             </li>
 

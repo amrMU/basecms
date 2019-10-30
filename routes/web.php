@@ -97,6 +97,8 @@
 	Route::get('categories/{id}/{name}','Front\CategoriesController@show');
 	Route::get('aboutus','Front\AboutUsController@show');
 	Route::get('pages/{id}/{title}','Front\PagesController@getPage');	
+	Route::get('contactus','Front\ContctUsController@getSendAsk');
+	Route::post('contactus','Front\ContctUsController@posttSendAsk');
 	Route::get('/ads/{id}/{name}','Front\AdsController@show');
 	Route::get('/','Front\HomeController@index');
 

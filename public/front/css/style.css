@@ -1833,22 +1833,23 @@ a:focus, a:hover {
   background: #fff;
   -webkit-box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
           box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
+          margin-bottom: 30px;
 }
 .contact .contact-info .item .icon {
   font-size: 30px;
   color: #3574BB;
   float: right;
-  padding-left: 20px;
+  padding-left: 15px;
   border-left: 1px solid #eee;
   opacity: .8;
 }
 .contact .contact-info .item .cont {
-  margin-right: 70px;
+  margin-right: 60px;
 }
 .contact .contact-info .item .cont h6 {
   color: #646d8d;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 13px;
 }
 .contact .contact-form {
   text-align: center;

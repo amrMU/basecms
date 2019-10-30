@@ -106,6 +106,7 @@
                                    <?php $__currentLoopData = $pages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $page): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <li><a href="<?php echo e(URL::to('/pages').'/'.@$page->id.'/'.@$page->url); ?>"><?php echo e(@$page->translation->title); ?></a></li>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                   <li><a href="<?php echo e(URL::to('/contactus')); ?>">اتصل بنا</a></li>
                                 </ul>
                             </li>
 
