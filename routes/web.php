@@ -92,6 +92,7 @@
 		Route::get('i/ads/{id}/edit','Front\AdsController@edit');
 		Route::get('i/ads/{id}/image/delete','Front\AdsController@DestroyImage');
 
+		route::post('/do/rate/{ad_id}','Front\RateController@doRate');
 
 	});
 	Route::get('categories/{id}/{name}','Front\CategoriesController@show');

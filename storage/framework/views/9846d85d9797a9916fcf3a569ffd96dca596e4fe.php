@@ -116,13 +116,29 @@
                                 </div>
                             </div>
 
-                            <div class="row">
+                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="rate">
+                                   <div class="rate">
                                         <div class="title">
                                             <h5>اضافه تقييم</h5>
                                         </div>
-                                        <form action="">
+                                        <form action="<?php echo e(URL::to('/do/rate').'/'.@$ad->id); ?>" method="post"  class="rate-form">
+                                            <?php echo csrf_field(); ?>
+                                            <?php if($errors->any()): ?>
+                                            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <div class="alert alert-danger alert-dismissible">
+                                                <?php echo e($error); ?>
+
+                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                            </div>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            <?php endif; ?>
+                                            <?php if(Session::has('success')): ?>
+                                            <div class="alert alert-success alert-dismissible">
+                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><?php echo e(Session::get('success')); ?>
+
+                                            </div>
+                                            <?php endif; ?>
                                             <div class="add-rate">
                                                 <h6>التقييم :
                                                     <span>
@@ -159,7 +175,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -171,120 +186,7 @@
 
 
 
-        <!-- =====================================
-        ==== Start testim -->
-
-        <section class="testim section-padding bg-img" data-background="images/bg-dots.png">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 head">
-                        <h5>اهم التقيمات</h5>
-                    </div>
-
-                    <div class="col-lg-12">
-                        <div class="clients-slider wow fadeInUp">
-                            <div class="item">
-                                <div class="info">
-                                    <div class="img">
-                                        <img src="images/clients/1.png" alt="">
-                                    </div>
-                                    <h6>احمد ابراهيم</h6>
-                                </div>
-                                <div class="text">
-                                    <div class="rate">
-                                        <span>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </span>
-                                    </div>
-                                    <div class="text">عند موافقه العميل المبدئيه على التصميم يتم ازالة هذا النص من
-                                        التصميم
-                                        ويتم وضع النصوص
-                                        النهائية المطلوبة للتصميم ويقول البعض ان وضع النصوص التجريبية.</div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="info">
-                                    <div class="img">
-                                        <img src="images/clients/2.png" alt="">
-                                    </div>
-                                    <h6>احمد ابراهيم</h6>
-                                </div>
-                                <div class="text">
-                                    <div class="rate">
-                                        <span>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="far fa-star"></i>
-                                        </span>
-                                    </div>
-                                    <div class="text">عند موافقه العميل المبدئيه على التصميم يتم ازالة هذا النص من
-                                        التصميم
-                                        ويتم وضع النصوص
-                                        النهائية المطلوبة للتصميم ويقول البعض ان وضع النصوص التجريبية.</div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="info">
-                                    <div class="img">
-                                        <img src="images/clients/2.png" alt="">
-                                    </div>
-                                    <h6>احمد ابراهيم</h6>
-                                </div>
-                                <div class="text">
-                                    <div class="rate">
-                                        <span>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </span>
-                                    </div>
-                                    <div class="text">عند موافقه العميل المبدئيه على التصميم يتم ازالة هذا النص من
-                                        التصميم
-                                        ويتم وضع النصوص
-                                        النهائية المطلوبة للتصميم ويقول البعض ان وضع النصوص التجريبية.</div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="info">
-                                    <div class="img">
-                                        <img src="images/clients/2.png" alt="">
-                                    </div>
-                                    <h6>احمد ابراهيم</h6>
-                                </div>
-                                <div class="text">
-                                    <div class="rate">
-                                        <span>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </span>
-                                    </div>
-                                    <div class="text">عند موافقه العميل المبدئيه على التصميم يتم ازالة هذا النص من
-                                        التصميم
-                                        ويتم وضع النصوص
-                                        النهائية المطلوبة للتصميم ويقول البعض ان وضع النصوص التجريبية.</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- End testim ====
-            ======================================= -->
-
-
+        <?php echo $__env->make('front.ads.rates', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
     </main>
 

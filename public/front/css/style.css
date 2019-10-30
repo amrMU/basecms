@@ -1079,12 +1079,12 @@ a:focus, a:hover {
 /* ----------------------------------------------------------------
      [  Start about ]
 -----------------------------------------------------------------*/
-.about .intro h6 {
+.about .intro h6, .page .intro h6 {
   margin-bottom: 30px;
   padding-bottom: 20px;
   position: relative;
 }
-.about .intro h6:after {
+.about .intro h6:after, .page .intro h6:after{
   content: '';
   width: 40px;
   height: 2px;
@@ -1796,7 +1796,7 @@ a:focus, a:hover {
   color: #ffbf34;
   margin-bottom: 0;
 }
-.details .rate form input, .details .rate form textarea {
+.details .rate .rate-form input:not([type="radio"]), .details .rate .rate-form textarea {
   padding: 15px;
   width: 100%;
   background: transparent;

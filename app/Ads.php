@@ -25,6 +25,11 @@ class Ads extends Model
         'type_ad'
     ];
 
+    public function rates()
+    {
+        return $this->hasMany('App\Rate','ad_id','id');
+    }
+
     public function translations()
     {
         return $this->hasMany('App\AdsTranslations','ad_id','id');
