@@ -76,6 +76,21 @@
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </div>
                                 <div class="title">
+                                     <?php if($errors->any()): ?>
+                                            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <div class="alert alert-danger alert-dismissible">
+                                                <?php echo e($error); ?>
+
+                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                            </div>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            <?php endif; ?>
+                                            <?php if(Session::has('success')): ?>
+                                            <div class="alert alert-success alert-dismissible">
+                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><?php echo e(Session::get('success')); ?>
+
+                                            </div>
+                                            <?php endif; ?>
                                     <span class="share">
                                         <small>مشاركه : </small>
                                    
@@ -86,10 +101,34 @@
                                         <a href="https://twitter.com/intent/tweet?text=hi&amp;url=<?php echo e(URL::to('/').'/ads/'.$ad->id.'/'.@str_replace(' ', '_', $ad->translations->first()->title)); ?>" class="icon">
                                             <i class="fab fa-twitter"></i>
                                         </a>
-                                        <a href="#0" class="icon">
-                                            <i class="fab fa-instagram"></i>
-                                        </a>
-                                        <small><a href="#">ابلاغ عن الاعلان</a></small>
+                                      
+                                        <small><a href="#report" data-toggle="modal">ابلاغ عن الاعلان</a></small>
+                                        <!-- Trigger the modal with a button -->
+                                       
+                                        <!-- Modal -->
+                                        <div id="report" class="modal fade" role="dialog">
+                                          <div class="modal-dialog">
+
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h5 class="modal-title">هنا يمكنك الإبلاغ عن الإعلان مع ارفاق سبب الإبلاغ</h5>
+                                              </div>
+                                            <form action="<?php echo e(URL::to('ad/block'.'/'.@$ad->id)); ?>" method="post">
+                                            <?php echo csrf_field(); ?>
+                                              <div class="modal-body">
+                                                    <textarea name="message" class="form-control" cols="8" rows="8"><?php echo e(Request::old('message')); ?></textarea>
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary" >ارسال</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">اغلاق</button>
+                                              </div>
+                                            </form>
+                                            </div>
+
+                                          </div>
+                                        </div>
                                     </span>
                                     <!-- <p>مارينا 5, مارينا, العلمين, الساحل الشمالي</p> -->
                                 </div>
@@ -153,21 +192,7 @@
                                         </div>
                                         <form action="<?php echo e(URL::to('/do/rate').'/'.@$ad->id); ?>" method="post"  class="rate-form">
                                             <?php echo csrf_field(); ?>
-                                            <?php if($errors->any()): ?>
-                                            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <div class="alert alert-danger alert-dismissible">
-                                                <?php echo e($error); ?>
-
-                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                            </div>
-                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                            <?php endif; ?>
-                                            <?php if(Session::has('success')): ?>
-                                            <div class="alert alert-success alert-dismissible">
-                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><?php echo e(Session::get('success')); ?>
-
-                                            </div>
-                                            <?php endif; ?>
+                                           
                                             <div class="add-rate">
                                                 <h6>التقييم :
                                                     <span>

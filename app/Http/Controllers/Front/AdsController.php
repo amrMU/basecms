@@ -45,7 +45,7 @@ class AdsController extends Controller
 	public function store(AdsRequest $request)
 	{
 
-		if ($request->has('sub_categoris')) {
+		if ($request->sub_categoris != null) {
 			$category_id = $request->sub_categoris;
 		}else{
 			$category_id = $request->category_id;
@@ -58,7 +58,7 @@ class AdsController extends Controller
 						'url'=>' ',
 						'map'=>$request->map,
 						'meta_tags'=>$request->meta_tags,
-						// 'status'=>$request->status,
+						'status'=>'show',
 						'space'=>$request->space,
 						'bed_ro=>$request->bed_room'=>$request->om,
 						'bathroom'=>$request->bathroom,
@@ -125,7 +125,7 @@ class AdsController extends Controller
 	public function update($id,AdsRequest $request)
 	{
 
-		if ($request->has('sub_categoris')) {
+		if ($request->sub_categoris != null) {
 			$category_id = $request->sub_categoris;
 		}else{
 			$category_id = $request->category_id;
@@ -138,7 +138,6 @@ class AdsController extends Controller
 						'url'=>' ',
 						'map'=>$request->map,
 						'meta_tags'=>$request->meta_tags,
-						'status'=>$request->status,
 						'type_ad'=>$request->add_type,
 						'space'=>$request->space,
 						'bed_ro=>$request->bed_room'=>$request->om,

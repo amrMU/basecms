@@ -124,5 +124,19 @@ class TestmonialsController extends Controller
         return redirect()->back();
      } 
 
+    public function destroy($id,Request $request)
+    {
+
+       $agent = new Agent();
+       $agent = $agent->platform().','.$agent->browser().$agent->version($agent->browser());
+       $data = ['key'=>'dashboard_destroy_testmonial_id'.$id,'text'=>'Destroy testmonial Info','browser'=>$agent];
+       $info  = $this->testmonials->find($id);
+
+           DoFire::MK_REPORT($data,Auth::id(),$info,$request->ipinfo);
+           $this->testmonials->destroy($id);
+        Session::flash('success',trans('home.message_success'));
+        return redirect()->back();  
+    }
+
 
 }

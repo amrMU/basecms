@@ -23,10 +23,13 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
+        // dd($this->segment(4  ));
         return [
             'fname'=>'required',
             'lname'=>'required',
-            'email'=>'required|unique:users,id,'.@$this->segment(3),
+            // 'email'=>'required|unique:users,email,'.$this->segment(3),
+            'email' => 'unique:users,email,'.$this->segment(4).',id',
+
             'country_id'=>'required|numeric',
             'phone'=>'required|numeric',
             'avatar'=>'mimes:jpeg,jpg,png,gif',

@@ -11,10 +11,13 @@
             <option 
             value="{{@$category->id}}"
              @if(isset($info))
+             @if($info->category != null)
+
              @if($category->id == $info->category->parent_id)
               selected
               @elseif($category->id == $info->id)
               selected
+               @endif
                @endif
                @endif
                >

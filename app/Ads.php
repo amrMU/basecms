@@ -45,9 +45,14 @@ class Ads extends Model
         return $this->belongsTo('App\Category','category_id');
     }
 
-     public function user_fav()
+    public function user_fav()
     {
         return $this->belongsTo('App\Fav','id','ad_id')->where('user_id',Auth::id());
+    }
+
+    public function blocked()
+    {
+        return $this->hasMany('App\BlockAds','ad_id','id');
     }
 
 

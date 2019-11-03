@@ -134,7 +134,7 @@
                                         <div class="col-lg-9">
                                             <div class="input-group">
                                             @if(LaravelLocalization::getCurrentLocale() == 'en')
-                                            <input type="text" class="form-control" placeholder="@lang('home.password')" id="input_password">
+                                            <input type="text" class="form-control" name="password" placeholder="@lang('home.password')" id="input_password">
 											
                                             	<span class="input-group-btn">
 													<button class="btn btn-default legitRipple" type="button" id="generate_password">
@@ -151,7 +151,7 @@
                                                     <li class="glyphicon glyphicon-eye-open"></li>
                                                     </button>
 												</span>
-                                                <input type="text" class="form-control" placeholder="@lang('home.password')" id="input_password">
+                                                <input type="text" class="form-control" name="password"  placeholder="@lang('home.password')" id="input_password">
                                             
                                             @endif
                                             </div>

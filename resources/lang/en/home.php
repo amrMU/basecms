@@ -172,7 +172,9 @@
 		'contactus'=>'Contact Us',
 		'contactus_list'=>'contactus List Request',
 		'more'=>'More',
-		'list_contactus_full_info'=>'List Info Contactus'
+		'list_contactus_full_info'=>'List Info Contactus',
+		'ads_list_blocked'=>'List banned ads',
+		'banned_list_messages'=>'Request Banned List'
 
 
 

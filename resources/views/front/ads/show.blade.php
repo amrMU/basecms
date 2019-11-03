@@ -77,6 +77,19 @@
                                     @endforeach
                                 </div>
                                 <div class="title">
+                                     @if ($errors->any())
+                                            @foreach ($errors->all() as $error)
+                                            <div class="alert alert-danger alert-dismissible">
+                                                {{ $error }}
+                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                            </div>
+                                            @endforeach
+                                            @endif
+                                            @if(Session::has('success'))
+                                            <div class="alert alert-success alert-dismissible">
+                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>{{ Session::get('success') }}
+                                            </div>
+                                            @endif
                                     <span class="share">
                                         <small>مشاركه : </small>
                                    
@@ -90,7 +103,33 @@
                                       {{--   <a href="#0" class="icon">
                                             <i class="fab fa-instagram"></i>
                                         </a> --}}
-                                        <small><a href="#">ابلاغ عن الاعلان</a></small>
+                                        <small><a href="#report" data-toggle="modal">ابلاغ عن الاعلان</a></small>
+                                        <!-- Trigger the modal with a button -->
+                                       
+                                        <!-- Modal -->
+                                        <div id="report" class="modal fade" role="dialog">
+                                          <div class="modal-dialog">
+
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h5 class="modal-title">هنا يمكنك الإبلاغ عن الإعلان مع ارفاق سبب الإبلاغ</h5>
+                                              </div>
+                                            <form action="{{ URL::to('ad/block'.'/'.@$ad->id) }}" method="post">
+                                            @csrf
+                                              <div class="modal-body">
+                                                    <textarea name="message" class="form-control" cols="8" rows="8">{{ Request::old('message')}}</textarea>
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary" >ارسال</button>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">اغلاق</button>
+                                              </div>
+                                            </form>
+                                            </div>
+
+                                          </div>
+                                        </div>
                                     </span>
                                     <!-- <p>مارينا 5, مارينا, العلمين, الساحل الشمالي</p> -->
                                 </div>
@@ -154,19 +193,7 @@
                                         </div>
                                         <form action="{{ URL::to('/do/rate').'/'.@$ad->id }}" method="post"  class="rate-form">
                                             @csrf
-                                            @if ($errors->any())
-                                            @foreach ($errors->all() as $error)
-                                            <div class="alert alert-danger alert-dismissible">
-                                                {{ $error }}
-                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                            </div>
-                                            @endforeach
-                                            @endif
-                                            @if(Session::has('success'))
-                                            <div class="alert alert-success alert-dismissible">
-                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>{{ Session::get('success') }}
-                                            </div>
-                                            @endif
+                                           
                                             <div class="add-rate">
                                                 <h6>التقييم :
                                                     <span>

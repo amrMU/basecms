@@ -445,6 +445,7 @@
                                     <ul class="hidden-ul" style="display: none;">
                               
                                         <li><a href="<?php echo e(URL::to(LaravelLocalization::getCurrentLocale().'/admin/ads')); ?>" class=""><?php echo app('translator')->getFromJson('home.ads_list'); ?></a></li>
+                                        <li><a href="<?php echo e(URL::to(LaravelLocalization::getCurrentLocale().'/admin/banned_ads')); ?>" class=""><?php echo app('translator')->getFromJson('home.ads_list_blocked'); ?></a></li>
                                         <li><a href="<?php echo e(URL::to(LaravelLocalization::getCurrentLocale().'/admin/ads/create')); ?>" class=""><?php echo app('translator')->getFromJson('home.create_ad'); ?></a></li>
                                     </ul>
                             </li>  

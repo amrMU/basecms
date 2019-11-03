@@ -25,15 +25,12 @@
     <meta name="twitter:title"content="الصفحه الرئيسيه | {{@$setting->translation->title}}" />
 
     <meta name="twitter:site"content="@wait" />
-
 @stop
-
 @section('content')
 
     <!-- =====================================
 
         ==== Start Header -->
-
 
     <header id="home" class="header bg-img bg-fixed valign" data-overlay-dark="6" data-background="{{ asset('front/images/bg1.jpg') }}">
 
@@ -139,7 +136,6 @@
                     </div>
 
 
-
                     <div class="owl-carousel owl-theme">
 
                         @foreach($cat_add->ads as $ad)
@@ -187,15 +183,9 @@
                                             {{-- <span id="like" class="ti-heart"></span> --}}
 
                                             <i id="disLike" class="fas fa-heart"></i>
-
                                             @else
-
                                             <i id="like"    class="far fa-heart"></i>
-
                                             @endif
-
-
-
                                         </a>
 
                                         @else
@@ -212,9 +202,9 @@
 
                             <div class="cont">
 
-                                <h5>{{ $ad->translations->first()->title }}</h5>
+                                <h5>{{ @$ad->translations->first()->title }}</h5>
 
-                                <p>{{ $ad->translations->first()->address }}</p>
+                                <p>{{ @$ad->translations->first()->address }}</p>
 
                                 <div class="info">
 

@@ -90,9 +90,9 @@ class User extends Authenticatable
     return $this->belongsTo('App\City','city_id');
     }
 
-        public function ads()
+    public function ads()
     {
-    return $this->hasMany('App\Ads','user_id','id');
+    return $this->hasMany('App\Ads','user_id','id')->where('status','show');
     }
 
     public function last_ads()

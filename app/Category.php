@@ -39,7 +39,7 @@ class Category extends Model
 
 	public function ads()
 	{
-        return $this->hasMany('App\Ads','category_id','id')->orderBy('created_at','DESC');		
+        return $this->hasMany('App\Ads','category_id','id')->where('status','show')->orderBy('created_at','DESC');		
 	}
 	public function testmonials()
 	{

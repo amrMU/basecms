@@ -20,7 +20,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">@lang('home.close')</button>
-        <a href="{{URL::to('/admin/categories/').'/'.$testmonial->id.'/delete'}}" class="btn btn-danger "> 
+        <a href="{{URL::to('/admin/testmonials/').'/'.$testmonial->id.'/delete'}}" class="btn btn-danger "> 
         @lang('home.delete')
         </a>
 

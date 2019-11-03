@@ -6,7 +6,7 @@
 <div class="page-header page-header-default">
     <div class="page-header-content">
         <div class="page-title">
-        <h4><i class="icon-arrow-right6 position-left"></i> <span class="text-semibold"><?php echo app('translator')->getFromJson('home.home'); ?></span> - <?php echo app('translator')->getFromJson('home.categories_list'); ?></h4>
+        <h4><i class="icon-arrow-right6 position-left"></i> <span class="text-semibold"><?php echo app('translator')->getFromJson('home.home'); ?></span> - <?php echo app('translator')->getFromJson('home.ads'); ?> -  <?php echo app('translator')->getFromJson('home.ads_list'); ?></h4>
         </div>
 
         <div class="heading-elements">
@@ -17,8 +17,9 @@
 
     <div class="breadcrumb-line">
         <ul class="breadcrumb">
-            <li><a href="<?php echo e(URL::to('ar/admin/home')); ?>"><i class="icon-home2 position-left"></i> <?php echo app('translator')->getFromJson('home.home'); ?></a></li>
-            <li class="active"><?php echo app('translator')->getFromJson('home.categories_list'); ?></li>
+            <li><a href="<?php echo e(URL::to(LaravelLocalization::getCurrentLocale().'/admin/home')); ?>"><i class="icon-home2 position-left"></i> <?php echo app('translator')->getFromJson('home.home'); ?></a></li>
+            <li><a href="<?php echo e(URL::to(LaravelLocalization::getCurrentLocale().'/admin/ads')); ?>"><i class="icon-statistics"></i> <?php echo app('translator')->getFromJson('home.ads'); ?> </a></li>
+            <li class="active"><?php echo app('translator')->getFromJson('home.ads_list'); ?></li>
         </ul>
 
         <ul class="breadcrumb-elements">
@@ -33,7 +34,6 @@
                 <ul class="dropdown-menu dropdown-menu-right">
                 <li><a href="<?php echo e(URL::to('ar/admin/setting')); ?>"><i class="icon-gear"></i><?php echo app('translator')->getFromJson('home.general_settings'); ?></a></li>
                
-                <li><a href="<?php echo e(URL::to('ar/admin/testmonials_export')); ?>"><i class="icon-database-export"></i><?php echo app('translator')->getFromJson('home.export_exel_sheet'); ?></a></li>
                 </ul>
             </li>
         </ul>
@@ -59,35 +59,34 @@
                 <thead>                  
                 <tr>                                     
                     <th class="col-md-2">#</th>
-                    <th class="col-md-2"><?php echo app('translator')->getFromJson('home.name'); ?></th>
-                    <th class="col-md-2"><?php echo app('translator')->getFromJson('home.category'); ?></th>
+                    <th class="col-md-2"><?php echo app('translator')->getFromJson('home.title'); ?></th>
                     <th class="col-md-2"><?php echo app('translator')->getFromJson('home.icon'); ?></th>
-                    <th class="col-md-2"><?php echo app('translator')->getFromJson('home.edit'); ?></th>
+                    <th class="col-md-2"><?php echo app('translator')->getFromJson('home.status'); ?></th>
+                    <th class="col-md-2"><?php echo app('translator')->getFromJson('home.banned_list_messages'); ?></th>
+                    <th class="col-md-2"><?php echo app('translator')->getFromJson('home.show'); ?> / <?php echo app('translator')->getFromJson('home.hide'); ?></th>
                     <th class="col-md-2"><?php echo app('translator')->getFromJson('home.delete'); ?></th>
                     
                 </tr>
                 </thead>
                 <tbody>
-                <?php $__currentLoopData = $testmonials; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $testmonial): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php $__currentLoopData = $ads; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ad): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr>
-                    <td><span class="text-semibold"><?php echo e(@$testmonial->id); ?></span></td>
+                    <td><span class="text-semibold"><?php echo e(@$ad->id); ?></span></td>
+                    <td><span class="text-semibold"><?php echo e(@$ad->translations->first()->title); ?></span></td>
                     <td>
-                        <span class="text-semibold"> <?php echo e(@$testmonial->title); ?></span>
+                        <img src="<?php echo e(url('/').'/'.@$ad->images->first()->image); ?>" width="50" height="50" class="img-responsive" alt="<?php echo e(@$ad->translations->first()->title); ?>">
                     </td>
                     <td>
-                        <span class="text-muted">
-                            <?php echo e(@$testmonial->category->translations->first()->name); ?>
+                        <?php if(@$ad->status == 'show'): ?>
+                            <?php echo app('translator')->getFromJson('home.show'); ?>
+                        <?php else: ?>
+                            <?php echo app('translator')->getFromJson('home.hide'); ?>
+                        <?php endif; ?>
+                   </td> 
+                    <td><?php echo $__env->make('dashboard.ads.model_banned_list', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?></td>
+                    <td><?php echo $__env->make('dashboard.ads.banned_from_list', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?></td> 
+                    <td><?php echo $__env->make('dashboard.ads.delete_from_list', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?></td> 
 
-                         </span>
-                       
-                    </td>
-                    <td>
-                        <img src="<?php echo e(url('/'). @$testmonial->image); ?>" width="50" height="50" class="img-responsive" alt="<?php echo e(@$testmonial->title); ?>">
-                    </td>
-                    <td>
-                        <a href="<?php echo e(URL::to('ar/admin/testmonials/').'/'.$testmonial->id.'/edit'); ?>" class="btn btn-warning "><li class="icon-pencil5"></li></a>
-                    </td>
-                    <td><?php echo $__env->make('dashboard.testmonials.delete_from_list', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?></td> 
                 </tr>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tbody>

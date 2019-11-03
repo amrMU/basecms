@@ -55,25 +55,44 @@ class AdsController extends Controller
 		return view($this->view.'index',compact('ads'));
 	}
 
+	public function bannedAds(Request $request)
+	{
+		$ads= $this->ads->whereHas('blocked')->with('images','blocked')->get(); 
+		$agent = new Agent();
+        $agent = $agent->platform().','.$agent->browser().$agent->version($agent->browser());
+        $data = ['key'=>'dashboard_Banned_List_Ad','text'=>'Banned List Ad  ','browser'=>$agent];
+        DoFire::MK_REPORT($data,Auth::id(),null,$request->ipinfo);
+		return view($this->view.'blocked',compact('ads'));
+	}
 
+	public function banneAdd($ad_id,$status,Request $request)
+	{
+		$this->ads->find($ad_id)->update([
+			'status'=>$status
+		]);
+		$agent = new Agent();
+        $agent = $agent->platform().','.$agent->browser().$agent->version($agent->browser());
+        $data = ['key'=>'dashboard_Banned_From_List_Ad_id_'.$ad_id,'text'=>'Banned from List Ad  ','browser'=>$agent];
+        DoFire::MK_REPORT($data,Auth::id(),null,$request->ipinfo);
+		return redirect()->back();
+	}
 	public function create(Request $request)
 	{
 		$agent = new Agent();
         $agent = $agent->platform().','.$agent->browser().$agent->version($agent->browser());
         $data = ['key'=>'dashboard_show_Create_Ad','text'=>'Show Create New Add  ','browser'=>$agent];
         DoFire::MK_REPORT($data,Auth::id(),null,$request->ipinfo);
-
+        
 		return view($this->view.'create');
 	}
 
 	public function store(AdsRequest $request)
 	{
-		if ($request->has('sub_categoris')) {
+		if ($request->sub_categoris != null) {
 			$category_id = $request->sub_categoris;
 		}else{
 			$category_id = $request->category_id;
 		}
-
 		$create_ad = $this->ads->create([
 						'category_id'=>$category_id,
 						'user_id'=>Auth::id(),
@@ -148,7 +167,7 @@ class AdsController extends Controller
 	public function update($id,AdsRequest $request)
 	{
 
-		if ($request->has('sub_categoris')) {
+		if ($request->sub_categoris != null) {
 			$category_id = $request->sub_categoris;
 		}else{
 			$category_id = $request->category_id;

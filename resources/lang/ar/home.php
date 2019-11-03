@@ -173,7 +173,10 @@
 		'contactus'=>'اتصل بنا',
 		'contactus_list'=>'قائمة طلبات التواصل',
 		'more'=>'المزيد',
-		'list_contactus_full_info'=>'قائمة المعلومات اتصل بنا'
+		'list_contactus_full_info'=>'قائمة المعلومات اتصل بنا',
+		'ads_list_blocked'=>'قائمة الإعلانات المحظوره',
+		'banned_list_messages'=>'طلبات حظر الإعلان',
+		
 
 
 

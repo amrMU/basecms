@@ -23,15 +23,12 @@
     <meta name="twitter:title"content="الصفحه الرئيسيه | <?php echo e(@$setting->translation->title); ?>" />
 
     <meta name="twitter:site"content="@wait" />
-
 <?php $__env->stopSection(); ?>
-
 <?php $__env->startSection('content'); ?>
 
     <!-- =====================================
 
         ==== Start Header -->
-
 
     <header id="home" class="header bg-img bg-fixed valign" data-overlay-dark="6" data-background="<?php echo e(asset('front/images/bg1.jpg')); ?>">
 
@@ -138,7 +135,6 @@
                     </div>
 
 
-
                     <div class="owl-carousel owl-theme">
 
                         <?php $__currentLoopData = $cat_add->ads; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ad): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -174,15 +170,9 @@
                                             
 
                                             <i id="disLike" class="fas fa-heart"></i>
-
                                             <?php else: ?>
-
                                             <i id="like"    class="far fa-heart"></i>
-
                                             <?php endif; ?>
-
-
-
                                         </a>
 
                                         <?php else: ?>
@@ -199,9 +189,9 @@
 
                             <div class="cont">
 
-                                <h5><?php echo e($ad->translations->first()->title); ?></h5>
+                                <h5><?php echo e(@$ad->translations->first()->title); ?></h5>
 
-                                <p><?php echo e($ad->translations->first()->address); ?></p>
+                                <p><?php echo e(@$ad->translations->first()->address); ?></p>
 
                                 <div class="info">
 

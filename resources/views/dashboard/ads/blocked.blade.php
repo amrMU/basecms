@@ -7,7 +7,7 @@
 <div class="page-header page-header-default">
     <div class="page-header-content">
         <div class="page-title">
-        <h4><i class="icon-arrow-right6 position-left"></i> <span class="text-semibold">@lang('home.home')</span> - @lang('home.categories_list')</h4>
+        <h4><i class="icon-arrow-right6 position-left"></i> <span class="text-semibold">@lang('home.home')</span> - @lang('home.ads') -  @lang('home.ads_list')</h4>
         </div>
 
         <div class="heading-elements">
@@ -18,8 +18,9 @@
 
     <div class="breadcrumb-line">
         <ul class="breadcrumb">
-            <li><a href="{{URL::to('ar/admin/home')}}"><i class="icon-home2 position-left"></i> @lang('home.home')</a></li>
-            <li class="active">@lang('home.categories_list')</li>
+            <li><a href="{{URL::to(LaravelLocalization::getCurrentLocale().'/admin/home')}}"><i class="icon-home2 position-left"></i> @lang('home.home')</a></li>
+            <li><a href="{{URL::to(LaravelLocalization::getCurrentLocale().'/admin/ads')}}"><i class="icon-statistics"></i> @lang('home.ads') </a></li>
+            <li class="active">@lang('home.ads_list')</li>
         </ul>
 
         <ul class="breadcrumb-elements">
@@ -34,7 +35,6 @@
                 <ul class="dropdown-menu dropdown-menu-right">
                 <li><a href="{{ URL::to('ar/admin/setting') }}"><i class="icon-gear"></i>@lang('home.general_settings')</a></li>
                
-                <li><a href="{{ URL::to('ar/admin/testmonials_export') }}"><i class="icon-database-export"></i>@lang('home.export_exel_sheet')</a></li>
                 </ul>
             </li>
         </ul>
@@ -60,34 +60,34 @@
                 <thead>                  
                 <tr>                                     
                     <th class="col-md-2">#</th>
-                    <th class="col-md-2">@lang('home.name')</th>
-                    <th class="col-md-2">@lang('home.category')</th>
+                    <th class="col-md-2">@lang('home.title')</th>
                     <th class="col-md-2">@lang('home.icon')</th>
-                    <th class="col-md-2">@lang('home.edit')</th>
+                    <th class="col-md-2">@lang('home.status')</th>
+                    <th class="col-md-2">@lang('home.banned_list_messages')</th>
+                    <th class="col-md-2">@lang('home.show') / @lang('home.hide')</th>
                     <th class="col-md-2">@lang('home.delete')</th>
                     
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($testmonials as $testmonial)
+                @foreach($ads as $ad)
                 <tr>
-                    <td><span class="text-semibold">{{ @$testmonial->id }}</span></td>
+                    <td><span class="text-semibold">{{ @$ad->id }}</span></td>
+                    <td><span class="text-semibold">{{ @$ad->translations->first()->title }}</span></td>
                     <td>
-                        <span class="text-semibold"> {{@$testmonial->title}}</span>
+                        <img src="{{url('/').'/'.@$ad->images->first()->image }}" width="50" height="50" class="img-responsive" alt="{{ @$ad->translations->first()->title }}">
                     </td>
                     <td>
-                        <span class="text-muted">
-                            {{@$testmonial->category->translations->first()->name}}
-                         </span>
-                       
-                    </td>
-                    <td>
-                        <img src="{{url('/'). @$testmonial->image }}" width="50" height="50" class="img-responsive" alt="{{@$testmonial->title}}">
-                    </td>
-                    <td>
-                        <a href="{{URL::to('ar/admin/testmonials/').'/'.$testmonial->id.'/edit'}}" class="btn btn-warning "><li class="icon-pencil5"></li></a>
-                    </td>
-                    <td>@include('dashboard.testmonials.delete_from_list')</td> 
+                        @if(@$ad->status == 'show')
+                            @lang('home.show')
+                        @else
+                            @lang('home.hide')
+                        @endif
+                   </td> 
+                    <td>@include('dashboard.ads.model_banned_list')</td>
+                    <td>@include('dashboard.ads.banned_from_list')</td> 
+                    <td>@include('dashboard.ads.delete_from_list')</td> 
+
                 </tr>
                 @endforeach
                 </tbody>

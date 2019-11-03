@@ -26,7 +26,7 @@
                 <div class="row">
                     <div class="col-lg-12 text-center caption">
                         <h1>إضافه اعلان</h1>
-                        <h5><a href="<?php echo e(URL::to('/')); ?>">الرئسية</a><span>/</span><a href="#0">إضافه اعلان</a></h5>
+                        <h5><a href="<?php echo e(URL::to('/')); ?>">الرئيسيه</a><span>/</span><a href="#0">إضافه اعلان</a></h5>
                     </div>
                 </div>
             </div>
@@ -119,7 +119,7 @@
                                             <a href="#" class="close" data-dismiss="alert" aria-label="close" style="right: 5px;">&times;</a><?php echo app('translator')->getFromJson('home.empty_sub_categories'); ?>
                                         </div>
                                         <div >
-                                           <select name="category_id" id="sub_categoris" class="form-control" >
+                                           <select name="sub_categoris" id="sub_categoris" class="form-control" >
                                             <option value=""><?php echo app('translator')->getFromJson('home.sub_categories'); ?></option>
 
                                         </select>
@@ -177,10 +177,7 @@
                                             rows="4" 
                                             cols="4"  
                                             class="form-control" 
-                                            placeholder="<?php echo app('translator')->getFromJson('home.content_'.@$lang->info->local); ?>"> 
-                                            <?php echo e(Request::old('content')[$key]); ?>
-
-                                        </textarea>
+                                            placeholder="<?php echo app('translator')->getFromJson('home.content_'.@$lang->info->local); ?>"><?php echo e(Request::old('content')[$key]); ?></textarea>
                                         </div>
 
                                 
@@ -282,12 +279,12 @@ $('#parent_id').on('change',function () {
                console.log(data.data.length );
                 if (data.data.length == 0) {
                     $('#sub_categoris').fadeOut();
-                    $('#sub_categoris_unknown').fadeIn(3000);
+                    $('#sub_categoris_unknown').fadeIn();
                     console.log('empty');
                 } //where sub categories list  length = 0
                 else{//where sub categories list  length  > 0 will append in #sub_categoris
 
-                    $('#sub_categoris').fadeIn(4000);
+                    $('#sub_categoris').fadeIn();
                     $('#sub_categoris_unknown').fadeOut();
                     $('#sub_categoris').empty()
                     console.log('fully');
@@ -300,12 +297,12 @@ $('#parent_id').on('change',function () {
             ,'error' : function(request,error)
             {
                 $('#sub_categoris').fadeOut();
-                $('#sub_categoris_unknown').fadeIn(4000);
+                $('#sub_categoris_unknown').fadeIn();
             }//server error case 
         });
     }else{
         $('#sub_categoris').fadeOut();
-        $('#sub_categoris_unknown').fadeIn(400);
+        $('#sub_categoris_unknown').fadeIn();
     }
 });
 </script>

@@ -229,7 +229,7 @@
                                         <div class="form-group" >
                                             <label class="control-label col-lg-2"> Mail Username</label>
                                             <div class="col-lg-9">
-                                                <input type="text" name="mail_username" class="form-control" placeholder="info@example.com" value="{{@$info->mail_provider_info->MAIL_HOST}}" >
+                                                <input type="text" name="mail_username" class="form-control" placeholder="info@example.com" value="{{@$info->mail_provider_info->MAIL_USERNAME}}" >
                                             </div>
                                         </div>
                                         <!-- /mail_user_name field -->

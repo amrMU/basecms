@@ -169,4 +169,18 @@ class UsersController extends Controller
         Session::flash('success',trans('home.message_success'));
         return redirect()->back();  
     }
+
+    public function destroy($id,Request $request)
+    {
+
+       $agent = new Agent();
+       $agent = $agent->platform().','.$agent->browser().$agent->version($agent->browser());
+       $data = ['key'=>'dashboard_destroy_page_info','text'=>'Destroy Page Info','browser'=>$agent];
+       $info  = User::find($id);
+
+           DoFire::MK_REPORT($data,Auth::id(),$info,$request->ipinfo);
+           User::destroy($id);
+        Session::flash('success',trans('home.message_success'));
+        return redirect()->back();  
+    }
 }

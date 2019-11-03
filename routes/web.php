@@ -44,6 +44,7 @@
 
 			Route::resource('users','Admin\UsersController');
 			Route::get('users_export','Admin\UsersController@ExportExelSheet');
+			Route::get('users/{id}/delete','Admin\UsersController@destroy');
 
 			Route::resource('categories','Admin\CategoriesController');
 			Route::get('categories/{id}/delete','Admin\CategoriesController@destroy');
@@ -57,6 +58,8 @@
 			Route::get('pages/{id}/delete','Admin\PagesController@destroy');
 
 			Route::resource('ads','Admin\AdsController');
+			Route::get('banned_ads','Admin\AdsController@bannedAds');
+			Route::get('banned_ads/{ad_id}/{status}','Admin\AdsController@banneAdd');
 			Route::get('ads/{id}/image/delete','Admin\AdsController@DestroyImage');
 			Route::get('ads/{id}/delete','Admin\AdsController@destroy');
 
@@ -69,6 +72,7 @@
 			Route::get('blogs_export','Admin\BlogsController@ExportExelSheet');
 
 			Route::get('contactus','Admin\ContactUsController@list');
+			Route::get('contactus/{id}/delete','Admin\ContactUsController@destroy');
 
 
 			Route::get('sitemap/create','Admin\SitemapGeneratorController@create');
@@ -97,6 +101,7 @@
 		
 		Route::get('i/fav/{ad_id}/{user_id}','Api\FavAdsController@fav');
 		route::post('/do/rate/{ad_id}','Front\RateController@doRate');
+		Route::post('ad/block/{ad_id}','Front\BlockAdsController@doReport');
 
 	});
 	Route::get('categories/{id}/{name}','Front\CategoriesController@show');

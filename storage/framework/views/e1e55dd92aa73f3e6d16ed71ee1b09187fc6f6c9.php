@@ -1,5 +1,5 @@
 <?php $__env->startSection('meta_tags'); ?>
-    <title> قسم  | <?php echo e(@$category->category_translation->name); ?></title>
+    <title> نتائج البحث  | <?php echo e(@$category->category_translation->name); ?></title>
 
     <meta name='description' itemprop='description' content='<?php echo @$info->translation->content; ?>' />
     <meta name='keywords' content='<?php echo @$setting->meta_tags; ?>,<?php echo @$info->translation->title; ?>,<?php echo @$info->mission; ?>,<?php echo @$info->goals; ?>' />
@@ -32,9 +32,9 @@
                         <h1> <?php echo e(@$category->category_translation->name); ?></h1>
                         <?php endif; ?>
                         <h5>
-                        <a href="<?php echo e(URL::to('/')); ?>">الرئسية</a>
+                        <a href="<?php echo e(URL::to('/')); ?>">الرئيسيه</a>
                         <span>/</span>
-                        بحث
+                        نتائج البحث
                         <?php if(@$category->parent_id != NULL): ?>
                         <a href="<?php echo e(URL::to('/').'/categories/'.$category->parent_id.'/'.@str_replace(' ', '_', $category->category->category_translation->name)); ?>"><?php echo e(@$category->category->category_translation->name); ?></a>
                         <span>/</span>
@@ -60,10 +60,11 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-
+                        <?php if($category !== null): ?>
                         <div class="head">
                             <h5> <span></span><?php echo e(@$category->category_translation->name); ?></h5>
                         </div>
+                        <?php endif; ?>
 
                         <div class="row">
                             <?php if($ads->count() > 0 ): ?>
@@ -71,7 +72,12 @@
                             <div class="col-lg-3 col-md-6">
                                 <div class="item">
                                     <div class="img">
-                                        <img src="<?php echo e(asset('/').@$ad->images->first()->image); ?>" alt="<?php echo e(@$ad->translations->first()->title); ?>">
+                                        
+                                       <?php if($ad->images->count() > 0 ): ?>
+                                       <img src="<?php echo e(asset('/').@$ad->images->first()->image); ?>" alt="">
+                                       <?php else: ?> 
+                                       <img src="<?php echo e(asset('/img/no_image.png')); ?>" alt="">
+                                       <?php endif; ?>
                                         <span class="tag"><?php echo e(@$category->category_translation->name); ?></span>
                                         <div class="icons">
                                             

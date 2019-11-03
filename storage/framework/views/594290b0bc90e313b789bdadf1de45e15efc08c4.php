@@ -20,7 +20,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo app('translator')->getFromJson('home.close'); ?></button>
-        <a href="<?php echo e(URL::to('/admin/categories/').'/'.$testmonial->id.'/delete'); ?>" class="btn btn-danger "> 
+        <a href="<?php echo e(URL::to('/admin/testmonials/').'/'.$testmonial->id.'/delete'); ?>" class="btn btn-danger "> 
         <?php echo app('translator')->getFromJson('home.delete'); ?>
         </a>
 

@@ -99,13 +99,7 @@
                                                 <option value="">@lang('home.main_categories')</option>
                                                 @foreach($categories as $category)
                                                 <option 
-                                                value="{{@$category->id}}"
-                                                @if(isset($info))
-                                                @if($category->id == $info->category->parent_id)
-                                                selected
-                                                @endif
-                                                @endif
-                                                >
+                                                value="{{@$category->id}}" >
                                                 {{@$category->category_translation->name}}
                                             </option>
                                             @endforeach
