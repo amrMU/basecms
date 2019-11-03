@@ -26,7 +26,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center caption">
-                        <?php if($category->parent_id != NULL): ?>
+                        <?php if(@$category->parent_id != NULL): ?>
                         <h1> <?php echo e(@$category->category->category_translation->name); ?></h1>
                         <?php else: ?> 
                         <h1> <?php echo e(@$category->category_translation->name); ?></h1>
@@ -34,7 +34,8 @@
                         <h5>
                         <a href="<?php echo e(URL::to('/')); ?>">الرئسية</a>
                         <span>/</span>
-                        <?php if($category->parent_id != NULL): ?>
+                        بحث
+                        <?php if(@$category->parent_id != NULL): ?>
                         <a href="<?php echo e(URL::to('/').'/categories/'.$category->parent_id.'/'.@str_replace(' ', '_', $category->category->category_translation->name)); ?>"><?php echo e(@$category->category->category_translation->name); ?></a>
                         <span>/</span>
                         <?php endif; ?>

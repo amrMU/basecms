@@ -28,7 +28,7 @@
                 <div class="row">
                     <div class="col-lg-12 text-center caption">
                         <h1> اتصل بنا </h1>
-                        <h5><a href="{{ url('/') }}">الرئسية</a><span>/</span><a href="#">اتصل بنا</a></h5>
+                        <h5><a href="{{ url('/') }}">الرئيسيه</a><span>/</span><a href="#">اتصل بنا</a></h5>
                     </div>
                 </div>
             </div>

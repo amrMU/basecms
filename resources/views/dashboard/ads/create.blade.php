@@ -114,11 +114,11 @@ $('#parent_id').on('change',function () {
                console.log(data.data.length );
                 if (data.data.length == 0) {
                     $('#sub_categoris').hide();
-                    $('#sub_categoris_unknown').show(3000);
+                    $('#sub_categoris_unknown').show();
                 } //where sub categories list  length = 0
                 else{//where sub categories list  length  > 0 will append in #sub_categoris
 
-                    $('#sub_categoris').show(4000);
+                    $('#sub_categoris').show();
                     $('#sub_categoris_unknown').hide();
                     $('#sub_categoris').empty()
                     for (var i = data.data.length - 1; i >= 0; i--) {
@@ -129,12 +129,12 @@ $('#parent_id').on('change',function () {
             ,'error' : function(request,error)
             {
                 $('#sub_categoris').hide();
-                $('#sub_categoris_unknown').show(4000);
+                $('#sub_categoris_unknown').show();
             }//server error case 
         });
     }else{
         $('#sub_categoris').hide();
-        $('#sub_categoris_unknown').show(400);
+        $('#sub_categoris_unknown').show();
     }
 });
 </script>

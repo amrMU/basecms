@@ -27,7 +27,7 @@
                 <div class="row">
                     <div class="col-lg-12 text-center caption">
                         <h1> {{ @$page->translation->title }} </h1>
-                        <h5><a href="{{URL::To('/')}}">الرئسية</a><span>/</span><a href="#">{{ @$page->translation->title }}</a></h5>
+                        <h5><a href="{{URL::To('/')}}">الرئيسيه</a><span>/</span><a href="#">{{ @$page->translation->title }}</a></h5>
                     </div>
                 </div>
             </div>

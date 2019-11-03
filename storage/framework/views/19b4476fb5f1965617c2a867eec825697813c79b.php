@@ -13,6 +13,8 @@
              <?php if(isset($info)): ?>
              <?php if($category->id == $info->category->parent_id): ?>
               selected
+              <?php elseif($category->id == $info->id): ?>
+              selected
                <?php endif; ?>
                <?php endif; ?>
                >
@@ -154,7 +156,10 @@
             name="space" 
             class="form-control " 
             placeholder="<?php echo app('translator')->getFromJson('home.space'); ?>" 
-            value="<?php echo e(@$info->space); ?>" >
+            value="<?php if(Request::old('space')!== null): ?>
+            <?php echo e(Request::old('space')); ?>
+
+            <?php else: ?><?php echo e(@$info->space); ?><?php endif; ?>" >
         </div>
     </div>
     <!-- /space input -->
@@ -167,7 +172,10 @@
             class="form-control" 
             placeholder="<?php echo app('translator')->getFromJson('home.bed_room'); ?>" 
             
-            value="<?php echo e(@$info->bed_room); ?>"  >
+            value="<?php if(Request::old('bed_room')!== null): ?>
+            <?php echo e(Request::old('bed_room')); ?>
+
+            <?php else: ?><?php echo e(@$info->bed_room); ?><?php endif; ?>"  >
         </div>
     </div>
     <!-- /bed_room input -->
@@ -179,7 +187,10 @@
             name="bathroom" 
             class="form-control" 
             placeholder="<?php echo app('translator')->getFromJson('home.bathroom'); ?>" 
-            value="<?php echo e(@$info->bathroom); ?>" 
+            value="<?php if(Request::old('bathroom')!== null): ?>
+            <?php echo e(Request::old('bathroom')); ?>
+
+            <?php else: ?><?php echo e(@$info->bathroom); ?><?php endif; ?>" 
              >
         </div>
     </div>
@@ -192,7 +203,10 @@
             name="parking" 
             class="form-control" 
             placeholder="<?php echo app('translator')->getFromJson('home.parking'); ?>" 
-            value=" <?php echo e(@$info->parking); ?>" >
+            value="<?php if(Request::old('parking')!== null): ?>
+            <?php echo e(Request::old('parking')); ?>
+
+            <?php else: ?><?php echo e(@$info->parking); ?><?php endif; ?>" >
         </div>
     </div>
     <!-- /parking input -->
@@ -205,7 +219,10 @@
             name="price" 
             class="form-control"  
             placeholder="<?php echo app('translator')->getFromJson('home.price'); ?>" 
-            value="<?php echo e(@$info->price); ?>">
+            value="<?php if(Request::old('price')!== null): ?>
+            <?php echo e(Request::old('price')); ?>
+
+            <?php else: ?><?php echo e(@$info->price); ?><?php endif; ?>">
         </div>
     </div>
     <!-- /url input -->
@@ -220,12 +237,7 @@
     <!-- /url input -->
 
     <!-- url input -->
-    <div class="form-group">
-        <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.url_page'); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
-        <div class="col-lg-9">
-            <input type="text" name="url" class="form-control"  placeholder="<?php echo app('translator')->getFromJson('home.url_page'); ?>" value="<?php echo e(@$info->url); ?>">
-        </div>
-    </div>
+   
     <!-- /url input -->
     <!-- Meta Tags input -->
     <div class="form-group">
@@ -250,7 +262,10 @@
                         <?php if($info->status == "show"): ?>
                                     checked 
                         <?php endif; ?>
+                        <?php else: ?>
+                            checked 
                         <?php endif; ?>
+
                         >
                     <label>
                          <?php echo app('translator')->getFromJson('home.show'); ?>

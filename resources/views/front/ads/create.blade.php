@@ -27,7 +27,7 @@
                 <div class="row">
                     <div class="col-lg-12 text-center caption">
                         <h1>إضافه اعلان</h1>
-                        <h5><a href="{{ URL::to('/') }}">الرئسية</a><span>/</span><a href="#0">إضافه اعلان</a></h5>
+                        <h5><a href="{{ URL::to('/') }}">الرئيسيه</a><span>/</span><a href="#0">إضافه اعلان</a></h5>
                     </div>
                 </div>
             </div>
@@ -175,9 +175,7 @@
                                             rows="4" 
                                             cols="4"  
                                             class="form-control" 
-                                            placeholder="@lang('home.content_'.@$lang->info->local)"> 
-                                            {{Request::old('content')[$key]}}
-                                        </textarea>
+                                            placeholder="@lang('home.content_'.@$lang->info->local)">{{Request::old('content')[$key]}}</textarea>
                                         </div>
 
                                 {{-- content ar --}}
@@ -279,12 +277,12 @@ $('#parent_id').on('change',function () {
                console.log(data.data.length );
                 if (data.data.length == 0) {
                     $('#sub_categoris').fadeOut();
-                    $('#sub_categoris_unknown').fadeIn(3000);
+                    $('#sub_categoris_unknown').fadeIn();
                     console.log('empty');
                 } //where sub categories list  length = 0
                 else{//where sub categories list  length  > 0 will append in #sub_categoris
 
-                    $('#sub_categoris').fadeIn(4000);
+                    $('#sub_categoris').fadeIn();
                     $('#sub_categoris_unknown').fadeOut();
                     $('#sub_categoris').empty()
                     console.log('fully');
@@ -297,12 +295,12 @@ $('#parent_id').on('change',function () {
             ,'error' : function(request,error)
             {
                 $('#sub_categoris').fadeOut();
-                $('#sub_categoris_unknown').fadeIn(4000);
+                $('#sub_categoris_unknown').fadeIn();
             }//server error case 
         });
     }else{
         $('#sub_categoris').fadeOut();
-        $('#sub_categoris_unknown').fadeIn(400);
+        $('#sub_categoris_unknown').fadeIn();
     }
 });
 </script>

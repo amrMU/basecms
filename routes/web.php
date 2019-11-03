@@ -23,6 +23,7 @@
 
 
 	Route::group(['middleware' => 'auth'], function () {
+	Route::group(['middleware' => 'admin'], function () {
 
 		Route::group(['prefix' => '/admin'], function () {
 		
@@ -75,15 +76,16 @@
 		});
 
 
-		Route::get('logout','Auth\LoginController@logout');
 	});
+	});
+		Route::get('logout','Auth\LoginController@logout');
 	});
 
 	//site routes 
 	Route::group(['middleware' => 'auth'], function () {
 		Route::get('i/advertising/create','Front\AdsController@create');
 		Route::post('i/advertising','Front\AdsController@store');
-		Route::put('i/advertising/{id}','Auth\AdsController@update');
+		Route::put('i/advertising/{id}','Front\AdsController@update');
 		
 		Route::get('i/profile','Auth\ProfileController@getProfile');
 		
@@ -108,7 +110,7 @@
 
 
 
-Route::get('/a/login','Auth\CustomAuthController@adminLogin');
+Route::get('/admin','Auth\CustomAuthController@adminLogin');
 Route::get('/register','Auth\CustomAuthController@Getsignup');
 
 Auth::routes();

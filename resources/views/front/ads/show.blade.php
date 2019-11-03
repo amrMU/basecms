@@ -29,7 +29,7 @@
                     <div class="col-lg-12 text-center caption">
                         <h1> تفاصيل الإعلان </h1>
                         <h5>
-                            <a href="{{ URL::to('/') }}">الرئسية</a>
+                            <a href="{{ URL::to('/') }}">الرئيسيه</a>
                             <span>/</span>
                             @if($ad->category->parent_id != NULL)
                             <a href="{{ URL::to('/').'/categories/'.$ad->category->category->id.'/'.str_replace(' ', '_', $ad->category->category->category_translation->name) }}">{{ @$ad->category->category->category_translation->name }}</a> 
@@ -63,9 +63,13 @@
                                     <p>{{ $ad->translations->first()->address }}</p>
                                 </div>
                                 <div class="slider-for">
-                                    @foreach($ad->images as $image)
-                                    <div class="item"><img src="{{ asset('/').$image->image }}" alt=""></div>
-                                    @endforeach
+                                    @if($ad->images->count() > 0 )
+                                        @foreach($ad->images as $image)
+                                            <div class="item"><img src="{{ asset('/').$image->image }}" alt=""></div>
+                                        @endforeach
+                                    @else 
+                                        <div class="item"><img src="{{ asset('/img/no_image.png')}}" alt=""></div>
+                                    @endif
                                 </div>
                                 <div class="slider-nav">
                                     @foreach($ad->images as $image)
@@ -117,9 +121,12 @@
                                 </div>
                             </div>
 
+
                              <div class="row">
                                 <div class="col-md-6">
                                    <div class="rate">
+                                        @if($ad !== null)
+                                        @if($ad->user_id != Auth::id())
                                         <div class="title">
                                             <h5>اضافه تقييم</h5>
                                         </div>
@@ -162,6 +169,8 @@
                                             </div>
                                             <button type="submit">ارسال</button>
                                         </form>
+                                        @endif
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-md-6">

@@ -73,7 +73,7 @@
                             </li>
 
                             <li class="nvmenu">
-                                <a href="{{ URL::to('/') }}">الرئسية</a>
+                                <a href="{{ URL::to('/') }}">الرئيسيه  </a>
                             </li>
                             @foreach($categories as $category)
                             <li class="nvmenu">
@@ -89,7 +89,7 @@
                             @endforeach
                             @if(Auth::check())
                             <li class="nvmenu">
-                                <a href="">روابط خاصه<span class="ti-angle-down"></span></a>
+                                <a href="">حسابي<span class="ti-angle-down"></span></a>
                                 <ul class="menu">
                                    
                                     <li><a href="{{ URL::to('/i/advertising/create') }}">اضافة اعلان</a></li>

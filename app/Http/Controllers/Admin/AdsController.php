@@ -68,7 +68,7 @@ class AdsController extends Controller
 
 	public function store(AdsRequest $request)
 	{
-		if ($reqest->has('sub_categoris')) {
+		if ($request->has('sub_categoris')) {
 			$category_id = $request->sub_categoris;
 		}else{
 			$category_id = $request->category_id;
@@ -78,7 +78,8 @@ class AdsController extends Controller
 						'category_id'=>$category_id,
 						'user_id'=>Auth::id(),
 						'price'=>$request->price,
-						'url'=>$request->url,
+						'url'=>' ',
+						// 'url'=>$request->url,
 						'map'=>$request->map,
 						'meta_tags'=>$request->meta_tags,
 						'status'=>$request->status,
@@ -105,8 +106,8 @@ class AdsController extends Controller
 			$set_images_path_db = [];
 			$upload_images = ImagesController::upload_multiple(
 				$request->images,
-				public_path().'/uploads/images/ads',
-				'/uploads/images/ads',
+				public_path().'/uploads/images/products',
+				'/uploads/images/products'
 				);
 
 			foreach ($upload_images as $key => $image) {
@@ -146,11 +147,18 @@ class AdsController extends Controller
 
 	public function update($id,AdsRequest $request)
 	{
+
+		if ($request->has('sub_categoris')) {
+			$category_id = $request->sub_categoris;
+		}else{
+			$category_id = $request->category_id;
+		}
 		$update  = $this->ads->find($id)->update([
-						'category_id'=>$request->category_id,
+						'category_id'=>$category_id,
 						'user_id'=>Auth::id(),
 						'price'=>$request->price,
-						'url'=>$request->url,
+						// 'url'=>$request->url,
+						'url'=>' ',
 						'map'=>$request->map,
 						'meta_tags'=>$request->meta_tags,
 						'status'=>$request->status,
@@ -180,8 +188,8 @@ class AdsController extends Controller
 			$set_images_path_db = [];
 			$upload_images = ImagesController::upload_multiple(
 				$request->images,
-				public_path().'/uploads/images/ads',
-				'/uploads/images/ads',
+				public_path().'/uploads/images/products',
+				'/uploads/images/products'
 				);
 
 			foreach ($upload_images as $key => $image) {
@@ -192,6 +200,7 @@ class AdsController extends Controller
 			}//end loop save images
 		}//end images case when we have images
 
+		// dd($request->images,$set_images_path_db);
 		$agent = new Agent();
         $agent = $agent->platform().','.$agent->browser().$agent->version($agent->browser());
         $data = ['key'=>'dashboard_Store_New_Ad','text'=>'Store New Add  ','browser'=>$agent];

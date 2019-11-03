@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Fav;
 use Response;
 use Auth;
+use Session;
 class FavAdsController extends Controller
 {
     public function __construct(Fav $fav)
@@ -32,6 +33,8 @@ class FavAdsController extends Controller
 		}
 		$code = 200;
         $response = ["status" => $code,'message'=>$msg,'data'=>$find_fav];
+        Session::flash('success',trans('home.message_success'));
+
         // return Response::json($response,$code);
         return redirect()->back();
 	}

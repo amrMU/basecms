@@ -1,0 +1,4 @@
+[15-Oct-2019 14:14:03 UTC] PHP Warning:  Unsupported declare 'strict_types' in /home/balyomhost/public_html/amr/base/vendor/zendframework/zend-diactoros/src/functions/create_uploaded_file.php on line 8
+[15-Oct-2019 14:14:03 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/balyomhost/public_html/amr/base/vendor/zendframework/zend-diactoros/src/functions/create_uploaded_file.php on line 19
+[15-Oct-2019 14:14:09 UTC] PHP Warning:  Unsupported declare 'strict_types' in /home/balyomhost/public_html/amr/base/vendor/zendframework/zend-diactoros/src/functions/create_uploaded_file.php on line 8
+[15-Oct-2019 14:14:09 UTC] PHP Parse error:  syntax error, unexpected ':', expecting '{' in /home/balyomhost/public_html/amr/base/vendor/zendframework/zend-diactoros/src/functions/create_uploaded_file.php on line 19

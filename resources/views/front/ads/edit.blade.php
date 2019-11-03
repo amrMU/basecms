@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center caption">
                     <h1>تحديث بيانات الإعلان</h1>
-                    <h5><a href="{{ URL::to('/') }}">الرئسية</a><span>/</span><a href="#0">تحديث بيانات الإعلان</a></h5>
+                    <h5><a href="{{ URL::to('/') }}">الرئيسيه</a><span>/</span><a href="#0">تحديث بيانات الإعلان</a></h5>
                 </div>
             </div>
         </div>
@@ -118,7 +118,7 @@
                                             <a href="#" class="close" data-dismiss="alert" aria-label="close" style="right: 5px;">&times;</a>@lang('home.empty_sub_categories')
                                         </div>
                                         <div >
-                                         <select name="category_id" id="sub_categoris" class="form-control" >
+                                         <select name="sub_categoris" id="sub_categoris" class="form-control" >
                                             <option value="">@lang('home.sub_categories')</option>
                                             @if(isset($ad))
                                             @include('front.ads.select_sub_categories_loop_for_update')
@@ -174,10 +174,7 @@
                                            rows="4" 
                                            class="form-control" 
                                            cols="4"  
-                                           placeholder="@lang('home.content_'.@$lang->info->local)"> 
-                                            {{ @$ad->translations->where('lang_id',$lang->id)->first()->content }}
-                                         
-                                </textarea>
+                                           placeholder="@lang('home.content_'.@$lang->info->local)">{{ @$ad->translations->where('lang_id',$lang->id)->first()->content }}</textarea>
                             </div>
                             {{-- content --}}
                         @endforeach
@@ -315,13 +312,15 @@ $('#parent_id').on('change',function () {
             'success' : function(data) {     
                console.log(data.data.length );
                 if (data.data.length == 0) {
-                    $('#sub_categoris').fadeOut();
-                    $('#sub_categoris_unknown').fadeIn(3000);
+                    $('#sub_categoris').hide();
+                    $('#sub_categoris_unknown').show();
+                    $('#sub_categoris').empty()
+                    
                 } //where sub categories list  length = 0
                 else{//where sub categories list  length  > 0 will append in #sub_categoris
 
-                    $('#sub_categoris').fadeIn(4000);
-                    $('#sub_categoris_unknown').fadeOut();
+                    $('#sub_categoris').show();
+                    $('#sub_categoris_unknown').hide();
                     $('#sub_categoris').empty()
                     for (var i = data.data.length - 1; i >= 0; i--) {
                         $('#sub_categoris').append("<option value='"+data.data[i].id+"'>"+data.data[i].category_translation.name+"</option")   
@@ -330,13 +329,13 @@ $('#parent_id').on('change',function () {
             }//server success case 
             ,'error' : function(request,error)
             {
-                $('#sub_categoris').fadeOut();
-                $('#sub_categoris_unknown').fadeIn(4000);
+                $('#sub_categoris').hide();
+                $('#sub_categoris_unknown').show();
             }//server error case 
         });
     }else{
-        $('#sub_categoris').fadeOut();
-        $('#sub_categoris_unknown').fadeIn(400);
+        $('#sub_categoris').hide();
+        $('#sub_categoris_unknown').show();
     }
 });
 </script>

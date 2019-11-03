@@ -165,7 +165,7 @@
 		'title'=>'Title',
 		'site'=>'site',
 		'country'=>'country',
-		'testmonials'=>'testimonials'
+		'testmonials'=>'testimonials',
 		'testmonials_list'=>'Testmonials List',
 		'create_testmonials'=>'create testimonials',
 		'category'=>'Category',

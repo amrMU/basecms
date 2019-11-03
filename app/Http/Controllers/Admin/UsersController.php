@@ -88,6 +88,7 @@ class UsersController extends Controller
             'password'=>bcrypt($request->password),
             'city_id'=>$request->city_id,
             'phone'=>$request->phone,
+            'type_user'=>'admin'
             // 'image'=>$this->attributes['image']
           ]);
 
@@ -138,6 +139,8 @@ class UsersController extends Controller
             'email'=>$request->email,
             'city_id'=>$request->city_id,
             'phone'=>$request->phone,
+            'type_user'=>'admin'
+            
         ]);
 
         if($request->has('password')){

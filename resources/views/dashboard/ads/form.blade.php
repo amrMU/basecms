@@ -1,4 +1,4 @@
-{{-- general Info --}}
+{{--general Info --}}
 <fieldset class="content-group">
     <legend class="text-bold">@lang('home.create_ad')</legend>
     <!-- categories input -->
@@ -12,6 +12,8 @@
             value="{{@$category->id}}"
              @if(isset($info))
              @if($category->id == $info->category->parent_id)
+              selected
+              @elseif($category->id == $info->id)
               selected
                @endif
                @endif
@@ -151,7 +153,9 @@
             name="space" 
             class="form-control " 
             placeholder="@lang('home.space')" 
-            value="{{ @$info->space }}" >
+            value="@if(Request::old('space')!== null)
+            {{ Request::old('space') }}
+            @else{{ @$info->space }}@endif" >
         </div>
     </div>
     <!-- /space input -->
@@ -164,7 +168,9 @@
             class="form-control" 
             placeholder="@lang('home.bed_room')" 
             
-            value="{{ @$info->bed_room }}"  >
+            value="@if(Request::old('bed_room')!== null)
+            {{ Request::old('bed_room') }}
+            @else{{ @$info->bed_room }}@endif"  >
         </div>
     </div>
     <!-- /bed_room input -->
@@ -176,7 +182,9 @@
             name="bathroom" 
             class="form-control" 
             placeholder="@lang('home.bathroom')" 
-            value="{{ @$info->bathroom }}" 
+            value="@if(Request::old('bathroom')!== null)
+            {{ Request::old('bathroom') }}
+            @else{{ @$info->bathroom }}@endif" 
              >
         </div>
     </div>
@@ -189,7 +197,9 @@
             name="parking" 
             class="form-control" 
             placeholder="@lang('home.parking')" 
-            value=" {{ @$info->parking }}" >
+            value="@if(Request::old('parking')!== null)
+            {{ Request::old('parking') }}
+            @else{{ @$info->parking }}@endif" >
         </div>
     </div>
     <!-- /parking input -->
@@ -202,7 +212,9 @@
             name="price" 
             class="form-control"  
             placeholder="@lang('home.price')" 
-            value="{{ @$info->price }}">
+            value="@if(Request::old('price')!== null)
+            {{ Request::old('price') }}
+            @else{{ @$info->price }}@endif">
         </div>
     </div>
     <!-- /url input -->
@@ -217,12 +229,12 @@
     <!-- /url input -->
 
     <!-- url input -->
-    <div class="form-group">
+   {{--  <div class="form-group">
         <label class="control-label col-lg-3">@lang('home.url_page') <span class="text-danger" title="@lang('home.required')">*</span></label>
         <div class="col-lg-9">
             <input type="text" name="url" class="form-control"  placeholder="@lang('home.url_page')" value="{{@$info->url}}">
         </div>
-    </div>
+    </div> --}}
     <!-- /url input -->
     <!-- Meta Tags input -->
     <div class="form-group">
@@ -247,7 +259,10 @@
                         @if($info->status == "show")
                                     checked 
                         @endif
+                        @else
+                            checked 
                         @endif
+
                         >
                     <label>
                          @lang('home.show')
@@ -284,4 +299,4 @@
     <!-- /images uploader -->
  
 </fieldset>
-{{-- general Info --}}
+{{-- general Info--}}

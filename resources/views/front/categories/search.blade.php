@@ -1,6 +1,6 @@
 @extends('front.layouts.main')
 @section('meta_tags')
-    <title> قسم  | {{@$category->category_translation->name}}</title>
+    <title> نتائج البحث  | {{@$category->category_translation->name}}</title>
 
     <meta name='description' itemprop='description' content='{!! @$info->translation->content!!}' />
     <meta name='keywords' content='{!!@$setting->meta_tags!!},{!!@$info->translation->title !!},{!!@$info->mission !!},{!!@$info->goals!!}' />
@@ -27,15 +27,16 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 text-center caption">
-                        @if($category->parent_id != NULL)
+                        @if(@$category->parent_id != NULL)
                         <h1> {{ @$category->category->category_translation->name }}</h1>
                         @else 
                         <h1> {{ @$category->category_translation->name }}</h1>
                         @endif
                         <h5>
-                        <a href="{{ URL::to('/') }}">الرئسية</a>
+                        <a href="{{ URL::to('/') }}">الرئيسيه</a>
                         <span>/</span>
-                        @if($category->parent_id != NULL)
+                        نتائج البحث
+                        @if(@$category->parent_id != NULL)
                         <a href="{{ URL::to('/').'/categories/'.$category->parent_id.'/'.@str_replace(' ', '_', $category->category->category_translation->name) }}">{{ @$category->category->category_translation->name}}</a>
                         <span>/</span>
                         @endif
@@ -60,10 +61,11 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-
+                        @if($category !== null)
                         <div class="head">
                             <h5> <span></span>{{ @$category->category_translation->name }}</h5>
                         </div>
+                        @endif
 
                         <div class="row">
                             @if($ads->count() > 0 )
@@ -71,7 +73,12 @@
                             <div class="col-lg-3 col-md-6">
                                 <div class="item">
                                     <div class="img">
-                                        <img src="{{ asset('/').@$ad->images->first()->image }}" alt="{{ @$ad->translations->first()->title }}">
+                                        
+                                       @if($ad->images->count() > 0 )
+                                       <img src="{{ asset('/').@$ad->images->first()->image }}" alt="">
+                                       @else 
+                                       <img src="{{ asset('/img/no_image.png')}}" alt="">
+                                       @endif
                                         <span class="tag">{{ @$category->category_translation->name }}</span>
                                         <div class="icons">
                                             {{-- <a href="#0" class="icon"><span class="ti-gallery"></span></a> --}}

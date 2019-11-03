@@ -32,8 +32,7 @@ class ProfileUpdateequest extends FormRequest
             'image'=>'mimes:jpeg,jpg,png,gif',
             'password'=> ['required', 
                            'min:6', 
-                           'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\X])(?=.*[!$#%]).*$/', 
-                           'confirmed'],// English uppercase characters (A – Z) - English lowercase characters (a – z) - Base 10 digits (0 – 9) - Non-alphanumeric (For example: !, $, #, or %) - Unicode characters
+                           ],// English uppercase characters (A – Z) - English lowercase characters (a – z) - Base 10 digits (0 – 9) - Non-alphanumeric (For example: !, $, #, or %) - Unicode characters
         ];
     }
 }

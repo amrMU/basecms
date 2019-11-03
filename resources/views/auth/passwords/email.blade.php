@@ -35,7 +35,7 @@
     <!-- Main navbar -->
     <div class="navbar navbar-inverse bg-indigo">
         <div class="navbar-header">
-            <a class="navbar-brand" href="{{URL::to('/')}}"><img src="{{ asset('/') }}/assets/images/logo_light.png" alt=""></a>
+            <a class="navbar-brand" href="{{URL::to('/')}}"><img src="{{ asset('/img/logo.png') }}" alt=""></a>
 
             <ul class="nav navbar-nav pull-right visible-xs-block">
                 <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
@@ -88,7 +88,7 @@
                         <div class="panel panel-body login-form">
                             <div class="text-center">
                                 <div class="icon-object border-warning text-warning"><i class="icon-spinner11"></i></div>
-                                <h5 class="content-group">Password recovery <small class="display-block">We'll send you instructions in email</small></h5>
+                                <h5 class="content-group">استرداد كلمة المرور <small class="display-block">سنرسل لك تعليمات في البريد الإلكتروني</small></h5>
                             </div>
                             @if (session('status'))
                                 <div class="alert alert-success" role="alert">
@@ -108,7 +108,7 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn bg-pink-400 btn-block">  {{ __('Send Password Reset Link') }} <i class="icon-arrow-left13 position-right"></i></button>
+                            <button type="submit" class="btn bg-pink-400 btn-block">  {{ __('إرسال رابط إعادة تعيين كلمة المرور') }} <i class="icon-arrow-left13 position-right"></i></button>
                         </div>
                     </form>
                     <!-- /password recovery -->

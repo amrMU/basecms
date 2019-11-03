@@ -89,7 +89,7 @@
                         <div class="panel panel-body login-form">
                             <div class="text-center">
                                 <div class="icon-object border-warning text-warning"><i class="icon-spinner11"></i></div>
-                                <h5 class="content-group">Reset Password recovery <small class="display-block">Now You Can Reset Your Password</small></h5>
+                                <h5 class="content-group">إعادة تعيين استعادة كلمة المرور <small class="display-block">الآن يمكنك إعادة تعيين كلمة المرور الخاصة بك</small></h5>
                             </div>
                             @if (session('status'))
                                 <div class="alert alert-success" role="alert">
@@ -136,7 +136,7 @@
                             </div>
 
 
-                            <button type="submit" class="btn bg-pink-400 btn-block">    {{ __('Reset Password') }} <i class="icon-arrow-left13 position-right"></i></button>
+                            <button type="submit" class="btn bg-pink-400 btn-block">    {{ __('إعادة تعيين كلمة المرور') }} <i class="icon-arrow-left13 position-right"></i></button>
                         </div>
                     </form>
                     <!-- /password recovery -->

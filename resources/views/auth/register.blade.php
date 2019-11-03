@@ -96,14 +96,14 @@
                                         @endif
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <input  type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                                                <input  type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="اسم المستخدم" required autofocus>
                                             </div>
                                             <div class="col-md-12">
                                                 <input  type="email" class="form-control" name="email" value="{{ old('email') }}" required 
                                                     placeholder="البريد الالكترونى">
                                             </div>
                                             <div class="col-md-12">
-                                                <input type="password" class="form-control" name="password" required placeholder="الرقم السرى">
+                                                <input type="password" class="form-control" name="password" required placeholder="كلمة المرور">
                                             </div>
                                             <div class="col-md-12">
                                                 <input  type="password" class="form-control" name="password_confirmation" required placeholder="تأكيد كلمة المرور">

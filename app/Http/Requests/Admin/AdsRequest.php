@@ -44,7 +44,7 @@ class AdsRequest extends FormRequest
                         'required',
                         Rule::in(['own','rent','purchase','other']),
                         ],
-                'url'=>'required',
+                // 'url'=>'required',
                 'map'=>'required'
             ];
         }
@@ -62,7 +62,7 @@ class AdsRequest extends FormRequest
                         'required',
                         Rule::in(['own','rent','purchase','other']),
                         ],
-                'url'=>'required|unique:ads,url,'.$this->segment(4),
+                // 'url'=>'required|unique:ads,url,'.$this->segment(4),
                 'map'=>'required'
             ];
         }

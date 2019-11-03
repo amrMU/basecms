@@ -45,11 +45,17 @@ class AdsController extends Controller
 	public function store(AdsRequest $request)
 	{
 
+		if ($request->has('sub_categoris')) {
+			$category_id = $request->sub_categoris;
+		}else{
+			$category_id = $request->category_id;
+		}
+
 		$create_ad = $this->ads->create([
-						'category_id'=>$request->category_id,
+						'category_id'=>$category_id,
 						'price'=>$request->price,
 						'user_id'=>Auth::id(),
-						'url'=>$request->url,
+						'url'=>' ',
 						'map'=>$request->map,
 						'meta_tags'=>$request->meta_tags,
 						// 'status'=>$request->status,
@@ -76,8 +82,8 @@ class AdsController extends Controller
 			$set_images_path_db = [];
 			$upload_images = ImagesController::upload_multiple(
 				$request->images,
-				public_path().'/uploads/images/ads',
-				'/uploads/images/ads',
+				public_path().'/uploads/images/products',
+				'/uploads/images/products'
 				);
 
 			foreach ($upload_images as $key => $image) {
@@ -97,7 +103,6 @@ class AdsController extends Controller
 	public function show($id,$name)
 	{
 		$ad = $this->ads->find($id);
-		// dd($);
 		if ($ad == null) {
 			return abort(404);
 		}
@@ -120,18 +125,17 @@ class AdsController extends Controller
 	public function update($id,AdsRequest $request)
 	{
 
-		if ($reqest->has('sub_categoris')) {
+		if ($request->has('sub_categoris')) {
 			$category_id = $request->sub_categoris;
 		}else{
 			$category_id = $request->category_id;
 		}
 
-
 		$update  = $this->ads->find($id)->update([
 						'category_id'=>$category_id,
 						'user_id'=>Auth::id(),
 						'price'=>$request->price,
-						'url'=>$request->url,
+						'url'=>' ',
 						'map'=>$request->map,
 						'meta_tags'=>$request->meta_tags,
 						'status'=>$request->status,
@@ -141,7 +145,6 @@ class AdsController extends Controller
 						'bathroom'=>$request->bathroom,
 						'parking'=>$request->parking,
 					]);//end save base info
-
 		if ($request->has('lang')) {
 
 			$this->translation->where('ad_id',$id)->delete();
@@ -161,8 +164,8 @@ class AdsController extends Controller
 			$set_images_path_db = [];
 			$upload_images = ImagesController::upload_multiple(
 				$request->images,
-				public_path().'/uploads/images/ads',
-				'/uploads/images/ads',
+				public_path().'/uploads/images/products',
+				'/uploads/images/products'
 				);
 
 			foreach ($upload_images as $key => $image) {

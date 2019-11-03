@@ -65,6 +65,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <?php if($category->sub_categories->count()> 0): ?>
                                         <div class="col-md-5 col-sm-6 custom-padding">
                                             <div class="item">
                                                 <div class="">
@@ -79,6 +80,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <div class="col-md-2 custom-padding">

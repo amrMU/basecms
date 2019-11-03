@@ -73,7 +73,7 @@
                             </li>
 
                             <li class="nvmenu">
-                                <a href="<?php echo e(URL::to('/')); ?>">الرئسية</a>
+                                <a href="<?php echo e(URL::to('/')); ?>">الرئيسيه  </a>
                             </li>
                             <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <li class="nvmenu">
@@ -89,7 +89,7 @@
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             <?php if(Auth::check()): ?>
                             <li class="nvmenu">
-                                <a href="">روابط خاصه<span class="ti-angle-down"></span></a>
+                                <a href="">حسابي<span class="ti-angle-down"></span></a>
                                 <ul class="menu">
                                    
                                     <li><a href="<?php echo e(URL::to('/i/advertising/create')); ?>">اضافة اعلان</a></li>

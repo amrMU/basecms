@@ -167,25 +167,7 @@
                                 </fieldset>
                                 
                                 
-                                <fieldset class="content-group">
 
-                                    <legend class="text-bold"><?php echo app('translator')->getFromJson('home.site_lang'); ?></legend>
-                                        <!-- /lang Chooser-->
-                                        <div class="form-group" >
-                                            <label class="control-label col-lg-2"><?php echo app('translator')->getFromJson('home.languages'); ?> </label>
-                                            <div class="col-lg-9">
-                                                <select name="languages[]" class="form-control" multiple="">
-                                                    <option value=""><?php echo app('translator')->getFromJson('home.select_one'); ?></option>
-                                                    <?php $__currentLoopData = $languages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lang): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                    <?php $__currentLoopData = $site_langs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $local): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                      <option value="<?php echo e(@$lang->id); ?>" <?php if($lang->id ==$local->lang_id): ?> selected <?php endif; ?>><?php echo e(@$lang->local); ?></option>
-                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <!-- lang Chooser -->
-                                </fieldset>
                                 
                                 
                                 <fieldset class="content-group">
@@ -393,7 +375,7 @@
 
 
                                             <input type="hidden" name="social_img[]" value="/img/unknown.png"multiple>
-                                            <input type="hidden" name="social_media_lang[]" value="<?php echo e($lang->id); ?>"  multiple>
+                                            <input type="hidden" name="social_media_lang[]" value="<?php echo e(@$lang->id); ?>"  multiple>
                                             <div class="col-lg-2">
                                               <img src="<?php echo e(url('/img/unknown.png')); ?>" class="img-responsive" style="max-height: 46px" >
                                             </div>
@@ -507,7 +489,7 @@
    var add_new_social_media = $(".add_new_social_media");
    $(add_new_social_media).click(function (e) {
     e.preventDefault();
-    $(wrap_social_media).append('<div class="form-group" ><div class="col-lg-2"><button class="remove_field btn btn-danger">-</button></div><input type="hidden" name="social_img[]" value="/img/unknown.png"multiple><input type="hidden" name="social_media_lang[]" value="<?php echo e($lang->id); ?>"  multiple><div class="col-lg-2"><img src="<?php echo e(url('/img/unknown.png')); ?>" class="img-responsive" style="max-height: 46px" ></div><div class="col-lg-4"><input type="text" name="url[]" multiple class="form-control" id="url"  placeholder="<?php echo app('translator')->getFromJson('home.url'); ?>"></div><div class="col-2"><input type="file" name="social_logo[]" class="file-styled"  multiple></div></div>');
+    $(wrap_social_media).append('<div class="form-group" ><div class="col-lg-2"><button class="remove_field btn btn-danger">-</button></div><input type="hidden" name="social_img[]" value="/img/unknown.png"multiple><input type="hidden" name="social_media_lang[]" value="<?php echo e(@$lang->id); ?>"  multiple><div class="col-lg-2"><img src="<?php echo e(url('/img/unknown.png')); ?>" class="img-responsive" style="max-height: 46px" ></div><div class="col-lg-4"><input type="text" name="url[]" multiple class="form-control" id="url"  placeholder="<?php echo app('translator')->getFromJson('home.url'); ?>"></div><div class="col-2"><input type="file" name="social_logo[]" class="file-styled"  multiple></div></div>');
   });
 
    $(document).on("click",".remove_field",function(){

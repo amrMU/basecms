@@ -149,13 +149,13 @@ $('#parent_id').on('change',function () {
             'success' : function(data) {     
                console.log(data.data.length );
                 if (data.data.length == 0) {
-                    $('#sub_categoris').fadeOut();
-                    $('#sub_categoris_unknown').fadeIn(3000);
+                    $('#sub_categoris').hide();
+                    $('#sub_categoris_unknown').show();
                 } //where sub categories list  length = 0
                 else{//where sub categories list  length  > 0 will append in #sub_categoris
 
-                    $('#sub_categoris').fadeIn(4000);
-                    $('#sub_categoris_unknown').fadeOut();
+                    $('#sub_categoris').show();
+                    $('#sub_categoris_unknown').hide();
                     $('#sub_categoris').empty()
                     for (var i = data.data.length - 1; i >= 0; i--) {
                         $('#sub_categoris').append("<option value='"+data.data[i].id+"'>"+data.data[i].category_translation.name+"</option")   
@@ -164,13 +164,13 @@ $('#parent_id').on('change',function () {
             }//server success case 
             ,'error' : function(request,error)
             {
-                $('#sub_categoris').fadeOut();
-                $('#sub_categoris_unknown').fadeIn(4000);
+                $('#sub_categoris').hide();
+                $('#sub_categoris_unknown').show();
             }//server error case 
         });
     }else{
-        $('#sub_categoris').fadeOut();
-        $('#sub_categoris_unknown').fadeIn(400);
+        $('#sub_categoris').hide();
+        $('#sub_categoris_unknown').show();
     }
 });
 </script>

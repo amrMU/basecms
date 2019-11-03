@@ -79,7 +79,7 @@
                                     <div class="text hvcont">
                                         ليس لديك حساب حتى الآن؟ <a href="{{ URL::to('/register') }}">أنشئ حسابا</a> <br>
                                          @if (Route::has('password.request'))
-                                        نسيت  كلمة المرور <a  href="{{ route('password.request') }}">استعاده</a>
+                                        نسيت  كلمة المرور <a  href="{{ route('password.request') }}">استرداد كلمة  المرور ؟</a>
                                          @endif
                                     </div>
                                     
