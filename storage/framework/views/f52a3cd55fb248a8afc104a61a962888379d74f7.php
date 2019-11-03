@@ -78,7 +78,7 @@
                                     <div class="text hvcont">
                                         ليس لديك حساب حتى الآن؟ <a href="<?php echo e(URL::to('/register')); ?>">أنشئ حسابا</a> <br>
                                          <?php if(Route::has('password.request')): ?>
-                                        نسيت  كلمة المرور <a  href="<?php echo e(route('password.request')); ?>">استعاده</a>
+                                        نسيت  كلمة المرور <a  href="<?php echo e(route('password.request')); ?>">استرداد كلمة  المرور ؟</a>
                                          <?php endif; ?>
                                     </div>
                                     

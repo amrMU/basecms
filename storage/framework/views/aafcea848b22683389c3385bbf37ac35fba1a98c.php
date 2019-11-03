@@ -58,7 +58,7 @@
     <div class="nav-top">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 right">
+                <div class="col-lg-9 right">
                     <div class="mnav">
                         <ul>
                             <li class="nvmenu">
@@ -117,7 +117,7 @@
                     <div class="clear-fix"></div>
                 </div>
 
-                <div class="col-lg-4 left">
+                <div class="col-lg-3 left">
                     <div class="user-area">
                         <ul>
                             <?php if(Auth::guest()): ?>

@@ -26,7 +26,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center caption">
                     <h1>تحديث بيانات الإعلان</h1>
-                    <h5><a href="<?php echo e(URL::to('/')); ?>">الرئسية</a><span>/</span><a href="#0">تحديث بيانات الإعلان</a></h5>
+                    <h5><a href="<?php echo e(URL::to('/')); ?>">الرئيسيه</a><span>/</span><a href="#0">تحديث بيانات الإعلان</a></h5>
                 </div>
             </div>
         </div>
@@ -106,6 +106,8 @@
                                                         value="<?php echo e(@$category->id); ?>"
                                                         <?php if($category->id == $ad->category->parent_id): ?>
                                                           selected
+                                                          <?php elseif($category->id == $ad->category->id): ?>
+                                                          selected
                                                            <?php endif; ?>
                                                         >
                                                         <?php echo e(@$category->category_translation->name); ?>
@@ -120,7 +122,7 @@
                                             <a href="#" class="close" data-dismiss="alert" aria-label="close" style="right: 5px;">&times;</a><?php echo app('translator')->getFromJson('home.empty_sub_categories'); ?>
                                         </div>
                                         <div >
-                                         <select name="category_id" id="sub_categoris" class="form-control" >
+                                         <select name="sub_categoris" id="sub_categoris" class="form-control" >
                                             <option value=""><?php echo app('translator')->getFromJson('home.sub_categories'); ?></option>
                                             <?php if(isset($ad)): ?>
                                             <?php echo $__env->make('front.ads.select_sub_categories_loop_for_update', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
@@ -176,11 +178,7 @@
                                            rows="4" 
                                            class="form-control" 
                                            cols="4"  
-                                           placeholder="<?php echo app('translator')->getFromJson('home.content_'.@$lang->info->local); ?>"> 
-                                            <?php echo e(@$ad->translations->where('lang_id',$lang->id)->first()->content); ?>
-
-                                         
-                                </textarea>
+                                           placeholder="<?php echo app('translator')->getFromJson('home.content_'.@$lang->info->local); ?>"><?php echo e(@$ad->translations->where('lang_id',$lang->id)->first()->content); ?></textarea>
                             </div>
                             
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -318,13 +316,15 @@ $('#parent_id').on('change',function () {
             'success' : function(data) {     
                console.log(data.data.length );
                 if (data.data.length == 0) {
-                    $('#sub_categoris').fadeOut();
-                    $('#sub_categoris_unknown').fadeIn(3000);
+                    $('#sub_categoris').hide();
+                    $('#sub_categoris_unknown').show();
+                    $('#sub_categoris').empty()
+                    
                 } //where sub categories list  length = 0
                 else{//where sub categories list  length  > 0 will append in #sub_categoris
 
-                    $('#sub_categoris').fadeIn(4000);
-                    $('#sub_categoris_unknown').fadeOut();
+                    $('#sub_categoris').show();
+                    $('#sub_categoris_unknown').hide();
                     $('#sub_categoris').empty()
                     for (var i = data.data.length - 1; i >= 0; i--) {
                         $('#sub_categoris').append("<option value='"+data.data[i].id+"'>"+data.data[i].category_translation.name+"</option")   
@@ -333,13 +333,13 @@ $('#parent_id').on('change',function () {
             }//server success case 
             ,'error' : function(request,error)
             {
-                $('#sub_categoris').fadeOut();
-                $('#sub_categoris_unknown').fadeIn(4000);
+                $('#sub_categoris').hide();
+                $('#sub_categoris_unknown').show();
             }//server error case 
         });
     }else{
-        $('#sub_categoris').fadeOut();
-        $('#sub_categoris_unknown').fadeIn(400);
+        $('#sub_categoris').hide();
+        $('#sub_categoris_unknown').show();
     }
 });
 </script>

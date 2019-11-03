@@ -26,7 +26,7 @@
                 <div class="row">
                     <div class="col-lg-12 text-center caption">
                         <h1>حسابى</h1>
-                        <h5><a href="<?php echo e(URL::to('/')); ?>">الرئسية</a><span>/</span><a href="#">حسابى</a></h5>
+                        <h5><a href="<?php echo e(URL::to('/')); ?>">الرئيسيه</a><span>/</span><a href="#">حسابى</a></h5>
                     </div>
                 </div>
             </div>
@@ -127,7 +127,6 @@
                                             </div>
                                         
                                         <h6><span>بيانات الحساب</span></h6>
-
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -141,7 +140,7 @@
 
                                                         <input type="password" name="password">
                                                         <br>
-                                                         <small> - الأحرف الكبيرة الإنجليزية (A - Z) <br>- الأحرف الصغيرة الإنجليزية (a - z) <br>- الأساس 10 أرقام (0 - 9) <br>- غير الأبجدية الرقمية (على سبيل المثال:! ، $) </small>
+                                                         <small> - الأحرف الكبيرة الإنجليزية (A - Z) <br>- الأحرف الصغيرة الإنجليزية (a - z) <br>- الأساس 10 أرقام (0 - 9) </small>
                                                     </div>
                                                 </div>
                                                  <div class="col-md-6">
@@ -166,11 +165,16 @@
 
                                 <div id="tab-2" class="tab-content favorites">
                                     <div class="row">
+                                        <?php if(Auth()->user()->fav_ads->count() > 0): ?>
                                         <?php $__currentLoopData = Auth()->user()->fav_ads; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $fav): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <div class="col-md-4">
                                             <div class="item">
                                                 <div class="img">
+                                                     <?php if($fav->ad->images->count() > 0 ): ?>
                                                      <img src="<?php echo e(asset('/').@$fav->ad->images->first()->image); ?>" alt="<?php echo e(@$fav->ad->translations->first()->title); ?>">
+                                                     <?php else: ?> 
+                                                     <img src="<?php echo e(asset('/img/no_image.png')); ?>" alt="">
+                                                     <?php endif; ?>
                                                 </div>
                                                 <div class="cont">
                                                     <a href="<?php echo e(URL::to('/').'/ads/'.$fav->ad_id.'/'.@str_replace(' ', '_', $fav->ad->translations->first()->title)); ?>" class="det" title="<?php echo e(@$fav->ad->translations->first()->title); ?>">
@@ -186,12 +190,14 @@
                                             </div>
                                         </div>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        <?php endif; ?>
                                   
                                     </div>
                                 </div>
-                               
+
                                 <div id="tab-3" class="tab-content myadd">
                                     <ul>
+                                       <?php if(Auth::user()->ads->count() > 0): ?>
                                        <?php $__currentLoopData = Auth::user()->ads; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ad): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <li>
                                             <div class="img">
@@ -209,7 +215,7 @@
                                             </div>
                                         </li>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
+                                        <?php endif; ?>
                                     </ul>
                                 </div>
                             </div>
@@ -244,9 +250,9 @@
                    console.log(data);
                    if (data.message == 'UnFav') {
                         $(this.children(1).hide());
-                        $(this.children(2).sohow());
+                        $(this.children(2).show());
                    }else{
-                      $(this.children(1).sohow());
+                      $(this.children(1).show());
                       $(this.children(2).hide());
 
                    }

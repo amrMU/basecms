@@ -32,7 +32,7 @@
                         <h1> <?php echo e(@$category->category_translation->name); ?></h1>
                         <?php endif; ?>
                         <h5>
-                        <a href="<?php echo e(URL::to('/')); ?>">الرئسية</a>
+                        <a href="<?php echo e(URL::to('/')); ?>">الرئيسيه</a>
                         <span>/</span>
                         <?php if($category->parent_id != NULL): ?>
                         <a href="<?php echo e(URL::to('/').'/categories/'.$category->parent_id.'/'.@str_replace(' ', '_', $category->category->category_translation->name)); ?>"><?php echo e(@$category->category->category_translation->name); ?></a>
@@ -120,7 +120,12 @@
                             <div class="col-lg-3 col-md-6">
                                 <div class="item">
                                     <div class="img">
-                                        <img src="<?php echo e(asset('/').@$ad->images->first()->image); ?>" alt="<?php echo e(@$ad->translations->first()->title); ?>">
+                                       
+                                        <?php if($ad->images->count() > 0 ): ?>
+                                        <img src="<?php echo e(asset('/').@$ad->images->first()->image); ?>" alt="">
+                                        <?php else: ?> 
+                                        <img src="<?php echo e(asset('/img/no_image.png')); ?>" alt="">
+                                        <?php endif; ?>
                                         <span class="tag"><?php echo e(@$category->category_translation->name); ?></span>
                                         <div class="icons">
                                             

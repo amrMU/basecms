@@ -5,7 +5,7 @@
     <meta name='keywords' content='<?php echo @$setting->meta_tags; ?>,<?php echo @$info->translation->title; ?>,<?php echo @$info->mission; ?>,<?php echo @$info->goals; ?>' />
     <meta property="og:description"content="<?php echo e(@$info->translation->content); ?>" />
     <meta property="og:title"content=" <?php echo app('translator')->getFromJson('home.aboutus'); ?> | <?php echo e(@$setting->translation->title); ?> " />
-    <meta property="og:url"content="<?php echo e(URL::to('/about_us')); ?>" />
+    <meta property="og:url"content="<?php echo e(URL::to('/').'/ads/'.$ad->id.'/'.@str_replace(' ', '_', $ad->translations->first()->title)); ?>" />
     <meta property="og:site_name"content="<?php echo e(@$setting->translation->title); ?>" />
     <meta property="og:image" content="<?php echo e(URL::to('/').@$setting->logo); ?>">
 
@@ -28,7 +28,7 @@
                     <div class="col-lg-12 text-center caption">
                         <h1> تفاصيل الإعلان </h1>
                         <h5>
-                            <a href="<?php echo e(URL::to('/')); ?>">الرئسية</a>
+                            <a href="<?php echo e(URL::to('/')); ?>">الرئيسيه</a>
                             <span>/</span>
                             <?php if($ad->category->parent_id != NULL): ?>
                             <a href="<?php echo e(URL::to('/').'/categories/'.$ad->category->category->id.'/'.str_replace(' ', '_', $ad->category->category->category_translation->name)); ?>"><?php echo e(@$ad->category->category->category_translation->name); ?></a> 
@@ -62,18 +62,44 @@
                                     <p><?php echo e($ad->translations->first()->address); ?></p>
                                 </div>
                                 <div class="slider-for">
-                                    <?php $__currentLoopData = $ad->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <div class="item"><img src="<?php echo e(asset('/').$image->image); ?>" alt=""></div>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    <?php if($ad->images->count() > 0 ): ?>
+                                        <?php $__currentLoopData = $ad->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <div class="item"><img src="<?php echo e(asset('/').$image->image); ?>" alt=""></div>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    <?php else: ?> 
+                                        <div class="item"><img src="<?php echo e(asset('/img/no_image.png')); ?>" alt=""></div>
+                                    <?php endif; ?>
                                 </div>
                                 <div class="slider-nav">
                                     <?php $__currentLoopData = $ad->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <div class="item"><img src="<?php echo e(asset('/').$image->image); ?>" alt=""></div>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </div>
+                                <div class="title">
+                                    <span class="share">
+                                        <small>مشاركه : </small>
+                                   
+                                        <div id="social-links">
+                                        <a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo e(URL::to('/').'/ads/'.$ad->id.'/'.@str_replace(' ', '_', $ad->translations->first()->title)); ?>" class="icon">
+                                            <i class="fab fa-facebook-f"></i>
+                                        </a>
+                                        <a href="https://twitter.com/intent/tweet?text=hi&amp;url=<?php echo e(URL::to('/').'/ads/'.$ad->id.'/'.@str_replace(' ', '_', $ad->translations->first()->title)); ?>" class="icon">
+                                            <i class="fab fa-twitter"></i>
+                                        </a>
+                                        <a href="#0" class="icon">
+                                            <i class="fab fa-instagram"></i>
+                                        </a>
+                                        <small><a href="#">ابلاغ عن الاعلان</a></small>
+                                    </span>
+                                    <!-- <p>مارينا 5, مارينا, العلمين, الساحل الشمالي</p> -->
+                                </div>
+
                             </div>
 
                             <div class="desc">
+                                <div class="title">
+
+                                </div>
                                 <div class="title">
                                     <h5>الوصف</h5>
                                 </div>
@@ -116,9 +142,12 @@
                                 </div>
                             </div>
 
+
                              <div class="row">
                                 <div class="col-md-6">
                                    <div class="rate">
+                                        <?php if($ad !== null): ?>
+                                        <?php if($ad->user_id != Auth::id()): ?>
                                         <div class="title">
                                             <h5>اضافه تقييم</h5>
                                         </div>
@@ -163,6 +192,8 @@
                                             </div>
                                             <button type="submit">ارسال</button>
                                         </form>
+                                        <?php endif; ?>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <div class="col-md-6">

@@ -105,6 +105,8 @@
                                                         value="{{@$category->id}}"
                                                         @if($category->id == $ad->category->parent_id)
                                                           selected
+                                                          @elseif($category->id == $ad->category->id)
+                                                          selected
                                                            @endif
                                                         >
                                                         {{@$category->category_translation->name}}

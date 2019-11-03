@@ -1,6 +1,6 @@
      <!-- =====================================
         ==== Start testim -->
-
+    <?php if($ad->rates->count() > 0 ): ?>
         <section class="testim section-padding bg-img" data-background="images/bg-dots.png">
             <div class="container">
                 <div class="row">
@@ -55,6 +55,7 @@
                 </div>
             </div>
         </section>
+        <?php endif; ?>
 
         <!-- End testim ====
             ======================================= -->

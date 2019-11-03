@@ -6,7 +6,7 @@
     <meta name='keywords' content='{!!@$setting->meta_tags!!},{!!@$info->translation->title !!},{!!@$info->mission !!},{!!@$info->goals!!}' />
     <meta property="og:description"content="{{ @$info->translation->content }}" />
     <meta property="og:title"content=" @lang('home.aboutus') | {{@$setting->translation->title}} " />
-    <meta property="og:url"content="{{URL::to('/about_us')}}" />
+    <meta property="og:url"content="{{ URL::to('/').'/ads/'.$ad->id.'/'.@str_replace(' ', '_', $ad->translations->first()->title) }}" />
     <meta property="og:site_name"content="{{@$setting->translation->title}}" />
     <meta property="og:image" content="{{URL::to('/').@$setting->logo}}">
 
@@ -76,9 +76,31 @@
                                     <div class="item"><img src="{{ asset('/').$image->image }}" alt=""></div>
                                     @endforeach
                                 </div>
+                                <div class="title">
+                                    <span class="share">
+                                        <small>مشاركه : </small>
+                                   
+                                        <div id="social-links">
+                                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ URL::to('/').'/ads/'.$ad->id.'/'.@str_replace(' ', '_', $ad->translations->first()->title) }}" class="icon">
+                                            <i class="fab fa-facebook-f"></i>
+                                        </a>
+                                        <a href="https://twitter.com/intent/tweet?text=hi&amp;url={{ URL::to('/').'/ads/'.$ad->id.'/'.@str_replace(' ', '_', $ad->translations->first()->title) }}" class="icon">
+                                            <i class="fab fa-twitter"></i>
+                                        </a>
+                                      {{--   <a href="#0" class="icon">
+                                            <i class="fab fa-instagram"></i>
+                                        </a> --}}
+                                        <small><a href="#">ابلاغ عن الاعلان</a></small>
+                                    </span>
+                                    <!-- <p>مارينا 5, مارينا, العلمين, الساحل الشمالي</p> -->
+                                </div>
+
                             </div>
 
                             <div class="desc">
+                                <div class="title">
+
+                                </div>
                                 <div class="title">
                                     <h5>الوصف</h5>
                                 </div>

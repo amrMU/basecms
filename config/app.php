@@ -181,7 +181,9 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
 
         Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
-        Maatwebsite\Excel\ExcelServiceProvider::class
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+        Jorenvh\Share\Providers\ShareServiceProvider::class,
+
 
     ],
 
@@ -238,7 +240,9 @@ return [
         //laravel debuger
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
-        'Excel' => Maatwebsite\Excel\Facades\Excel::class
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Share' => Jorenvh\Share\ShareFacade::class,
+
 
 
     ],
