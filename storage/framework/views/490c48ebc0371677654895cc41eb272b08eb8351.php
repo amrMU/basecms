@@ -45,7 +45,7 @@
                         <div class="find-home">
                             <div class="row">
                                 <div class="col-md-10">
-                                    <form method="GET" action="<?php echo e(URL::to('/search')); ?>">
+                                    <form method="GET" action="<?php echo e(URL::to('/search'.'/'.@$category->id)); ?>">
                                         <?php echo csrf_field(); ?>
                                     <div class="row">
                                     

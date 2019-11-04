@@ -27,7 +27,9 @@ class TestmonialsRequest extends FormRequest
         case 'GET':
         case 'DELETE':
             {
-             return array();
+             return [
+                // 'ids.*'=>'accepted'
+             ];
         }
         case 'POST':
         {
@@ -48,6 +50,7 @@ class TestmonialsRequest extends FormRequest
             ];
         }
         case 'PATCH':
+
 
         }
     }

@@ -54,11 +54,56 @@
             <strong><?php echo app('translator')->getFromJson('home.success'); ?>!</strong> <?php echo e(session('success')); ?>.
         </div>
         <?php endif; ?>
+        <form action="<?php echo e(URL::to('/ar/admin/testmonials_delete_all')); ?>" method="post">
+        <?php echo csrf_field(); ?>
+        <input name="_method" type="hidden" value="DELETE">
+            <div class="row" style="margin:5px;">
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-info"  >
+                    <input type="checkbox" id="select-all">  
+                    <?php echo app('translator')->getFromJson('home.sellect_all'); ?></button>
+                </div>
+                <div class="col-md-2">
+                    
+                    <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#DeleteSelected<?php echo e(@$testmonial->id); ?>">
+                       <?php echo app('translator')->getFromJson('home.delete_all'); ?>
+                    </button>
+
+
+                    <!-- Modal -->
+                    <div id="DeleteSelected<?php echo e(@$testmonial->id); ?>" class="modal fade" role="dialog">
+                      <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"><?php echo app('translator')->getFromJson('home.header_delete_model'); ?></h4>
+                        </div>
+                        <div class="modal-body">
+                            <p><?php echo app('translator')->getFromJson('home.body_delete_all_model'); ?></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo app('translator')->getFromJson('home.close'); ?></button>
+                          
+                            <button type="submit"  class="btn btn-danger" ><?php echo app('translator')->getFromJson('home.delete_all'); ?></button>    
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+                </div>
+            </div>
             <!--  -->
             <table class="table text-nowrap table datatable-basic" id="table">
                 <thead>                  
                 <tr>                                     
-                    <th class="col-md-2">#</th>
+                    <th class="col-md-2">
+                            #
+                    </th>
                     <th class="col-md-2"><?php echo app('translator')->getFromJson('home.name'); ?></th>
                     <th class="col-md-2"><?php echo app('translator')->getFromJson('home.category'); ?></th>
                     <th class="col-md-2"><?php echo app('translator')->getFromJson('home.icon'); ?></th>
@@ -70,7 +115,12 @@
                 <tbody>
                 <?php $__currentLoopData = $testmonials; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $testmonial): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr>
-                    <td><span class="text-semibold"><?php echo e(@$testmonial->id); ?></span></td>
+                    <td><span class="text-semibold">
+                        <?php echo e(@$testmonial->id); ?>
+
+                    <input type="checkbox" name="ids[]" value="<?php echo e(@$testmonial->id); ?>"> 
+
+                </span></td>
                     <td>
                         <span class="text-semibold"> <?php echo e(@$testmonial->title); ?></span>
                     </td>
@@ -93,6 +143,7 @@
                 </tbody>
             </table>
             <!--  -->
+            </form>
         </div>
         <!-- table reports -->
     </div>
@@ -103,5 +154,22 @@
 
 </div>
 <!-- Main content -->
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('jsCode'); ?>
+    <script>
+        // Listen for click on toggle checkbox
+        $('#select-all').click(function(event) {   
+            if(this.checked) {
+                // Iterate each checkbox
+                $(':checkbox').each(function() {
+                    this.checked = true;                        
+                });
+            } else {
+                $(':checkbox').each(function() {
+                    this.checked = false;                       
+                });
+            }
+        });
+    </script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('dashboard.layouts.main', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>

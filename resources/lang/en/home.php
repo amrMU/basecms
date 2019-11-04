@@ -174,7 +174,11 @@
 		'more'=>'More',
 		'list_contactus_full_info'=>'List Info Contactus',
 		'ads_list_blocked'=>'List banned ads',
-		'banned_list_messages'=>'Request Banned List'
+		'banned_list_messages'=>'Request Banned List',
+		'sellect_all'=>'Sellect All',
+		'delete_all'=>'Delete All',
+		'body_delete_all_model'=>'Anything you choose will be removed from your database.'
+		
 
 
 

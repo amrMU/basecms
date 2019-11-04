@@ -52,6 +52,7 @@
 
 			Route::resource('testmonials','Admin\TestmonialsController');
 			Route::get('testmonials/{id}/delete','Admin\TestmonialsController@destroy');
+			Route::DELETE('testmonials_delete_all','Admin\TestmonialsController@destroyAll');
 			Route::get('testmonials_export','Admin\TestmonialsController@ExportExelSheet');
 
 			Route::resource('pages','Admin\PagesController');
@@ -111,7 +112,7 @@
 	Route::post('contactus','Front\ContctUsController@posttSendAsk');
 	Route::get('/ads/{id}/{name}','Front\AdsController@show');
 	Route::get('/','Front\HomeController@index');
-	Route::get('/search','Front\SearchController@search');
+	Route::get('/search/{category_id}','Front\SearchController@search');
 
 
 

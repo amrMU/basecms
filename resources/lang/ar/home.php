@@ -176,6 +176,9 @@
 		'list_contactus_full_info'=>'قائمة المعلومات اتصل بنا',
 		'ads_list_blocked'=>'قائمة الإعلانات المحظوره',
 		'banned_list_messages'=>'طلبات حظر الإعلان',
+		'sellect_all'=>'تحديد الكل',
+		'delete_all'=>'حذف الكل',
+		'body_delete_all_model'=>'ستتم إزالة كل ماتم اختياره من قاعدة البيانات الخاصة بك.'
 		
 
 
