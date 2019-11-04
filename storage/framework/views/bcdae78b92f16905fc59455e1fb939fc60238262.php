@@ -54,6 +54,49 @@
             <strong><?php echo app('translator')->getFromJson('home.success'); ?>!</strong> <?php echo e(session('success')); ?>.
         </div>
         <?php endif; ?>
+        <form action="<?php echo e(URL::to('/ar/admin/ads_delete_all')); ?>" method="post">
+        <?php echo csrf_field(); ?>
+        <input name="_method" type="hidden" value="DELETE">
+             <div class="row" style="margin:5px;">
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-info"  >
+                    <input type="checkbox" id="select-all">  
+                    <?php echo app('translator')->getFromJson('home.sellect_all'); ?></button>
+                </div>
+                <div class="col-md-2">
+                    
+                    <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#DeleteSelected">
+                       <?php echo app('translator')->getFromJson('home.delete_all'); ?>
+                    </button>
+
+
+                    <!-- Modal -->
+                    <div id="DeleteSelected" class="modal fade" role="dialog">
+                      <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"><?php echo app('translator')->getFromJson('home.header_delete_model'); ?></h4>
+                        </div>
+                        <div class="modal-body">
+                            <p><?php echo app('translator')->getFromJson('home.body_delete_all_model'); ?></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo app('translator')->getFromJson('home.close'); ?></button>
+                          
+                            <button type="submit"  class="btn btn-danger" ><?php echo app('translator')->getFromJson('home.delete_all'); ?></button>    
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+                </div>
+            </div>
             <!--  -->
             <table class="table text-nowrap table datatable-basic" id="table">
                 <thead>                  
@@ -70,10 +113,19 @@
                 <tbody>
                 <?php $__currentLoopData = $ads; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ad): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr>
-                    <td><span class="text-semibold"><?php echo e(@$ad->id); ?></span></td>
+                    <td><span class="text-semibold">
+                            <?php echo e(@$ad->id); ?>
+
+                    <input type="checkbox" name="ids[]" value="<?php echo e(@$ad->id); ?>"> 
+
+                    </span></td>
                     <td><span class="text-semibold"><?php echo e(@$ad->translations->first()->title); ?></span></td>
                     <td>
-                        <img src="<?php echo e(url('/').'/'.@$ad->images->first()->image); ?>" width="50" height="50" class="img-responsive" alt="<?php echo e(@$ad->translations->first()->title); ?>">
+                        <?php if($ad->images->count() > 0 ): ?>
+                           <img src="<?php echo e(url('/').'/'.@$ad->images->first()->image); ?>"  width="50" height="50" class="img-responsive" alt="<?php echo e(@$ad->translations->first()->title); ?>">
+                        <?php else: ?> 
+                           <img src="<?php echo e(asset('/img/no_image.png')); ?>"  width="50" height="50" class="img-responsive" alt="<?php echo e(@$ad->translations->first()->title); ?>">
+                        <?php endif; ?>
                     </td>
                     <td>
                         <?php if(@$ad->status == 'show'): ?>
@@ -93,6 +145,7 @@
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tbody>
             </table>
+        </form>
             <!--  -->
         </div>
         <!-- table reports -->

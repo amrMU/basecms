@@ -52,23 +52,9 @@
                                 <div class="register-info">
                                     <h5 class="title"><span>تعليمات التسجيل</span></h5>
                                     <div class="cont">
-                                        <h6>ما يجب القيام به عند اختيار الدفع عبر التحويل البنكي :</h6>
-                                        <div class="text">
-                                            ١- تحويل مبلغ البرنامج المطلوب على الحساب البنكي البنك الاهلي : مركز انا
-                                            التغير الرياضي رقم الحساب :13547194009303 رقم الايبان :SA18 1000 0013 5471
-                                            9400 9303
-                                        </div>
-                                        <div class="text">
-                                            ٢- قم بتعبئة جميع البينات واختيار البرنامج المطلوب شرائه
-                                        </div>
-                                        <div class="text">
-                                            ٣- ارفق صورة الوصل , السند او رسالة التحويل
-                                        </div>
-                                        <div class="text support">
-                                            سيتفعل حسابك في خلال 48-24 ساعة في حال مواجهة اي مشكلة اثناء عملية التسجيل
-                                            او ارفاق صورة التحويل تواصل مع الدعم الفني
-                                        </div>
-                                        <h4 class="email-support"><a href="#0">example@gmail.com</a></h4>
+                                       
+                                        <?php echo substr($policy->translation->content, 0,839); ?>
+
                                     </div>
                                 </div>
                             </div>
@@ -95,17 +81,21 @@
                                         <?php endif; ?>
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <input  type="text" class="form-control" name="name" value="<?php echo e(old('name')); ?>" required autofocus>
+                                                <input  type="text" class="form-control" name="name" value="<?php echo e(old('name')); ?>" placeholder="اسم المستخدم" required autofocus>
                                             </div>
                                             <div class="col-md-12">
                                                 <input  type="email" class="form-control" name="email" value="<?php echo e(old('email')); ?>" required 
                                                     placeholder="البريد الالكترونى">
                                             </div>
                                             <div class="col-md-12">
-                                                <input type="password" class="form-control" name="password" required placeholder="الرقم السرى">
+                                                <input type="password" class="form-control" name="password" required placeholder="كلمة المرور">
                                             </div>
                                             <div class="col-md-12">
                                                 <input  type="password" class="form-control" name="password_confirmation" required placeholder="تأكيد كلمة المرور">
+                                            </div>
+                                            <div class="text hvcont">
+                                                <input type="checkbox" name="terms" style="float: right; width: auto; margin-top: 10px; margin-left: 10px;"> 
+                                                اقر بالموافقه علي  <a href="<?php echo e(url('/').'/pages/'.@$policy->id.'/'.@$policy->url); ?>">شروط  الاستخدام </a>
                                             </div>
                                             <div class="col-md-12 text-center">
                                                 <button type="submit" >إنشاء حساب</button>
@@ -113,6 +103,7 @@
                                         </div>
 
                                     </form>
+                                   
                                     <div class="text hvcont">
                                         هل لديك حساب؟ <a href="<?php echo e(route('login')); ?>">سجّل الدخول</a>
                                     </div>

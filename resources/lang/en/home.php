@@ -177,7 +177,8 @@
 		'banned_list_messages'=>'Request Banned List',
 		'sellect_all'=>'Sellect All',
 		'delete_all'=>'Delete All',
-		'body_delete_all_model'=>'Anything you choose will be removed from your database.'
+		'body_delete_all_model'=>'Anything you choose will be removed from your database.',
+		'Maintenance_Policy_Page_Usage'=>'The usage policy page must have a link policy'
 		
 
 

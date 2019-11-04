@@ -57,12 +57,16 @@
 
 			Route::resource('pages','Admin\PagesController');
 			Route::get('pages/{id}/delete','Admin\PagesController@destroy');
+			Route::DELETE('pages_delete_all','Admin\PagesController@destroyAll');
+
 
 			Route::resource('ads','Admin\AdsController');
 			Route::get('banned_ads','Admin\AdsController@bannedAds');
 			Route::get('banned_ads/{ad_id}/{status}','Admin\AdsController@banneAdd');
 			Route::get('ads/{id}/image/delete','Admin\AdsController@DestroyImage');
 			Route::get('ads/{id}/delete','Admin\AdsController@destroy');
+			Route::DELETE('ads_delete_all','Admin\AdsController@destroyAll');
+
 
 			Route::get('aboutus','Admin\AboutusController@create');
 			Route::post('aboutus','Admin\AboutusController@save');
@@ -108,7 +112,7 @@
 	});
 	Route::get('categories/{id}/{name}','Front\CategoriesController@show');
 	Route::get('aboutus','Front\AboutUsController@show');
-	Route::get('pages/{id}/{title}','Front\PagesController@getPage');	
+	Route::get('pages/{id}/{url}','Front\PagesController@getPage');	
 	Route::get('contactus','Front\ContctUsController@getSendAsk');
 	Route::post('contactus','Front\ContctUsController@posttSendAsk');
 	Route::get('/ads/{id}/{name}','Front\AdsController@show');

@@ -28,6 +28,7 @@
     <label class="control-label col-lg-3">@lang('home.url_page') <span class="text-danger" title="@lang('home.required')">*</span></label>
     <div class="col-lg-9">
         <input type="text" name="url" class="form-control"  placeholder="@lang('home.url_page')" value="{{@$info->url}}">
+        <small>@lang('home.Maintenance_Policy_Page_Usage')</small>
     </div>
 </div>
 <!-- /url input -->

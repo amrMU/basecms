@@ -55,6 +55,49 @@
             <strong>@lang('home.success')!</strong> {{session('success')}}.
         </div>
         @endif
+        <form action="{{ URL::to('/ar/admin/ads_delete_all') }}" method="post">
+        @csrf
+        <input name="_method" type="hidden" value="DELETE">
+             <div class="row" style="margin:5px;">
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-info"  >
+                    <input type="checkbox" id="select-all">  
+                    @lang('home.sellect_all')</button>
+                </div>
+                <div class="col-md-2">
+                    
+                    <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#DeleteSelected">
+                       @lang('home.delete_all')
+                    </button>
+
+
+                    <!-- Modal -->
+                    <div id="DeleteSelected" class="modal fade" role="dialog">
+                      <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">@lang('home.header_delete_model')</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>@lang('home.body_delete_all_model')</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">@lang('home.close')</button>
+                          
+                            <button type="submit"  class="btn btn-danger" >@lang('home.delete_all')</button>    
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+                </div>
+            </div>
             <!--  -->
             <table class="table text-nowrap table datatable-basic" id="table">
                 <thead>                  
@@ -71,10 +114,18 @@
                 <tbody>
                 @foreach($ads as $ad)
                 <tr>
-                    <td><span class="text-semibold">{{ @$ad->id }}</span></td>
+                    <td><span class="text-semibold">
+                            {{ @$ad->id }}
+                    <input type="checkbox" name="ids[]" value="{{ @$ad->id }}"> 
+
+                    </span></td>
                     <td><span class="text-semibold">{{ @$ad->translations->first()->title }}</span></td>
                     <td>
-                        <img src="{{url('/').'/'.@$ad->images->first()->image }}" width="50" height="50" class="img-responsive" alt="{{ @$ad->translations->first()->title }}">
+                        @if($ad->images->count() > 0 )
+                           <img src="{{url('/').'/'.@$ad->images->first()->image }}"  width="50" height="50" class="img-responsive" alt="{{ @$ad->translations->first()->title }}">
+                        @else 
+                           <img src="{{ asset('/img/no_image.png')}}"  width="50" height="50" class="img-responsive" alt="{{ @$ad->translations->first()->title }}">
+                        @endif
                     </td>
                     <td>
                         @if(@$ad->status == 'show')
@@ -94,6 +145,7 @@
                 @endforeach
                 </tbody>
             </table>
+        </form>
             <!--  -->
         </div>
         <!-- table reports -->
@@ -105,4 +157,21 @@
 
 </div>
 <!-- Main content -->
+@stop
+@section('jsCode')
+    <script>
+        // Listen for click on toggle checkbox
+        $('#select-all').click(function(event) {   
+            if(this.checked) {
+                // Iterate each checkbox
+                $(':checkbox').each(function() {
+                    this.checked = true;                        
+                });
+            } else {
+                $(':checkbox').each(function() {
+                    this.checked = false;                       
+                });
+            }
+        });
+    </script>
 @stop

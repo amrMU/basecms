@@ -28,6 +28,7 @@
     <label class="control-label col-lg-3"><?php echo app('translator')->getFromJson('home.url_page'); ?> <span class="text-danger" title="<?php echo app('translator')->getFromJson('home.required'); ?>">*</span></label>
     <div class="col-lg-9">
         <input type="text" name="url" class="form-control"  placeholder="<?php echo app('translator')->getFromJson('home.url_page'); ?>" value="<?php echo e(@$info->url); ?>">
+        <small><?php echo app('translator')->getFromJson('home.Maintenance_Policy_Page_Usage'); ?></small>
     </div>
 </div>
 <!-- /url input -->

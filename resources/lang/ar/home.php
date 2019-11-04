@@ -178,7 +178,8 @@
 		'banned_list_messages'=>'طلبات حظر الإعلان',
 		'sellect_all'=>'تحديد الكل',
 		'delete_all'=>'حذف الكل',
-		'body_delete_all_model'=>'ستتم إزالة كل ماتم اختياره من قاعدة البيانات الخاصة بك.'
+		'body_delete_all_model'=>'ستتم إزالة كل ماتم اختياره من قاعدة البيانات الخاصة بك.',
+		'Maintenance_Policy_Page_Usage'=>' صفحه سياسة الاستخدام يجب ان يكون الرابط policy'
 		
 
 

@@ -247,10 +247,29 @@ class AdsController extends Controller
 		$this->ads->where('id',$ad_id)->delete();
 		$agent = new Agent();
         $agent = $agent->platform().','.$agent->browser().$agent->version($agent->browser());
-        $data = ['key'=>'dashboar_remove_add_image','text'=>'Remove Ad Image','browser'=>$agent];
+        $data = ['key'=>'dashboar_remove_ad_image','text'=>'Remove Ad Image','browser'=>$agent];
         DoFire::MK_REPORT($data,Auth::id(),$this->ads->find($ad_id),$request->ipinfo);
         Session::flash('success',trans('home.message_success'));
 		return redirect()->back();
 	}
+
+	public function destroyAll(Request $request)
+    {
+
+       $agent = new Agent();
+       $agent = $agent->platform().','.$agent->browser().$agent->version($agent->browser());
+       $data = ['key'=>'dashboard_destroy_ad_ids_['.json_encode($request->ids).']','text'=>'Destroy selected ad Info','browser'=>$agent];
+
+        DoFire::MK_REPORT($data,Auth::id(),null,$request->ipinfo);
+
+        if ($request->has('ids')) {
+            $this->ads->wherein('id',$request->ids)->delete();
+        }else{
+        $this->ads->truncate();
+        }
+        Session::flash('success',trans('home.message_success'));
+        return redirect()->back();  
+    }
+
 
 }

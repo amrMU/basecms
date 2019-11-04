@@ -41,7 +41,9 @@ class AppServiceProvider extends ServiceProvider
 
             if(\Schema::hasTable('pages')){
                 $pages = Pages::where('status','show')->get();
+                $policy = Pages::where('status','show')->where('url','policy')->first();
                 view()->share('pages', $pages);
+                view()->share('policy', $policy);
             }
 
             if(\Schema::hasTable('test_monials')){

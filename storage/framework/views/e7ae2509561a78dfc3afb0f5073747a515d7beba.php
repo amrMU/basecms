@@ -26,7 +26,7 @@
                 <div class="row">
                     <div class="col-lg-12 text-center caption">
                         <h1> <?php echo e(@$page->translation->title); ?> </h1>
-                        <h5><a href="<?php echo e(URL::To('/')); ?>">الرئسية</a><span>/</span><a href="#"><?php echo e(@$page->translation->title); ?></a></h5>
+                        <h5><a href="<?php echo e(URL::To('/')); ?>">الرئيسيه</a><span>/</span><a href="#"><?php echo e(@$page->translation->title); ?></a></h5>
                     </div>
                 </div>
             </div>
