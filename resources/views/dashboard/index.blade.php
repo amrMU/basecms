@@ -184,7 +184,7 @@
                 <!-- /main charts -->
 
                     <!-- Quick stats boxes -->
-                    <div class="row">
+                   {{--  <div class="row">
                             <div class="col-lg-4">
 
                                 <!-- Members online -->
@@ -258,7 +258,7 @@
                                 <!-- /today's revenue -->
 
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- /quick stats boxes -->
 
 
