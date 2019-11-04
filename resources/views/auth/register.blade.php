@@ -27,7 +27,7 @@
                 <div class="row">
                     <div class="col-lg-12 text-center caption">
                         <h1>حساب جديد</h1>
-                        <h5><a href="index.html">الرئسية</a><span>/</span><a href="#0">إنشاء حساب</a></h5>
+                        <h5><a href="{{ URL::to('/') }}">الرئسية</a><span>/</span><a href="#0">إنشاء حساب</a></h5>
                     </div>
                 </div>
             </div>
@@ -48,32 +48,17 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="row">
-
+                            @if($policy != null)
                             <div class="col-lg-4 order-1">
                                 <div class="register-info">
                                     <h5 class="title"><span>تعليمات التسجيل</span></h5>
                                     <div class="cont">
-                                       {{--  <h6>ما يجب القيام به عند اختيار الدفع عبر التحويل البنكي :</h6>
-                                        <div class="text">
-                                            ١- تحويل مبلغ البرنامج المطلوب على الحساب البنكي البنك الاهلي : مركز انا
-                                            التغير الرياضي رقم الحساب :13547194009303 رقم الايبان :SA18 1000 0013 5471
-                                            9400 9303
-                                        </div>
-                                        <div class="text">
-                                            ٢- قم بتعبئة جميع البينات واختيار البرنامج المطلوب شرائه
-                                        </div>
-                                        <div class="text">
-                                            ٣- ارفق صورة الوصل , السند او رسالة التحويل
-                                        </div>
-                                        <div class="text support">
-                                            سيتفعل حسابك في خلال 48-24 ساعة في حال مواجهة اي مشكلة اثناء عملية التسجيل
-                                            او ارفاق صورة التحويل تواصل مع الدعم الفني
-                                        </div>
-                                        <h4 class="email-support"><a href="#0">example@gmail.com</a></h4> --}}
-                                        {!! substr($policy->translation->content, 0,839) !!}
+                                       
+                                        {!! @$policy->translation->content!!}
                                     </div>
                                 </div>
                             </div>
+                            @endif
 
                             <div class="col-lg-8 order-2">
                                 <div class="register-form">

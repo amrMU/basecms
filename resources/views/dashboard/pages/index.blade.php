@@ -54,6 +54,12 @@
             <strong>@lang('home.success')!</strong> {{session('success')}}.
         </div>
         @endif
+        @if(Session::has('error'))
+        <div class="alert alert-danger alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>@lang('home.cant_remove_supper_admin')!</strong> {{session('error')}}.
+        </div>
+        @endif
          <form action="{{ URL::to('/ar/admin/pages_delete_all') }}" method="post">
         @csrf
         <input name="_method" type="hidden" value="DELETE">

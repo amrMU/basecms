@@ -53,6 +53,12 @@
             <strong><?php echo app('translator')->getFromJson('home.success'); ?>!</strong> <?php echo e(session('success')); ?>.
         </div>
         <?php endif; ?>
+        <?php if(Session::has('error')): ?>
+        <div class="alert alert-danger alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong><?php echo app('translator')->getFromJson('home.cant_remove_supper_admin'); ?>!</strong> <?php echo e(session('error')); ?>.
+        </div>
+        <?php endif; ?>
          <form action="<?php echo e(URL::to('/ar/admin/pages_delete_all')); ?>" method="post">
         <?php echo csrf_field(); ?>
         <input name="_method" type="hidden" value="DELETE">

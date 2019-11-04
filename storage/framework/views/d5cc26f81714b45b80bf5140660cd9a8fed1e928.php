@@ -26,7 +26,7 @@
                 <div class="row">
                     <div class="col-lg-12 text-center caption">
                         <h1> من نحن </h1>
-                        <h5><a href="<?php echo e(URL::To('/')); ?>">الرئسية</a><span>/</span><a href="#0">من نحن</a></h5>
+                        <h5><a href="<?php echo e(URL::To('/')); ?>">الرئيسيه</a><span>/</span><a href="#0">من نحن</a></h5>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                         <div class="intro">
                             <h6><?php echo e(@$info->translation->title); ?></h6>
                             <p><?php echo @$info->translation->content; ?></p>
-                            <a href="#0" class="butn butn-bg"><span>اذهب للبحث</span></a>
+                            
                         </div>
                     </div>
 

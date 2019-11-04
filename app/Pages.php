@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Database\Eloquent\SoftDeletes;
+// use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Pages extends Model
 {
-    use SoftDeletes;
+    // use SoftDeletes;
     protected $table = "pages";
     protected $fillable = [
        'url',

@@ -1,4 +1,6 @@
-<?php
+<?php 
+namespace App\Http\Controllers\Admin;
+
 /*
 *********************************
 * Name: Amr Muhamed             *
@@ -7,7 +9,6 @@
 * Copywrits @amrMU Githup       *
 * *******************************
 */
-namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -88,7 +89,7 @@ class UsersController extends Controller
             'password'=>bcrypt($request->password),
             'city_id'=>$request->city_id,
             'phone'=>$request->phone,
-            'type_user'=>'admin'
+            'type_user'=>'user'
             // 'image'=>$this->attributes['image']
           ]);
 
@@ -139,7 +140,7 @@ class UsersController extends Controller
             'email'=>$request->email,
             'city_id'=>$request->city_id,
             'phone'=>$request->phone,
-            'type_user'=>'admin'
+            // 'type_user'=>'user'
             
         ]);
 
@@ -179,8 +180,12 @@ class UsersController extends Controller
        $info  = User::find($id);
 
            DoFire::MK_REPORT($data,Auth::id(),$info,$request->ipinfo);
-           User::destroy($id);
-        Session::flash('success',trans('home.message_success'));
+           if ($info->email == "admin@admin.com") {
+                Session::flash('error',trans('home.cant_remove_supper_admin'));
+           }else{
+                User::destroy($id);
+                Session::flash('success',trans('home.message_success'));
+           }
         return redirect()->back();  
     }
 
@@ -192,11 +197,11 @@ class UsersController extends Controller
        $data = ['key'=>'dashboard_destroy_categories_ids_['.json_encode($request->ids).']','text'=>'Destroy selected categories Info','browser'=>$agent];
 
         DoFire::MK_REPORT($data,Auth::id(),null,$request->ipinfo);
-
+      
         if ($request->has('ids')) {
-            User::wherein('id',$request->ids)->delete();
+            User::wherein('id',$request->ids)->where('email','!=','admin@admin.com')->delete();
         }else{
-            User::truncate();
+            User::where('email','!=','admin@admin.com')->truncate();
         }
         Session::flash('success',trans('home.message_success'));
         return redirect()->back();  

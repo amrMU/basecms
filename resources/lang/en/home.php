@@ -178,7 +178,9 @@
 		'sellect_all'=>'Sellect All',
 		'delete_all'=>'Delete All',
 		'body_delete_all_model'=>'Anything you choose will be removed from your database.',
-		'Maintenance_Policy_Page_Usage'=>'The usage policy page must have a link policy'
+		'Maintenance_Policy_Page_Usage'=>'The usage policy page must have a link policy',
+		'cant_remove_supper_admin'=>'The system cannot delete this administrator account'
+		
 		
 
 

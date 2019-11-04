@@ -63,11 +63,15 @@
                         <ul>
                             <li class="nvmenu">
                                 <div class="logo">
+                                    <?php if($setting): ?>
                                     <?php if($setting->logo === null ): ?>
                                     <a href="<?php echo e(URL::to('/')); ?>"><img src="<?php echo e(asset('/front/images/logo.png')); ?>" alt=""></a>
 
                                     <?php else: ?> 
+                                    <?php endif; ?>
+                                    <?php else: ?>
                                     <a href="<?php echo e(URL::to('/')); ?>"><img src="<?php echo e(asset('/').@$setting->logo); ?>" alt=""></a>
+
                                     <?php endif; ?>
                                 </div>
                             </li>
@@ -77,11 +81,11 @@
                             </li>
                             <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <li class="nvmenu">
-                                <a href="<?php echo e(URL::to('/').'/categories/'.$category->id.'/'.str_replace(' ', '_', $category->category_translation->name)); ?>"><?php echo e(@$category->category_translation->name); ?> <?php if($category->sub_categories->count() > 0): ?><span class="ti-angle-down"></span><?php endif; ?></a>
+                                <a href="<?php echo e(URL::to('/').'/categories/'.@$category->id.'/'.@str_replace(' ', '_', $category->category_translation->name)); ?>"><?php echo e(@$category->category_translation->name); ?> <?php if($category->sub_categories->count() > 0): ?><span class="ti-angle-down"></span><?php endif; ?></a>
                                 <?php if($category->sub_categories->count() > 0): ?>
                                 <ul class="menu">
                                     <?php $__currentLoopData = $category->sub_categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sub): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <li><a href="<?php echo e(URL::to('/').'/categories/'.$sub->id.'/'.str_replace(' ', '_', $sub->category_translation->name)); ?>"><?php echo e(@$sub->category_translation->name); ?></a></li>
+                                    <li><a href="<?php echo e(URL::to('/').'/categories/'.@$sub->id.'/'.@str_replace(' ', '_', $sub->category_translation->name)); ?>"><?php echo e(@$sub->category_translation->name); ?></a></li>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </ul>
                                 <?php endif; ?>

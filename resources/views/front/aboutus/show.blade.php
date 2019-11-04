@@ -49,7 +49,7 @@
                         <div class="intro">
                             <h6>{{@$info->translation->title}}</h6>
                             <p>{!!@$info->translation->content!!}</p>
-                            <a href="#0" class="butn butn-bg"><span>اذهب للبحث</span></a>
+                            {{-- <a href="#0" class="butn butn-bg"><span>اذهب للبحث</span></a> --}}
                         </div>
                     </div>
 

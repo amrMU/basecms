@@ -26,7 +26,7 @@
                 <div class="row">
                     <div class="col-lg-12 text-center caption">
                         <h1>حساب جديد</h1>
-                        <h5><a href="index.html">الرئسية</a><span>/</span><a href="#0">إنشاء حساب</a></h5>
+                        <h5><a href="<?php echo e(URL::to('/')); ?>">الرئسية</a><span>/</span><a href="#0">إنشاء حساب</a></h5>
                     </div>
                 </div>
             </div>
@@ -47,17 +47,18 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="row">
-
+                            <?php if($policy != null): ?>
                             <div class="col-lg-4 order-1">
                                 <div class="register-info">
                                     <h5 class="title"><span>تعليمات التسجيل</span></h5>
                                     <div class="cont">
                                        
-                                        <?php echo substr($policy->translation->content, 0,839); ?>
+                                        <?php echo @$policy->translation->content; ?>
 
                                     </div>
                                 </div>
                             </div>
+                            <?php endif; ?>
 
                             <div class="col-lg-8 order-2">
                                 <div class="register-form">
