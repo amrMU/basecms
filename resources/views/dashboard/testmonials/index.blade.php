@@ -66,13 +66,13 @@
                 </div>
                 <div class="col-md-2">
                     
-                    <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#DeleteSelected{{@$testmonial->id}}">
+                    <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#DeleteSelected">
                        @lang('home.delete_all')
                     </button>
 
 
                     <!-- Modal -->
-                    <div id="DeleteSelected{{@$testmonial->id}}" class="modal fade" role="dialog">
+                    <div id="DeleteSelected" class="modal fade" role="dialog">
                       <div class="modal-dialog">
 
                         <!-- Modal content-->

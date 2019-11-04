@@ -49,4 +49,23 @@ class ContactUsController extends Controller
         session::flash('success',trans('home.message_success'));
         return redirect()->back();
     }
+
+     public function destroyAll(Request $request)
+    {
+
+       $agent = new Agent();
+       $agent = $agent->platform().','.$agent->browser().$agent->version($agent->browser());
+       $data = ['key'=>'dashboard_destroy_contact_us_['.json_encode($request->ids).']','text'=>'Destroy selected Contact Us Info','browser'=>$agent];
+
+        DoFire::MK_REPORT($data,Auth::id(),null,$request->ipinfo);
+
+        if ($request->has('ids')) {
+            $this->contact->wherein('id',$request->ids)->delete();
+        }else{
+        $this->contact->truncate();
+        }
+        Session::flash('success',trans('home.message_success'));
+        return redirect()->back();  
+    }
+
 }

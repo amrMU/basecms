@@ -74,6 +74,7 @@
 
 			Route::get('contactus','Admin\ContactUsController@list');
 			Route::get('contactus/{id}/delete','Admin\ContactUsController@destroy');
+			Route::DELETE('contactus_delete_all','Admin\ContactUsController@destroyAll');
 
 
 			Route::get('sitemap/create','Admin\SitemapGeneratorController@create');
