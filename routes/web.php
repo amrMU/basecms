@@ -45,10 +45,13 @@
 			Route::resource('users','Admin\UsersController');
 			Route::get('users_export','Admin\UsersController@ExportExelSheet');
 			Route::get('users/{id}/delete','Admin\UsersController@destroy');
+			Route::DELETE('users_delete_all','Admin\UsersController@destroyAll');
+			
 
 			Route::resource('categories','Admin\CategoriesController');
 			Route::get('categories/{id}/delete','Admin\CategoriesController@destroy');
 			Route::get('categories_export','Admin\CategoriesController@ExportExelSheet');
+			Route::DELETE('categories_delete_all','Admin\CategoriesController@destroyAll');
 
 			Route::resource('testmonials','Admin\TestmonialsController');
 			Route::get('testmonials/{id}/delete','Admin\TestmonialsController@destroy');

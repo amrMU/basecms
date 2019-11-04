@@ -56,6 +56,50 @@
             <strong>@lang('home.success')!</strong> {{session('success')}}.
         </div>
         @endif
+        <form action="{{ URL::to('/ar/admin/users_delete_all') }}" method="post">
+        @csrf
+        <input name="_method" type="hidden" value="DELETE">
+             <div class="row" style="margin:5px;">
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-info"  >
+                    <input type="checkbox" id="select-all">  
+                    @lang('home.sellect_all')</button>
+                </div>
+                <div class="col-md-2">
+                    
+                    <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#DeleteSelected">
+                       @lang('home.delete_all')
+                    </button>
+
+
+                    <!-- Modal -->
+                    <div id="DeleteSelected" class="modal fade" role="dialog">
+                      <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">@lang('home.header_delete_model')</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>@lang('home.body_delete_all_model')</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">@lang('home.close')</button>
+                          
+                            <button type="submit"  class="btn btn-danger" >@lang('home.delete_all')</button>    
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+                </div>
+            </div>
+            <!--  -->
             <table class="table text-nowrap table datatable-basic" id="table">
                 <thead>                  
                 <tr>                                     
@@ -73,7 +117,11 @@
                 <tbody>
                 @foreach($users as $user)
                 <tr>
-                    <td><span class="text-semibold">{{ @$user->id }}</span></td>
+                    <td><span class="text-semibold">
+                            {{ @$user->id }}
+                    <input type="checkbox" name="ids[]" value="{{ @$user->id }}"> 
+                            
+                    </span></td>
                     <td><span class="text-semibold">{{ @$user->fname.' '.$user->lname }}</span></td>
                     <td><span class="text-muted">{{ @$user->email }}</span></td>
                     <td><h6 class="text-semibold">{{ @$user->city->$name }}</h6></td>
@@ -91,6 +139,7 @@
                 @endforeach
                 </tbody>
             </table>
+            </form>
             <div style="padding:0 22%; margin-bottom: 24px;" class="center-block">
             {{@$users->links()}}
             </div>
