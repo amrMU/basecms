@@ -180,7 +180,8 @@
 		'delete_all'=>'حذف الكل',
 		'body_delete_all_model'=>'ستتم إزالة كل ماتم اختياره من قاعدة البيانات الخاصة بك.',
 		'Maintenance_Policy_Page_Usage'=>' صفحه سياسة الاستخدام يجب ان يكون الرابط policy',
-		'cant_remove_supper_admin'=>'لايمكن للنظام حذف حساب ا هذا المسؤل'
+		'cant_remove_supper_admin'=>'لايمكن للنظام حذف حساب ا هذا المسؤل',
+		'login'=>'تسجيل  الدخول'
 		
 
 

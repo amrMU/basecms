@@ -55,7 +55,8 @@
                         <div class="panel panel-body login-form">
                             <div class="text-center">
                                 <div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
-                                <h5 class="content-group">{{ __('Login') }} <small class="display-block">{{__('Your credentials')}}</small></h5>
+                                <h5 class="content-group">تسجيل الدخول <small class="display-block">{{__('
+بيانات الاعتماد الخاصة بك')}}</small></h5>
                             </div>
 
                             <div class="form-group has-feedback has-feedback-left">
@@ -87,14 +88,14 @@
                                     <div class="col-sm-6">
                                         <label class="checkbox-inline">
                                             <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} class="styled" >
-                                            {{ __('Remember Me') }}
+                                            {{ __('تذكرني') }}
                                         </label>
                                     </div>
 
                                     <div class="col-sm-6 text-right">
                                     @if (Route::has('password.request'))
                                         <a  href="{{ route('password.request') }}">
-                                            {{ __('Forgot Your Password?') }}
+                                            {{ __('نسيت كلمة المرور؟ استعاده الآن') }}
                                         </a>
                                     @endif
                                     </div>
@@ -103,10 +104,10 @@
                             </div>
 
                             <div class="form-group">
-                                <button type="submit" class="btn bg-pink-400 btn-block">{{__('login')}} <i class="icon-arrow-left13 position-right"></i></button>
+                                <button type="submit" class="btn bg-pink-400 btn-block">{{__('تسجيل دخول')}} <i class="icon-arrow-left13 position-right"></i></button>
                             </div>
 
-                            <span class="help-block text-center no-margin">By continuing, you're confirming that you've read our <a href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a></span>
+                            {{-- <span class="help-block text-center no-margin">By continuing, you're confirming that you've read our <a href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a></span> --}}
                         </div>
                     </form>
                     <!-- /form with validation -->
